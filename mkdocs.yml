@@ -1,0 +1,54 @@
+site_name: aioclock
+repo_url: https://github.com/ManiMozaffar/aioclock
+site_url: https://ManiMozaffar.github.io/aioclock
+site_description: An asyncio-based scheduling framework designed for execution of periodic task with integrated support for dependency injection, enabling efficient and flexiable task management
+site_author: Mani Mozaffar
+edit_uri: edit/main/docs/
+repo_name: ManiMozaffar/aioclock
+copyright: Maintained by <a href="https://ManiMozaffar.com">Florian</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+            setup_commands:
+                - import sys
+                - sys.path.append('../')
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ManiMozaffar/aioclock
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/aioclock
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
