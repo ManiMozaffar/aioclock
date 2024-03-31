@@ -1,6 +1,5 @@
+import zoneinfo
 from datetime import datetime
-
-import pytz
 
 from aioclock.triggers import At
 
@@ -17,7 +16,7 @@ def test_at_trigger():
             hour=14,
             minute=00,
             second=0,
-            tzinfo=pytz.timezone("Europe/Istanbul"),
+            tzinfo=zoneinfo.ZoneInfo("Europe/Istanbul"),
         )
     )
     assert val == 60
@@ -33,7 +32,7 @@ def test_at_trigger():
             hour=14,
             minute=0,
             second=0,
-            tzinfo=pytz.timezone("Europe/Istanbul"),
+            tzinfo=zoneinfo.ZoneInfo("Europe/Istanbul"),
         )
     )
     assert val == 59
@@ -48,7 +47,7 @@ def test_at_trigger():
             hour=14,
             minute=0,
             second=0,
-            tzinfo=pytz.timezone("Europe/Istanbul"),
+            tzinfo=zoneinfo.ZoneInfo("Europe/Istanbul"),
         )
     )
     assert val == 59
@@ -63,7 +62,7 @@ def test_at_trigger():
             hour=14,
             minute=0,
             second=0,
-            tzinfo=pytz.timezone("Europe/Istanbul"),
+            tzinfo=zoneinfo.ZoneInfo("Europe/Istanbul"),
         )
     )
     assert val == 518400
