@@ -2,53 +2,102 @@
 
 [![Release](https://img.shields.io/github/v/release/ManiMozaffar/aioclock)](https://img.shields.io/github/v/release/ManiMozaffar/aioclock)
 [![Build status](https://img.shields.io/github/actions/workflow/status/ManiMozaffar/aioclock/main.yml?branch=main)](https://github.com/ManiMozaffar/aioclock/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/ManiMozaffar/aioclock/branch/main/graph/badge.svg)](https://codecov.io/gh/ManiMozaffar/aioclock)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/ManiMozaffar/aioclock)](https://img.shields.io/github/commit-activity/m/ManiMozaffar/aioclock)
 [![License](https://img.shields.io/github/license/ManiMozaffar/aioclock)](https://img.shields.io/github/license/ManiMozaffar/aioclock)
 
 An asyncio-based scheduling framework designed for execution of periodic task with integrated support for dependency injection, enabling efficient and flexiable task management
 
 - **Github repository**: <https://github.com/ManiMozaffar/aioclock/>
-- **Documentation** <https://ManiMozaffar.github.io/aioclock/>
 
-## Getting started with your project
+## Features
 
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
+Aioclock offers:
 
-``` bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:ManiMozaffar/aioclock.git
-git push -u origin main
+- Async: 100% Async, very light, fast and resource friendly
+- Scheduling: Keep scheduling tasks for yoo
+- Group: Group your task, for better code maintainability
+- Trigger: Already defined and easily extendable triggers, to trigger your scheduler to be started
+- Easy syntax: Library's syntax is very easy and enjoyable, no confusing hierarchy
+- Pydantic v2 validation: Validate all your trigger on startup using pydantic 2. Fastest to fail possible!
+- **Soon**: Processor handlers, with pub/sub logic.
+
+## Getting started
+
+To Install aioclock, simply do
+
+```
+pip install aioclock
 ```
 
-Finally, install the environment and the pre-commit hooks with
+AioClock is very user friendly and easy to use, it's type stated library to use easily.
+AioClock always have a trigger, that trigger the events.
 
-```bash
-make install
+```python
+import asyncio
+
+from aioclock import AioClock, At, Depends, Every, Forever, Once, OnShutDown, OnStartUp
+from aioclock.group import Group
+
+# groups.py
+group = Group()
+
+
+def more_useless_than_me():
+    return "I'm a dependency. I'm more useless than a screen door on a submarine."
+
+
+@group.task(trigger=Every(seconds=10))
+async def every():
+    print("Every 10 seconds, I make a quantum leap. Where will I land next?")
+
+
+@group.task(trigger=At(tz="UTC", hour=0, minute=0, second=0))
+async def at():
+    print(
+        "When the clock strikes midnight... I turn into a pumpkin. Just kidding, I run this task!"
+    )
+
+
+@group.task(trigger=Forever())
+async def forever(val: str = Depends(more_useless_than_me)):
+    await asyncio.sleep(2)
+    print("Heartbeat detected. Still not a zombie. Will check again in a bit.")
+    assert val == "I'm a dependency. I'm more useless than a screen door on a submarine."
+
+
+@group.task(trigger=Once())
+async def once():
+    print("Just once, I get to say something. Here it goes... I love lamp.")
+
+
+# app.py
+app = AioClock()
+app.include_group(group)
+
+
+@app.task(trigger=OnStartUp())
+async def startup():
+    print(
+        "Welcome to the Async Chronicles! Did you know a group of unicorns is called a blessing? Well, now you do!"
+    )
+
+
+@app.task(trigger=OnShutDown())
+async def shutdown():
+    print("Going offline. Remember, if your code is running, you better go catch it!")
+
+
+# main.py
+if __name__ == "__main__":
+    asyncio.run(app.serve())
 ```
 
-You are now ready to start development on your project! The CI/CD
-pipeline will be triggered when you open a pull request, merge to main,
-or when you create a new release.
+## TODOs
 
-To finalize the set-up for publishing to PyPi or Artifactory, see
-[here](https://fpgmaas.github.io/cookiecutter-poetry/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see
-[here](https://fpgmaas.github.io/cookiecutter-poetry/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/codecov/).
+Ideally, producer and consumer should be on seperate process.
+Because a function having CPU bound task, doesn't mean the task should be produced with delays.
+So AioClock is aiming to give the user ability to easily setup how many process they want to use, and by default use 2 process, where one is consumer and one is producer. Producer doesn't need to be more than 1 process, unless the trigger is CPU intensive.
 
-## Releasing a new version
+## Contribution
 
-- Create an API Token on [Pypi](https://pypi.org/).
-- Add the API Token to your projects secrets with the name `PYPI_TOKEN` by visiting
-[this page](https://github.com/ManiMozaffar/aioclock/settings/secrets/actions/new).
-- Create a [new release](https://github.com/ManiMozaffar/aioclock/releases/new) on Github.
-Create a new tag in the form ``*.*.*``.
-
-For more details, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/cicd/#how-to-trigger-a-release).
-
----
-
-Repository initiated with [fpgmaas/cookiecutter-poetry](https://github.com/fpgmaas/cookiecutter-poetry).
+Feel free to contribute, we welcome new ideas, bug fixes or anything!
