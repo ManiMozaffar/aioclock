@@ -1,10 +1,10 @@
 import asyncio
+import zoneinfo
 from abc import ABC, abstractmethod
 from copy import deepcopy
 from datetime import datetime, timedelta
 from typing import Literal, Union
 
-import pytz
 from pydantic import BaseModel, model_validator
 
 from aioclock.types import EveryT, HourT, MinuteT, SecondT, Triggers
@@ -39,7 +39,7 @@ class Once(BaseTrigger):
             self.already_triggered = True
             return None
 
-        await asyncio.Event().wait()  # waits for ever
+        await asyncio.Event().wait()  # waits forever
 
 
 class OnStartUp(Once):
@@ -51,7 +51,7 @@ class OnStartUp(Once):
             return None
 
     def should_trigger(self) -> bool:
-        return not (self.already_triggered)
+        return not self.already_triggered
 
 
 class OnShutDown(Once):
@@ -63,7 +63,7 @@ class OnShutDown(Once):
             return None
 
     def should_trigger(self) -> bool:
-        return not (self.already_triggered)
+        return not self.already_triggered
 
 
 class Every(BaseTrigger):
@@ -126,7 +126,7 @@ class At(BaseTrigger):
 
         if self.tz is not None:
             try:
-                pytz.timezone(self.tz)
+                zoneinfo.ZoneInfo(self.tz)
             except Exception as error:
                 raise ValueError(f"Invalid timezone provided: {error}")
 
@@ -159,7 +159,7 @@ class At(BaseTrigger):
 
         # 1 second error
         error_margin = WEEK_TO_SECOND - 1
-        if days_ahead == 7 and target_time.timestamp() - tz_aware_now.timestamp() < (error_margin):
+        if days_ahead == 7 and target_time.timestamp() - tz_aware_now.timestamp() < error_margin:
             # date is today, and event is about to be triggered today. so no need to shift to 7 days.
             return target_time
 
@@ -173,6 +173,6 @@ class At(BaseTrigger):
         return (target_time - now).total_seconds()
 
     async def trigger_next(self) -> None:
-        now = datetime.now(pytz.timezone(self.tz))
+        now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
         sleep_for = self._get_next_ts(now)
         await asyncio.sleep(sleep_for)

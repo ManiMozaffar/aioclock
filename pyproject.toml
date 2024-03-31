@@ -11,7 +11,6 @@ packages = [{ include = "aioclock" }]
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
 pydantic = "^2.6.4"
-pytz = "^2024.1"
 fast-depends = "^2.4.2"
 
 [tool.poetry.group.dev.dependencies]
@@ -22,6 +21,7 @@ pyright = "1.1.350"
 
 [tool.pyright]
 typeCheckingMode = "basic"
+
 
 
 [tool.poetry.group.docs.dependencies]
