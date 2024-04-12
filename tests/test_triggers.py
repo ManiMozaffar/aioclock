@@ -1,7 +1,9 @@
-import zoneinfo
 from datetime import datetime
 
-from aioclock.triggers import At
+import pytest
+import zoneinfo
+
+from aioclock.triggers import At, Forever, LoopController, Once
 
 
 def test_at_trigger():
@@ -66,3 +68,36 @@ def test_at_trigger():
         )
     )
     assert val == 518400
+
+
+@pytest.mark.asyncio
+async def test_loop_controller():
+    # since once trigger is triggered, it should not trigger again.
+    trigger = Once()
+    assert trigger.should_trigger() is True
+    await trigger.trigger_next()
+    assert trigger.should_trigger() is False
+
+    class IterateFiveTime(LoopController):
+        type_: str = "foo"
+
+        async def trigger_next(self) -> None:
+            self.increment_loop_counter()
+            return None
+
+    trigger = IterateFiveTime(max_loop_count=5)
+    for _ in range(5):
+        assert trigger.should_trigger() is True
+        await trigger.trigger_next()
+
+    assert trigger.should_trigger() is False
+
+
+@pytest.mark.asyncio
+async def test_forever():
+    trigger = Forever()
+    assert trigger.should_trigger() is True
+    await trigger.trigger_next()
+    assert trigger.should_trigger() is True
+    await trigger.trigger_next()
+    assert trigger.should_trigger() is True
