@@ -1,5 +1,5 @@
 from enum import auto
-from typing import Annotated, Literal
+from typing import Annotated, Literal, Union
 
 from annotated_types import Interval
 
@@ -19,6 +19,8 @@ EveryT = Literal[
 SecondT = Annotated[int, Interval(ge=0, le=59)]
 MinuteT = Annotated[int, Interval(ge=0, le=59)]
 HourT = Annotated[int, Interval(ge=0, le=24)]
+
+PositiveNumber = Annotated[Union[int, float], Interval(ge=0)]
 
 
 class Triggers(StrEnum):
