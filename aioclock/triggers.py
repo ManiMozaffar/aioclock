@@ -68,12 +68,14 @@ class OnShutDown(Once):
 
 class Every(BaseTrigger):
     type_: Literal[Triggers.EVERY] = Triggers.EVERY
+    triggered_counter: int = 0
 
     seconds: Union[PositiveNumber, None] = None
     minutes: Union[PositiveNumber, None] = None
     hours: Union[PositiveNumber, None] = None
     days: Union[PositiveNumber, None] = None
     weeks: Union[PositiveNumber, None] = None
+    counter: Union[int, None] = None
 
     @model_validator(mode="after")
     def validate_time_units(self):
@@ -103,8 +105,12 @@ class Every(BaseTrigger):
         return result
 
     async def trigger_next(self) -> None:
+        self.triggered_counter += 1
         await asyncio.sleep(self.to_seconds)
         return
+
+    def should_trigger(self) -> bool:
+        return True if self.counter is None else self.counter > self.triggered_counter
 
 
 WEEK_TO_SECOND = 604800
