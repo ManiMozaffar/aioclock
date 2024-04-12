@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from typing import Literal, Union
 
 import zoneinfo
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, PositiveInt, model_validator
 
 from aioclock.types import EveryT, HourT, MinuteT, PositiveNumber, SecondT, Triggers
 
@@ -19,63 +19,92 @@ class BaseTrigger(BaseModel, ABC):
         `trigger_next` keep waiting, until the event should be triggered.
         """
 
+    @abstractmethod
     def should_trigger(self) -> bool:
+        """
+        `should_trigger` checks if the event should be triggered or not.
+        """
         return True
 
 
 class Forever(BaseTrigger):
     type_: Literal[Triggers.FOREVER] = Triggers.FOREVER
 
+    def should_trigger(self) -> bool:
+        return True
+
     async def trigger_next(self) -> None:
         return None
 
 
-class Once(BaseTrigger):
+class LoopController(BaseTrigger, ABC):
+    _current_loop_count: int = 0
+    """
+    Current loop count, which is used to keep track of the number of times the event has been triggered.
+    Private attribute, should not be accessed directly.
+    """
+
+    max_loop_count: Union[PositiveInt, None] = None
+    """
+    The maximum number of times the event should be triggered.
+
+    If set to 3, then 4th time the event will not be triggered.
+    If set to None, it will keep running forever.
+    """
+
+    @model_validator(mode="after")
+    def validate_loop_controll(self):
+        if "_current_loop_count" in self.model_fields_set:
+            raise ValueError("_current_loop_count is a private attribute, should not be provided.")
+        return self
+
+    def increment_loop_counter(self) -> None:
+        if self._current_loop_count is not None:
+            self._current_loop_count += 1
+
+    def should_trigger(self) -> bool:
+        if self.max_loop_count is None:
+            return True
+        if self._current_loop_count < self.max_loop_count:
+            return True
+        return False
+
+
+class Once(LoopController):
     type_: Literal[Triggers.ONCE] = Triggers.ONCE
-    already_triggered: bool = False
+    max_loop_count: PositiveInt = 1
 
     async def trigger_next(self) -> None:
-        if self.already_triggered is False:
-            self.already_triggered = True
-            return None
-
-        await asyncio.Event().wait()  # waits forever
+        self.increment_loop_counter()
+        return None
 
 
-class OnStartUp(Once):
+class OnStartUp(LoopController):
     type_: Literal[Triggers.ON_START_UP] = Triggers.ON_START_UP
+    max_loop_count: PositiveInt = 1
 
     async def trigger_next(self) -> None:
-        if self.already_triggered is False:
-            self.already_triggered = True
-            return None
-
-    def should_trigger(self) -> bool:
-        return not self.already_triggered
+        self.increment_loop_counter()
+        return None
 
 
-class OnShutDown(Once):
+class OnShutDown(LoopController):
     type_: Literal[Triggers.ON_SHUT_DOWN] = Triggers.ON_SHUT_DOWN
+    max_loop_count: PositiveInt = 1
 
     async def trigger_next(self) -> None:
-        if self.already_triggered is False:
-            self.already_triggered = True
-            return None
-
-    def should_trigger(self) -> bool:
-        return not self.already_triggered
+        self.increment_loop_counter()
+        return None
 
 
-class Every(BaseTrigger):
+class Every(LoopController):
     type_: Literal[Triggers.EVERY] = Triggers.EVERY
-    triggered_counter: int = 0
 
     seconds: Union[PositiveNumber, None] = None
     minutes: Union[PositiveNumber, None] = None
     hours: Union[PositiveNumber, None] = None
     days: Union[PositiveNumber, None] = None
     weeks: Union[PositiveNumber, None] = None
-    counter: Union[int, None] = None
 
     @model_validator(mode="after")
     def validate_time_units(self):
@@ -105,18 +134,17 @@ class Every(BaseTrigger):
         return result
 
     async def trigger_next(self) -> None:
-        self.triggered_counter += 1
+        self.increment_loop_counter()
+        if self.max_loop_count is not None:
+            self.max_loop_count += 1
         await asyncio.sleep(self.to_seconds)
         return
-
-    def should_trigger(self) -> bool:
-        return True if self.counter is None else self.counter > self.triggered_counter
 
 
 WEEK_TO_SECOND = 604800
 
 
-class At(BaseTrigger):
+class At(LoopController):
     type_: Literal[Triggers.AT] = Triggers.AT
 
     second: SecondT = 0
@@ -124,6 +152,7 @@ class At(BaseTrigger):
     hour: HourT = 0
     at: EveryT = "every day"
     tz: str
+    """Timzeon to use for the event."""
 
     @model_validator(mode="after")
     def validate_time_units(self):
