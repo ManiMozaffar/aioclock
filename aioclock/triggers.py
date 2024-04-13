@@ -58,7 +58,7 @@ class LoopController(BaseTrigger, ABC):
             raise ValueError("_current_loop_count is a private attribute, should not be provided.")
         return self
 
-    def increment_loop_counter(self) -> None:
+    def _increment_loop_counter(self) -> None:
         if self._current_loop_count is not None:
             self._current_loop_count += 1
 
@@ -75,7 +75,7 @@ class Once(LoopController):
     max_loop_count: PositiveInt = 1
 
     async def trigger_next(self) -> None:
-        self.increment_loop_counter()
+        self._increment_loop_counter()
         return None
 
 
@@ -84,7 +84,7 @@ class OnStartUp(LoopController):
     max_loop_count: PositiveInt = 1
 
     async def trigger_next(self) -> None:
-        self.increment_loop_counter()
+        self._increment_loop_counter()
         return None
 
 
@@ -93,7 +93,7 @@ class OnShutDown(LoopController):
     max_loop_count: PositiveInt = 1
 
     async def trigger_next(self) -> None:
-        self.increment_loop_counter()
+        self._increment_loop_counter()
         return None
 
 
@@ -134,7 +134,7 @@ class Every(LoopController):
         return result
 
     async def trigger_next(self) -> None:
-        self.increment_loop_counter()
+        self._increment_loop_counter()
         if self.max_loop_count is not None:
             self.max_loop_count += 1
         await asyncio.sleep(self.to_seconds)
@@ -208,6 +208,7 @@ class At(LoopController):
         return (target_time - now).total_seconds()
 
     async def trigger_next(self) -> None:
+        self._increment_loop_counter()
         now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
         sleep_for = self._get_next_ts(now)
         await asyncio.sleep(sleep_for)
