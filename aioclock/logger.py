@@ -1,7 +1,7 @@
 import logging
 
 
-class MyLogger:
+class Logger:
     _logger: logging = None
 
     def __new__(cls, *args, **kwargs) -> logging:
@@ -57,3 +57,4 @@ class MyLogger:
                 "method_name": f"{method_name}",
             },
         )
+logger = Logger()
