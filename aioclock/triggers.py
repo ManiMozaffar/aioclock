@@ -26,6 +26,14 @@ class BaseTrigger(BaseModel, ABC):
         """
         return True
 
+    @abstractmethod
+    async def get_waiting_time_till_next_trigger(self) -> float | None:
+        """
+        `get_waiting_time_till_next_trigger` returns the time in seconds, after which the event should be triggered.
+        Returns None, if the event should not trigger anymore.
+        """
+        ...
+
 
 class Forever(BaseTrigger):
     type_: Literal[Triggers.FOREVER] = Triggers.FOREVER
@@ -34,6 +42,11 @@ class Forever(BaseTrigger):
         return True
 
     async def trigger_next(self) -> None:
+        return None
+
+    async def get_waiting_time_till_next_trigger(self):
+        if self.should_trigger():
+            return 0
         return None
 
 
@@ -69,6 +82,11 @@ class LoopController(BaseTrigger, ABC):
             return True
         return False
 
+    async def get_waiting_time_till_next_trigger(self):
+        if self.should_trigger():
+            return 0
+        return None
+
 
 class Once(LoopController):
     type_: Literal[Triggers.ONCE] = Triggers.ONCE
@@ -76,6 +94,11 @@ class Once(LoopController):
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()
+        return None
+
+    async def get_waiting_time_till_next_trigger(self):
+        if self.should_trigger():
+            return 0
         return None
 
 
@@ -87,6 +110,11 @@ class OnStartUp(LoopController):
         self._increment_loop_counter()
         return None
 
+    async def get_waiting_time_till_next_trigger(self):
+        if self.should_trigger():
+            return 0
+        return None
+
 
 class OnShutDown(LoopController):
     type_: Literal[Triggers.ON_SHUT_DOWN] = Triggers.ON_SHUT_DOWN
@@ -94,6 +122,11 @@ class OnShutDown(LoopController):
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()
+        return None
+
+    async def get_waiting_time_till_next_trigger(self):
+        if self.should_trigger():
+            return 0
         return None
 
 
@@ -135,10 +168,13 @@ class Every(LoopController):
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()
-        if self.max_loop_count is not None:
-            self.max_loop_count += 1
         await asyncio.sleep(self.to_seconds)
         return
+
+    async def get_waiting_time_till_next_trigger(self):
+        if self.should_trigger():
+            return self.to_seconds
+        return None
 
 
 WEEK_TO_SECOND = 604800
@@ -207,8 +243,16 @@ class At(LoopController):
         target_time = self._shift_to_week(target_time, now)
         return (target_time - now).total_seconds()
 
-    async def trigger_next(self) -> None:
-        self._increment_loop_counter()
+    def get_sleep_time(self):
         now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
         sleep_for = self._get_next_ts(now)
-        await asyncio.sleep(sleep_for)
+        return sleep_for
+
+    async def get_waiting_time_till_next_trigger(self):
+        if self.should_trigger():
+            return self.get_sleep_time()
+        return None
+
+    async def trigger_next(self) -> None:
+        self._increment_loop_counter()
+        await asyncio.sleep(self.get_sleep_time())
