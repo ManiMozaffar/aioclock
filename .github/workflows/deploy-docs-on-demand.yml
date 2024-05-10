@@ -1,10 +1,9 @@
-name: deploy-docs-on-demand
+name: Deploy Docs On Demand
 
 on:
   workflow_dispatch:
 
   deploy-docs:
-    needs: publish
     runs-on: ubuntu-latest
     steps:
       - name: Check out
