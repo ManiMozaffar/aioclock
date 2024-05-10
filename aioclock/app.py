@@ -12,24 +12,110 @@ from aioclock.utils import flatten_chain
 
 
 class AioClock:
+    """
+    AioClock is the main class that will be used to run the tasks.
+    It will be responsible for running the tasks in the right order.
+
+    Example:
+    ```python
+    from aioclock import AioClock, Once
+    app = AioClock()
+
+    @app.task(trigger=Once())
+    async def main():
+        print("Hello World")
+    ```
+
+    To run the aioclock final app simply do:
+    ```python
+    from aioclock import AioClock, Once
+    app = AioClock()
+
+    # whatever next comes here
+    await app.serve()
+    ```
+
+    """
+
     def __init__(self):
+        """
+        Initialize AioClock instance.
+        No parameters are needed.
+        """
         self._groups: list[Group] = []
         self._app_tasks: list[Task] = []
 
+    _groups: list[Group]
+    """List of groups that will be run by AioClock."""
+
+    _app_tasks: list[Task]
+    """List of tasks that will be run by AioClock."""
+
     @property
     def dependencies(self):
+        """Dependencies provider that will be used to inject dependencies in tasks."""
         return get_provider()
 
     def override_dependencies(
         self, original: Callable[..., Any], override: Callable[..., Any]
     ) -> None:
+        """Override a dependency with a new one.
+
+        Example:
+
+        ```python
+        from aioclock import AioClock
+
+        def original_dependency():
+            return 1
+
+        def new_dependency():
+            return 2
+
+        app = AioClock()
+        app.override_dependencies(original=original_dependency, override=new_dependency)
+        ```
+
+        """
         self.dependencies.override(original, override)
 
     def include_group(self, group: Group) -> None:
+        """Include a group of tasks that will be run by AioClock.
+        Example:
+
+        ```python
+        from aioclock import AioClock, Group, Once
+
+        app = AioClock()
+
+        group = Group()
+        @group.task(trigger=Once())
+        async def main():
+            print("Hello World")
+
+        app.include_group(group)
+        ```
+        """
         self._groups.append(group)
         return None
 
     def task(self, *, trigger: BaseTrigger):
+        """Decorator to add a task to the AioClock instance.
+
+        Example:
+
+            ```python
+            from aioclock import AioClock, Once
+
+            app = AioClock()
+
+            @app.task(trigger=Once())
+            async def main():
+                print("Hello World")
+
+            ```
+        """
+
         def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
             @wraps(func)
             async def wrapper(*args, **kwargs) -> Any:
@@ -64,6 +150,12 @@ class AioClock:
         ]
 
     async def serve(self) -> None:
+        """
+        Serves AioClock
+        Run the tasks in the right order.
+        First, run the startup tasks, then run the tasks, and finally run the shutdown tasks.
+        """
+
         self.include_group(Group(tasks=self._app_tasks))
         try:
             await asyncio.gather(
