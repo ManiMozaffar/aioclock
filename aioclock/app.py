@@ -17,6 +17,7 @@ class AioClock:
     It will be responsible for running the tasks in the right order.
 
     Example:
+
     ```python
     from aioclock import AioClock, Once
     app = AioClock()
@@ -27,6 +28,7 @@ class AioClock:
     ```
 
     To run the aioclock final app simply do:
+
     ```python
     from aioclock import AioClock, Once
     app = AioClock()
@@ -104,16 +106,15 @@ class AioClock:
 
         Example:
 
-            ```python
-            from aioclock import AioClock, Once
+        ```python
+        from aioclock import AioClock, Once
 
-            app = AioClock()
+        app = AioClock()
 
-            @app.task(trigger=Once())
-            async def main():
-                print("Hello World")
-
-            ```
+        @app.task(trigger=Once())
+        async def main():
+            print("Hello World")
+        ```
         """
 
         def decorator(func: Callable[..., Any]) -> Callable[..., Any]:

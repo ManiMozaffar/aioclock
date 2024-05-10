@@ -44,11 +44,11 @@ def add_version(markdown: str, page: Page) -> str:
         version_ref = os.getenv("GITHUB_REF")
         if version_ref and version_ref.startswith("refs/tags/"):
             version = re.sub("^refs/tags/", "", version_ref.lower())
-            url = f"https://github.com/ManiMozaffar/aioclock/releases/tag/{version}"
+            url = f"https://ManiMozaffar.github.io/aioclock/releases/tag/{version}"
             version_str = f"Documentation for version: [{version}]({url})"
         elif sha := os.getenv("GITHUB_SHA"):
             sha = sha[:7]
-            url = f"https://github.com/ManiMozaffar/aioclock/commit/{sha}"
+            url = f"https://ManiMozaffar.github.io/aioclock/commit/{sha}"
             version_str = f"Documentation for development version: [{sha}]({url})"
         else:
             version_str = "Documentation for development version"
