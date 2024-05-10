@@ -1,0 +1,17 @@
+name: deploy-docs-on-demand
+
+on:
+  workflow_dispatch:
+
+  deploy-docs:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-poetry-env
+
+      - name: Deploy documentation
+        run: poetry run mkdocs gh-deploy --force
