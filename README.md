@@ -29,8 +29,7 @@ To Install aioclock, simply do
 pip install aioclock
 ```
 
-AioClock is very user friendly and easy to use, it's type stated library to use easily.
-AioClock always have a trigger, that trigger the events.
+## A Sample Example
 
 ```python
 import asyncio
@@ -91,13 +90,3 @@ async def shutdown():
 if __name__ == "__main__":
     asyncio.run(app.serve())
 ```
-
-## TODOs
-
-Ideally, producer and consumer should be on seperate process.
-Because a function having CPU bound task, doesn't mean the task should be produced with delays.
-So AioClock is aiming to give the user ability to easily setup how many process they want to use, and by default use 2 process, where one is consumer and one is producer. Producer doesn't need to be more than 1 process, unless the trigger is CPU intensive.
-
-## Contribution
-
-Feel free to contribute, we welcome new ideas, bug fixes or anything!
