@@ -546,6 +546,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aioclock-vs-faststream" class="md-nav__link">
+    <span class="md-ellipsis">
+      AioClock vs FastStream
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -721,6 +730,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aioclock-vs-faststream" class="md-nav__link">
+    <span class="md-ellipsis">
+      AioClock vs FastStream
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -775,6 +793,7 @@ Credit to Rocketry library, as the comparison is inspired by that.</p>
 <li>You need task pipelining.</li>
 <li>You need more complex and custom scheduling.</li>
 <li>You are not familiar Unix-Linux or you work with Windows.</li>
+<li>You need dependency injection on top of your framework layer.</li>
 </ul>
 <p>When <strong>Crontab</strong> might be a better choice:</p>
 <ul>
@@ -790,6 +809,7 @@ It provides Cron-style scheduling and some interval based scheduling.</p>
 <li>You are building an automation system.</li>
 <li>You need more complex and customized scheduling.</li>
 <li>You need to pipeline tasks.</li>
+<li>You need dependency injection on top of your framework layer.</li>
 </ul>
 <p>When <strong>APScheduler</strong> might be a better choice:</p>
 <ul>
@@ -808,6 +828,7 @@ scheduling background tasks for web back-ends.</p>
 <li>You need more complex and customized scheduling.</li>
 <li>You work with Windows.</li>
 <li>You want to fully control your broker behavior, and have high flexability.</li>
+<li>You need dependency injection on top of your framework layer.</li>
 </ul>
 <p>When <strong>Celery</strong> might be a better choice:</p>
 <ul>
@@ -836,6 +857,23 @@ in data pipelines. It has a scheduler and a built-in monitor.</p>
 <li>You need distributed execution.</li>
 <li>You work in data engineering.</li>
 </ul>
+<h2 id="aioclock-vs-faststream">AioClock vs FastStream<a class="headerlink" href="#aioclock-vs-faststream" title="Permanent link">&para;</a></h2>
+<p>FastStream is a powerful and easy-to-use Python framework for building asynchronous services interacting with event streams such as Apache Kafka, RabbitMQ, NATS and Redis.</p>
+<p>When <strong>AioClock</strong> might be a better choice:</p>
+<ul>
+<li>You need more complex and customized scheduling.</li>
+<li>You need high flexability and low level APIs of your broker.</li>
+</ul>
+<p>When <strong>FastStream</strong> might be a better choice:</p>
+<ul>
+<li>You are not very familiar with message brokers, and you need very easy solution that abstract away all details.</li>
+<li>You need auto generated asyncapi documentation</li>
+<li>You are building a distributed data streaming application</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Note</p>
+<p>Note that you can use both beside each other, just like FastAPI. All you'd have to do is to serve both application at same time.</p>
+</div>
 
 
 
