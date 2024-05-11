@@ -114,9 +114,7 @@ class Forever(BaseTrigger[Literal[Triggers.FOREVER]]):
         return None
 
     async def get_waiting_time_till_next_trigger(self):
-        if self.should_trigger():
-            return 0
-        return None
+        return 0
 
 
 class LoopController(BaseTrigger, ABC, Generic[TriggerTypeT]):
@@ -164,9 +162,7 @@ class LoopController(BaseTrigger, ABC, Generic[TriggerTypeT]):
         return False
 
     async def get_waiting_time_till_next_trigger(self):
-        if self.should_trigger():
-            return 0
-        return None
+        return 0
 
 
 class Once(LoopController[Literal[Triggers.ONCE]]):
@@ -192,9 +188,7 @@ class Once(LoopController[Literal[Triggers.ONCE]]):
         return None
 
     async def get_waiting_time_till_next_trigger(self):
-        if self.should_trigger():
-            return 0
-        return None
+        return 0
 
 
 class OnStartUp(LoopController[Literal[Triggers.ON_START_UP]]):
@@ -220,9 +214,7 @@ class OnStartUp(LoopController[Literal[Triggers.ON_START_UP]]):
         return None
 
     async def get_waiting_time_till_next_trigger(self):
-        if self.should_trigger():
-            return 0
-        return None
+        return 0
 
 
 class OnShutDown(LoopController[Literal[Triggers.ON_SHUT_DOWN]]):
@@ -249,9 +241,7 @@ class OnShutDown(LoopController[Literal[Triggers.ON_SHUT_DOWN]]):
         return None
 
     async def get_waiting_time_till_next_trigger(self):
-        if self.should_trigger():
-            return 0
-        return None
+        return 0
 
 
 class Every(LoopController[Literal[Triggers.EVERY]]):
@@ -420,9 +410,7 @@ class At(LoopController[Literal[Triggers.AT]]):
         return sleep_for
 
     async def get_waiting_time_till_next_trigger(self):
-        if self.should_trigger():
-            return self.get_sleep_time()
-        return None
+        return self.get_sleep_time()
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()

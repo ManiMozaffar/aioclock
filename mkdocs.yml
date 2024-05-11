@@ -4,22 +4,22 @@ repo_url: https://github.com/ManiMozaffar/aioclock
 site_url: https://ManiMozaffar.github.io/aioclock
 site_author: Mani Mozaffar
 repo_name: ManiMozaffar/aioclock
-copyright: Maintained by <a href="https://ManiMozaffar.com">Florian</a>.
+copyright: Maintained by <a href="https://ManiMozaffar.com">Mani Mozaffar</a>.
 
 theme:
   name: "material"
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: pink
-      accent: pink
+      primary: blue grey
+      accent: indigo
       toggle:
         icon: material/lightbulb-outline
         name: "Switch to dark mode"
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: pink
-      accent: pink
+      primary: blue grey
+      accent: indigo
       toggle:
         icon: material/lightbulb
         name: "Switch to light mode"
@@ -88,9 +88,12 @@ plugins:
 
 nav:
   - Introduction: index.md
-  - API Documentation:
+  - Documentation:
       - Aioclock App: api/app.md
       - Group: api/group.md
       - Task: api/task.md
       - Triggers: api/triggers.md
       - Alternatives: alternative.md
+      - Examples:
+          - Using with FastAPI: examples/fastapi.md
+          - Using with Message Brokers: examples/brokers.md
