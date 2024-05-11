@@ -43,6 +43,7 @@ When **AioClock** might be a better choice:
 - You need task pipelining.
 - You need more complex and custom scheduling.
 - You are not familiar Unix-Linux or you work with Windows.
+- You need dependency injection on top of your framework layer.
 
 When **Crontab** might be a better choice:
 
@@ -60,6 +61,7 @@ When **AioClock** might be a better choice:
 - You are building an automation system.
 - You need more complex and customized scheduling.
 - You need to pipeline tasks.
+- You need dependency injection on top of your framework layer.
 
 When **APScheduler** might be a better choice:
 
@@ -80,6 +82,7 @@ When **AioClock** might be a better choice:
 - You need more complex and customized scheduling.
 - You work with Windows.
 - You want to fully control your broker behavior, and have high flexability.
+- You need dependency injection on top of your framework layer.
 
 When **Celery** might be a better choice:
 
@@ -109,3 +112,22 @@ When **Airflow** might be a better choice:
 - You would like to have more out-of-the-box.
 - You need distributed execution.
 - You work in data engineering.
+
+## AioClock vs FastStream
+
+FastStream is a powerful and easy-to-use Python framework for building asynchronous services interacting with event streams such as Apache Kafka, RabbitMQ, NATS and Redis.
+
+When **AioClock** might be a better choice:
+
+- You need more complex and customized scheduling.
+- You need high flexability and low level APIs of your broker.
+
+When **FastStream** might be a better choice:
+
+- You are not very familiar with message brokers, and you need very easy solution that abstract away all details.
+- You need auto generated asyncapi documentation
+- You are building a distributed data streaming application
+
+!!! success "Note"
+
+    Note that you can use both beside each other, just like FastAPI. All you'd have to do is to serve both application at same time.
