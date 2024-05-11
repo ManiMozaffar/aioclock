@@ -2,32 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ManiMozaffar.github.io/aioclock/</loc>
-         <lastmod>2024-05-10</lastmod>
+         <lastmod>2024-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ManiMozaffar.github.io/aioclock/alternative/</loc>
-         <lastmod>2024-05-10</lastmod>
+         <lastmod>2024-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ManiMozaffar.github.io/aioclock/api/app/</loc>
-         <lastmod>2024-05-10</lastmod>
+         <lastmod>2024-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ManiMozaffar.github.io/aioclock/api/group/</loc>
-         <lastmod>2024-05-10</lastmod>
+         <lastmod>2024-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ManiMozaffar.github.io/aioclock/api/task/</loc>
-         <lastmod>2024-05-10</lastmod>
+         <lastmod>2024-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ManiMozaffar.github.io/aioclock/api/triggers/</loc>
-         <lastmod>2024-05-10</lastmod>
+         <lastmod>2024-05-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ManiMozaffar.github.io/aioclock/examples/brokers/</loc>
+         <lastmod>2024-05-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ManiMozaffar.github.io/aioclock/examples/fastapi/</loc>
+         <lastmod>2024-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

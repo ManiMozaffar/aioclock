@@ -12,22 +12,26 @@
         <meta name="author" content="Mani Mozaffar">
       
       
+        <link rel="canonical" href="https://ManiMozaffar.github.io/aioclock/examples/brokers/">
+      
+      
+        <link rel="prev" href="../fastapi/">
       
       
       
-      <link rel="icon" href="/aioclock/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.16">
     
     
       
-        <title>AioColck</title>
+        <title>Using with Message Brokers - AioColck</title>
       
     
     
-      <link rel="stylesheet" href="/aioclock/assets/stylesheets/main.bcfcd587.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
       
         
-        <link rel="stylesheet" href="/aioclock/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,11 +50,11 @@
       
     
     
-      <link rel="stylesheet" href="/aioclock/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="/aioclock/extra/tweaks.css">
+      <link rel="stylesheet" href="../../extra/tweaks.css">
     
-    <script>__md_scope=new URL("/aioclock/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -85,7 +89,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/aioclock/." title="AioColck" class="md-header__button md-logo" aria-label="AioColck" data-md-component="logo">
+    <a href="../.." title="AioColck" class="md-header__button md-logo" aria-label="AioColck" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -105,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Using with Message Brokers
             
           </span>
         </div>
@@ -214,7 +218,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/aioclock/." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -229,11 +233,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="/aioclock/api/app/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../api/app/" class="md-tabs__link">
           
   
   Documentation
@@ -266,7 +272,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/aioclock/." title="AioColck" class="md-nav__button md-logo" aria-label="AioColck" data-md-component="logo">
+    <a href="../.." title="AioColck" class="md-nav__button md-logo" aria-label="AioColck" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -296,7 +302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aioclock/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -313,23 +319,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -340,7 +351,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Documentation
@@ -354,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aioclock/api/app/" class="md-nav__link">
+      <a href="../../api/app/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -375,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aioclock/api/group/" class="md-nav__link">
+      <a href="../../api/group/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -396,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aioclock/api/task/" class="md-nav__link">
+      <a href="../../api/task/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -417,7 +428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aioclock/api/triggers/" class="md-nav__link">
+      <a href="../../api/triggers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -438,7 +449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aioclock/alternative/" class="md-nav__link">
+      <a href="../../alternative/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -456,6 +467,8 @@
                 
   
   
+    
+  
   
   
     
@@ -465,11 +478,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" checked>
         
           
           <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
@@ -483,7 +496,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             Examples
@@ -497,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aioclock/examples/fastapi/" class="md-nav__link">
+      <a href="../fastapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,10 +528,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/aioclock/examples/brokers/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -527,6 +547,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -575,8 +596,56 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  <h1>Using with Message Brokers</h1>
+
+<p>You can basically run any tasks on aioclock, it could be your redis broker or other kind of brokers listening to a queue. The benefit of doing so, is that you don't need to worry about dependency injection, shutdown or startup event.</p>
+<p>AioClock offer you a unique easy way to spin up new services, without any overhead or perfomance issue!</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">Forever</span><span class="p">,</span> <span class="n">OnShutDown</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">BrokerType</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># your singleton redis instance</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nd">@lru_cache</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">def</span> <span class="nf">get_redis</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BrokerType</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="o">...</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nd">@app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Forever</span><span class="p">())</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">read_message_queue</span><span class="p">(</span><span class="n">redis</span><span class="p">:</span> <span class="n">BrokerType</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_redis</span><span class="p">)):</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">async</span> <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">redis</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="s2">&quot;...&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="o">...</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="nd">@app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">OnShutDown</span><span class="p">())</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">shutdown_event</span><span class="p">(</span><span class="n">redis</span><span class="p">:</span> <span class="n">BrokerType</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_redis</span><span class="p">)):</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">await</span> <span class="n">redis</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+</code></pre></div>
+<p>One other way to do this, is to implement a trigger that automatically execute the function.
+But to do so, I basically need to wrap redis in my own library, and that's not good for some reasons:</p>
+<ol>
+<li>Complexity of framework increases.</li>
+<li>Is not realy flexible, because native library and client are always way more flexible. I end up writing something like <code>Celery</code>.</li>
+<li>The architecture I choose to handle interactions with broker may not satisfy your requirement.</li>
+</ol>
+<p><a href="https://github.com/ManiMozaffar/typed-redis">This repository is an example how you can write a message queue in aioclock.</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -616,10 +685,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/aioclock/", "features": ["content.code.annotate", "content.tabs.link", "content.code.copy", "announce.dismiss", "navigation.tabs", "search.suggest", "search.highlight"], "search": "/aioclock/assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.tabs.link", "content.code.copy", "announce.dismiss", "navigation.tabs", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/aioclock/assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="../../assets/javascripts/bundle.bd41221c.min.js"></script>
       
     
   </body>
