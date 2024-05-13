@@ -7,7 +7,7 @@ Scheduling is annoying, stateful and hard to scale. But not anymore! AioClock is
 Aioclock offers:
 
 - Async: 100% Async, very light, fast and resource friendly
-- Scheduling: Keep scheduling tasks for yoo
+- Scheduling: Keep scheduling tasks for you
 - Group: Group your task, for better code maintainability
 - Trigger: Already defined and easily extendable triggers, to trigger your scheduler to be started
 - Easy syntax: Library's syntax is very easy and enjoyable, no confusing hierarchy
