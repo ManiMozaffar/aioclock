@@ -3,7 +3,7 @@ from datetime import datetime
 import pytest
 import zoneinfo
 
-from aioclock.triggers import At, Forever, LoopController, Once
+from aioclock.triggers import At, Every, Forever, LoopController, Once
 
 
 def test_at_trigger():
@@ -101,3 +101,16 @@ async def test_forever():
     assert trigger.should_trigger() is True
     await trigger.trigger_next()
     assert trigger.should_trigger() is True
+
+
+@pytest.mark.asyncio
+async def test_every():
+    # wait should always wait for the period on first run
+    trigger = Every(seconds=1, first_run_strategy="wait")
+    assert await trigger.get_waiting_time_till_next_trigger() == 1
+
+    # immediate should always execute immediately, but wait for the period from second run.
+    trigger = Every(seconds=1, first_run_strategy="immediate")
+    assert await trigger.get_waiting_time_till_next_trigger() == 0
+    trigger._increment_loop_counter()
+    assert await trigger.get_waiting_time_till_next_trigger() == 1

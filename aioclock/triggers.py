@@ -151,8 +151,7 @@ class LoopController(BaseTrigger, ABC, Generic[TriggerTypeT]):
         return self
 
     def _increment_loop_counter(self) -> None:
-        if self._current_loop_count is not None:
-            self._current_loop_count += 1
+        self._current_loop_count += 1
 
     def should_trigger(self) -> bool:
         if self.max_loop_count is None:
@@ -261,6 +260,13 @@ class Every(LoopController[Literal[Triggers.EVERY]]):
 
     type_: Literal[Triggers.EVERY] = Triggers.EVERY
 
+    first_run_strategy: Literal["immediate", "wait"] = "wait"
+    """Strategy to use for the first run.
+    If `immediate`, then the event will be triggered immediately,
+        and then wait for the time to trigger the event again.
+    If `wait`, then the event will wait for the time to trigger the event for the first time.
+    """
+
     seconds: Union[PositiveNumber, None] = None
     """Seconds to wait before triggering the event."""
 
@@ -305,10 +311,16 @@ class Every(LoopController[Literal[Triggers.EVERY]]):
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()
+        if self._current_loop_count == 1 and self.first_run_strategy == "immediate":
+            return None
         await asyncio.sleep(self.to_seconds)
-        return
+        return None
 
     async def get_waiting_time_till_next_trigger(self):
+        # not incremented yet, so the counter is 0
+        if self._current_loop_count == 0 and self.first_run_strategy == "immediate":
+            return 0
+
         if self.should_trigger():
             return self.to_seconds
         return None
