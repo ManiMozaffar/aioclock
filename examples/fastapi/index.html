@@ -603,7 +603,7 @@
 
   <h1>Using with FastAPI</h1>
 
-<p>To run AioClock with FastAPI, you can run it on background with FastAPI lifespan, next to your asgi.</p>
+<p>To run AioClock with FastAPI, you can run it in the background with FastAPI lifespan, next to your asgi.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">asyncio</span>
@@ -626,11 +626,11 @@
 <p class="admonition-title">This setup is not recommended at all</p>
 <p>Running AioClock with FastAPI is not a good practice in General, because:
 FastAPI is a framework to write stateless API, but aioclock is still stateful component in your architecture.
-In simlper term, it means if you have 5 instances of aioclock running, they produce 5x tasks than you intended.
+In simpler terms, it means if you have 5 instances of aioclock running, they produce 5x tasks than you intended.
 So you cannot easily scale up horizontally by adding more aioclock power!</p>
-<p>Even in this case, if you serve FastAPI with multiple process, you end up having one aioclock per each process!</p>
-<p>What I suggest to do is spin one new service, that is responsible to process the periodic taks.
-Try to avoid periodic task in general, but sometimes it's not easy to do so.</p>
+<p>Even in this case, if you serve FastAPI with multiple processes, you end up having one aioclock per process!</p>
+<p>What I suggest doing is to spin one new service, that is responsible for processing the periodic tasks.
+Try to avoid periodic tasks in general, but sometimes it's not easy to do so.</p>
 </div>
 
 
