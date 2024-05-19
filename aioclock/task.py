@@ -26,7 +26,7 @@ class Task:
         while self.trigger.should_trigger():
             try:
                 next_trigger = await self.trigger.get_waiting_time_till_next_trigger()
-                if next_trigger:
+                if next_trigger is not None:
                     logger.info(f"Triggering next task {self.func.__name__} in {next_trigger}")
                 await self.trigger.trigger_next()
                 logger.debug(f"Running task {self.func.__name__}")
