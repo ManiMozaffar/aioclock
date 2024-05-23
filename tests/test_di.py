@@ -1,6 +1,7 @@
 import pytest
 
-from aioclock import AioClock, Depends, Once, run_with_injected_deps
+from aioclock import AioClock, Depends, Once
+from aioclock.api import run_with_injected_deps
 
 app = AioClock()
 

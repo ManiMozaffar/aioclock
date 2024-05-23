@@ -6,12 +6,14 @@ These tasks keep running forever until the trigger's method `should_trigger` ret
 """
 
 from dataclasses import dataclass, field
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any, Awaitable, Callable
 from uuid import UUID, uuid4
 
 from aioclock.logger import logger
 from aioclock.triggers import BaseTrigger
+
+UTC = timezone.utc
 
 
 @dataclass
