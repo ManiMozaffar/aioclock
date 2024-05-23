@@ -89,11 +89,17 @@ plugins:
 nav:
   - Introduction: index.md
   - Documentation:
-      - Aioclock App: api/app.md
-      - Group: api/group.md
-      - Task: api/task.md
-      - Triggers: api/triggers.md
+      - Basic Usage:
+          - AioClock Application: api/getting_started.md
+          - Triggers: api/triggers.md
+
+      - Advance Usage:
+          - Task: api/task.md
+          - External API: api/external_api.md
+          - Plugins (FastAPI included): api/plugin.md
+
       - Alternatives: alternative.md
+
       - Examples:
           - Using with FastAPI: examples/fastapi.md
           - Using with Message Brokers: examples/brokers.md
