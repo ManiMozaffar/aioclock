@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Callable
+from typing import Any, Awaitable, Callable
 
 from aioclock.logger import logger
 from aioclock.triggers import BaseTrigger
@@ -12,7 +12,7 @@ class Task:
     This is internally used, when you decorate your function with `aioclock.task`.
     """
 
-    func: Callable[..., Any]
+    func: Callable[..., Awaitable[Any]]
     """Decorated function that will be run by AioClock."""
 
     trigger: BaseTrigger
