@@ -12,13 +12,13 @@
         <meta name="author" content="Mani Mozaffar">
       
       
-        <link rel="canonical" href="https://ManiMozaffar.github.io/aioclock/api/task/">
+        <link rel="canonical" href="https://ManiMozaffar.github.io/aioclock/api/plugin/">
       
       
-        <link rel="prev" href="../triggers/">
+        <link rel="prev" href="../external_api/">
       
       
-        <link rel="next" href="../external_api/">
+        <link rel="next" href="../../alternative/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Task - AioColck</title>
+        <title>Plugins (FastAPI included) - AioColck</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aioclock.task" class="md-skip">
+        <a href="#aioclock.ext" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Task
+              Plugins (FastAPI included)
             
           </span>
         </div>
@@ -508,28 +508,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Task
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../task/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -538,84 +520,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#aioclock.task" class="md-nav__link">
-    <span class="md-ellipsis">
-      task
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aioclock.task.Task" class="md-nav__link">
-    <span class="md-ellipsis">
-      Task
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Task">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.task.Task.func" class="md-nav__link">
-    <span class="md-ellipsis">
-      func
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.task.Task.trigger" class="md-nav__link">
-    <span class="md-ellipsis">
-      trigger
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.task.Task.id" class="md-nav__link">
-    <span class="md-ellipsis">
-      id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.task.Task.run" class="md-nav__link">
-    <span class="md-ellipsis">
-      run
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -646,10 +550,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../plugin/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Plugins (FastAPI included)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -658,6 +580,51 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aioclock.ext" class="md-nav__link">
+    <span class="md-ellipsis">
+      ext
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aioclock.ext.fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      fastapi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aioclock.ext.fastapi.make_fastapi_router" class="md-nav__link">
+    <span class="md-ellipsis">
+      make_fastapi_router
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -812,62 +779,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#aioclock.task" class="md-nav__link">
+  <a href="#aioclock.ext" class="md-nav__link">
     <span class="md-ellipsis">
-      task
+      ext
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aioclock.task.Task" class="md-nav__link">
+  <a href="#aioclock.ext.fastapi" class="md-nav__link">
     <span class="md-ellipsis">
-      Task
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Task">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.task.Task.func" class="md-nav__link">
-    <span class="md-ellipsis">
-      func
+      fastapi
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.task.Task.trigger" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#aioclock.ext.fastapi.make_fastapi_router" class="md-nav__link">
     <span class="md-ellipsis">
-      trigger
+      make_fastapi_router
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.task.Task.id" class="md-nav__link">
-    <span class="md-ellipsis">
-      id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.task.Task.run" class="md-nav__link">
-    <span class="md-ellipsis">
-      run
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -886,18 +820,19 @@
                   
 
 
-  <h1>Task</h1>
+  <h1>Plugins (FastAPI included)</h1>
 
 <div class="doc doc-object doc-module">
 
 
 
-<a id="aioclock.task"></a>
+<a id="aioclock.ext"></a>
   <div class="doc doc-contents first">
   
-      <p>Aioclock wrap your functions with a task object, and append the task to the list of tasks in the AioClock instance.
-After collecting all the tasks from decorated functions, aioclock serve them in order it has to be (startup, normal, shutdown).</p>
-<p>These tasks keep running forever until the trigger's method <code>should_trigger</code> returns False.</p>
+      <p>Extensions for aioclock.</p>
+<p>AioClock is very extensible, and you can add your own extensions to it.
+The extension would allow you to interact with your AioClock instance, from different layers of your application.
+For instance, the FastAPI plugin allows you to run a specific task immediately from an HTTP API, or see your tasks in an HTTP API, and when they are going to run next.</p>
 
   
 
@@ -910,33 +845,32 @@ After collecting all the tasks from decorated functions, aioclock serve them in 
 
 
 
-<div class="doc doc-object doc-class">
 
 
 
-<h2 id="aioclock.task.Task" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">Task</span>
+  </div>
 
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="aioclock.ext.fastapi"></a>
+  <div class="doc doc-contents first">
   
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
-  </span>
+      <p>FastAPI extension to manage the tasks of the AioClock instance in HTTP Layer.</p>
 
-<a href="#aioclock.task.Task" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Task</span><span class="p">(</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">func</span><span class="p">:</span> <span class="n"><span title="typing.Callable">Callable</span></span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n"><span title="typing.Awaitable">Awaitable</span></span><span class="p">[</span><span class="n"><span title="typing.Any">Any</span></span><span class="p">]],</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">trigger</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></span><span class="p">,</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nb">id</span><span class="p">:</span> <span class="n"><span title="uuid.UUID">UUID</span></span> <span class="o">=</span> <span class="n">uuid4</span><span class="p">(),</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-
-  
-      <p>Task that will be run by AioClock.
-Which always has a function and a trigger.
-This is internally used, when you decorate your function with <code>aioclock.task</code>.</p>
-
+<details class="use-cases" open>
+  <summary>Use cases</summary>
+  <ul>
+<li>Expose the tasks of the AioClock instance in an HTTP API.</li>
+<li>Show to your client which task is going to be run next, and at which time.</li>
+<li>Run a specific task from an HTTP API immidiately if needed.</li>
+</ul>
+</details>      <p>To use FastAPI Extension, please make sure you do <code>pip install aioclock[fastapi]</code>.</p>
 
   
 
@@ -947,77 +881,6 @@ This is internally used, when you decorate your function with <code>aioclock.tas
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.task.Task.func" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">func</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.task.Task.func" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">func</span><span class="p">:</span> <span class="n"><span title="typing.Callable">Callable</span></span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n"><span title="typing.Awaitable">Awaitable</span></span><span class="p">[</span><span class="n"><span title="typing.Any">Any</span></span><span class="p">]]</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Decorated function that will be run by AioClock.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.task.Task.trigger" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">trigger</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.task.Task.trigger" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">trigger</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Trigger that will be used to run the function.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.task.Task.id" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">id</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.task.Task.id" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">id</span><span class="p">:</span> <span class="n"><span title="uuid.UUID">UUID</span></span> <span class="o">=</span> <span class="n"><span title="dataclasses.field">field</span></span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n"><span title="uuid.uuid4">uuid4</span></span><span class="p">)</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Task ID that is unique for each task, and changes every time you run the aioclock app.
-In future we might store task ID in a database, so that it always remains same.</p>
-  </div>
-
-</div>
 
 
 
@@ -1026,26 +889,81 @@ In future we might store task ID in a database, so that it always remains same.<
 
 
 
-<h3 id="aioclock.task.Task.run" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">run</span>
+<h2 id="aioclock.ext.fastapi.make_fastapi_router" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">make_fastapi_router</span>
 
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
 
-<a href="#aioclock.task.Task.run" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">run</span><span class="p">()</span>
+<a href="#aioclock.ext.fastapi.make_fastapi_router" class="headerlink" title="Permanent link">&para;</a></h2>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">make_fastapi_router</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">aioclock</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.app.AioClock" href="../getting_started/#aioclock.app.AioClock">AioClock</a></span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">router</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="fastapi.APIRouter">APIRouter</span></span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>Run the task, and handle the exceptions.
-If the task fails, log the error with exception, but keep running the tasks.</p>
+      <p>Make a FastAPI router that exposes the tasks of the AioClock instance and its external python API in HTTP Layer.
+You can pass a router to this function, and have dependencies injected in the router, or any authorization logic that you want to have.</p>
 
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">asyncio</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">asynccontextmanager</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span> <span class="nn">aioclock.ext.fastapi</span> <span class="kn">import</span> <span class="n">make_fastapi_router</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span> <span class="nn">aioclock.triggers</span> <span class="kn">import</span> <span class="n">Every</span><span class="p">,</span> <span class="n">OnStartUp</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">clock_app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nd">@clock_app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">OnStartUp</span><span class="p">())</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">startup</span><span class="p">():</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting...&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="nd">@clock_app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Every</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">3600</span><span class="p">))</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Foo is processing...&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="nd">@asynccontextmanager</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">clock_app</span><span class="o">.</span><span class="n">serve</span><span class="p">())</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">yield</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="k">await</span> <span class="n">task</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="o">...</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">lifespan</span><span class="o">=</span><span class="n">lifespan</span><span class="p">)</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">make_fastapi_router</span><span class="p">(</span><span class="n">clock_app</span><span class="p">))</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="kn">import</span> <span class="nn">uvicorn</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div>
+</details>
           <details class="quote">
-            <summary>Source code in <code>aioclock/task.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-38">38</a></span>
+            <summary>Source code in <code>aioclock/ext/fastapi.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
 <span class="normal"><a href="#__codelineno-0-39">39</a></span>
 <span class="normal"><a href="#__codelineno-0-40">40</a></span>
 <span class="normal"><a href="#__codelineno-0-41">41</a></span>
@@ -1066,43 +984,104 @@ If the task fails, log the error with exception, but keep running the tasks.</p>
 <span class="normal"><a href="#__codelineno-0-56">56</a></span>
 <span class="normal"><a href="#__codelineno-0-57">57</a></span>
 <span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">    Run the task, and handle the exceptions.</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">    If the task fails, log the error with exception, but keep running the tasks.</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">should_trigger</span><span class="p">():</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a>            <span class="n">next_trigger</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">get_waiting_time_till_next_trigger</span><span class="p">()</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>            <span class="k">if</span> <span class="n">next_trigger</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Triggering next task </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">next_trigger</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">expected_trigger_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">UTC</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a>                    <span class="n">seconds</span><span class="o">=</span><span class="n">next_trigger</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a>                <span class="p">)</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">trigger_next</span><span class="p">()</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running task </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">()</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a>            <span class="c1"># Log the error, but keep running the tasks.</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a>            <span class="c1"># don&#39;t crash the whole application.</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error running task </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">expected_trigger_time</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span>
+<span class="normal"><a href="#__codelineno-0-64">64</a></span>
+<span class="normal"><a href="#__codelineno-0-65">65</a></span>
+<span class="normal"><a href="#__codelineno-0-66">66</a></span>
+<span class="normal"><a href="#__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span>
+<span class="normal"><a href="#__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#__codelineno-0-71">71</a></span>
+<span class="normal"><a href="#__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#__codelineno-0-74">74</a></span>
+<span class="normal"><a href="#__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#__codelineno-0-79">79</a></span>
+<span class="normal"><a href="#__codelineno-0-80">80</a></span>
+<span class="normal"><a href="#__codelineno-0-81">81</a></span>
+<span class="normal"><a href="#__codelineno-0-82">82</a></span>
+<span class="normal"><a href="#__codelineno-0-83">83</a></span>
+<span class="normal"><a href="#__codelineno-0-84">84</a></span>
+<span class="normal"><a href="#__codelineno-0-85">85</a></span>
+<span class="normal"><a href="#__codelineno-0-86">86</a></span>
+<span class="normal"><a href="#__codelineno-0-87">87</a></span>
+<span class="normal"><a href="#__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#__codelineno-0-89">89</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="k">def</span> <span class="nf">make_fastapi_router</span><span class="p">(</span><span class="n">aioclock</span><span class="p">:</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">router</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">APIRouter</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a FastAPI router that exposes the tasks of the AioClock instance and its external python API in HTTP Layer.</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">    You can pass a router to this function, and have dependencies injected in the router, or any authorization logic that you want to have.</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">        import asyncio</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        from contextlib import asynccontextmanager</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">        from fastapi import FastAPI</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">        from aioclock import AioClock</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">        from aioclock.ext.fastapi import make_fastapi_router</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">        from aioclock.triggers import Every, OnStartUp</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">        clock_app = AioClock()</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">        @clock_app.task(trigger=OnStartUp())</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">        async def startup():</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">            print(&quot;Starting...&quot;)</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">        @clock_app.task(trigger=Every(seconds=3600))</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        async def foo():</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">            print(&quot;Foo is processing...&quot;)</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        @asynccontextmanager</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        async def lifespan(app: FastAPI):</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">            task = asyncio.create_task(clock_app.serve())</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">            yield</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">            try:</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">                task.cancel()</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">                await task</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">            except asyncio.CancelledError:</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">                ...</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">        app = FastAPI(lifespan=lifespan)</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">        app.include_router(make_fastapi_router(clock_app))</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">        if __name__ == &quot;__main__&quot;:</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">            import uvicorn</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">            uvicorn.run(app)</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="n">router</span> <span class="o">=</span> <span class="n">router</span> <span class="ow">or</span> <span class="n">APIRouter</span><span class="p">()</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/tasks&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_tasks</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TaskMetadata</span><span class="p">]:</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">get_metadata_of_all_tasks</span><span class="p">(</span><span class="n">aioclock</span><span class="p">)</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>    <span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/task/</span><span class="si">{task_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">run_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">:</span> <span class="n">UUID</span><span class="p">):</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>            <span class="k">await</span> <span class="n">run_specific_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">,</span> <span class="n">aioclock</span><span class="p">)</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>        <span class="k">except</span> <span class="n">TaskIdNotFound</span><span class="p">:</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>            <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Task not found&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="k">return</span> <span class="n">router</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
 
 </div>
-
-
-
-  </div>
-
-  </div>
-
-
-</div>
-
 
 
 

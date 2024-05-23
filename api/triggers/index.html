@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://ManiMozaffar.github.io/aioclock/api/triggers/">
       
       
-        <link rel="prev" href="../task/">
+        <link rel="prev" href="../getting_started/">
       
       
-        <link rel="next" href="../../alternative/">
+        <link rel="next" href="../task/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -245,14 +245,25 @@
   
     
     
+      
+  
+  
+    
+  
+  
+    
+    
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../app/" class="md-tabs__link">
+        <a href="../getting_started/" class="md-tabs__link">
           
   
   Documentation
 
         </a>
       </li>
+    
+  
+
     
   
 
@@ -369,22 +380,41 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../app/" class="md-nav__link">
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
-    Aioclock App
+    Basic Usage
   </span>
   
 
-      </a>
-    </li>
-  
-
-              
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Basic Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -393,32 +423,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../group/" class="md-nav__link">
+      <a href="../getting_started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Group
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../task/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Task
+    AioClock Application
   </span>
   
 
@@ -500,15 +509,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aioclock.triggers.BaseTrigger.type_" class="md-nav__link">
-    <span class="md-ellipsis">
-      type_
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#aioclock.triggers.BaseTrigger.trigger_next" class="md-nav__link">
     <span class="md-ellipsis">
       trigger_next
@@ -556,30 +556,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="LoopController">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.LoopController.type_" class="md-nav__link">
-    <span class="md-ellipsis">
-      type_
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.LoopController.max_loop_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      max_loop_count
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -588,21 +564,6 @@
       Once
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Once">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Once.max_loop_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      max_loop_count
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -613,21 +574,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="OnStartUp">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.OnStartUp.max_loop_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      max_loop_count
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -636,21 +582,6 @@
       OnShutDown
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="OnShutDown">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.OnShutDown.max_loop_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      max_loop_count
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -661,66 +592,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Every">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.first_run_strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      first_run_strategy
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.seconds" class="md-nav__link">
-    <span class="md-ellipsis">
-      seconds
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.minutes" class="md-nav__link">
-    <span class="md-ellipsis">
-      minutes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.hours" class="md-nav__link">
-    <span class="md-ellipsis">
-      hours
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.days" class="md-nav__link">
-    <span class="md-ellipsis">
-      days
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.weeks" class="md-nav__link">
-    <span class="md-ellipsis">
-      weeks
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -730,62 +601,128 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="At">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.second" class="md-nav__link">
-    <span class="md-ellipsis">
-      second
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.minute" class="md-nav__link">
-    <span class="md-ellipsis">
-      minute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.hour" class="md-nav__link">
-    <span class="md-ellipsis">
-      hour
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.at" class="md-nav__link">
-    <span class="md-ellipsis">
-      at
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.tz" class="md-nav__link">
-    <span class="md-ellipsis">
-      tz
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advance Usage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advance Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../external_api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    External API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plugins (FastAPI included)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -830,10 +767,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -844,8 +781,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             Examples
           </label>
@@ -954,15 +891,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aioclock.triggers.BaseTrigger.type_" class="md-nav__link">
-    <span class="md-ellipsis">
-      type_
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#aioclock.triggers.BaseTrigger.trigger_next" class="md-nav__link">
     <span class="md-ellipsis">
       trigger_next
@@ -1010,30 +938,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="LoopController">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.LoopController.type_" class="md-nav__link">
-    <span class="md-ellipsis">
-      type_
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.LoopController.max_loop_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      max_loop_count
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1042,21 +946,6 @@
       Once
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Once">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Once.max_loop_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      max_loop_count
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1067,21 +956,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="OnStartUp">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.OnStartUp.max_loop_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      max_loop_count
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1090,21 +964,6 @@
       OnShutDown
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="OnShutDown">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.OnShutDown.max_loop_count" class="md-nav__link">
-    <span class="md-ellipsis">
-      max_loop_count
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1115,66 +974,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Every">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.first_run_strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      first_run_strategy
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.seconds" class="md-nav__link">
-    <span class="md-ellipsis">
-      seconds
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.minutes" class="md-nav__link">
-    <span class="md-ellipsis">
-      minutes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.hours" class="md-nav__link">
-    <span class="md-ellipsis">
-      hours
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.days" class="md-nav__link">
-    <span class="md-ellipsis">
-      days
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.Every.weeks" class="md-nav__link">
-    <span class="md-ellipsis">
-      weeks
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1183,57 +982,6 @@
       At
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="At">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.second" class="md-nav__link">
-    <span class="md-ellipsis">
-      second
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.minute" class="md-nav__link">
-    <span class="md-ellipsis">
-      minute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.hour" class="md-nav__link">
-    <span class="md-ellipsis">
-      hour
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.at" class="md-nav__link">
-    <span class="md-ellipsis">
-      at
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.triggers.At.tz" class="md-nav__link">
-    <span class="md-ellipsis">
-      tz
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1261,6 +1009,16 @@
 
 <a id="aioclock.triggers"></a>
   <div class="doc doc-contents first">
+  
+      <p>Triggers are used to determine when the event should be triggered. It can be based on time, or some other condition.
+You can create custom triggers by inheriting from <code>BaseTrigger</code> class.</p>
+<div class="admonition info">
+<p class="admonition-title">Don't run CPU intensitve or thread-block IO task </p>
+<p>AioClock's trigger are all running in async, only on one CPU.
+So, if you run a CPU intensive task, or a task that blocks the thread, then it will block the entire event loop.
+If you have a sync IO task, then it's recommended to use <code>run_in_executor</code> to run the task in a separate thread.
+Or use similiar libraries like <code>asyncer</code> or <code>trio</code> to run the task in a separate thread.</p>
+</div>
 
   
 
@@ -1300,8 +1058,11 @@ A trigger is a way to determine when the event should be triggered. It can be ba
 <li>If the time is not None, then it logs the time that is predicted for the event to be triggered.</li>
 <li><code>trigger_next</code> is called immidiately after that, which triggers the event.</li>
 </ol>
-</details>      <p>This is an example to implement a custom trigger, by yourself:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock.triggers</span> <span class="kn">import</span> <span class="n">BaseTrigger</span>
+</details>      <p>You can create trigger by yourself, by inheriting from <code>BaseTrigger</code> class.</p>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock.triggers</span> <span class="kn">import</span> <span class="n">BaseTrigger</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">class</span> <span class="nc">Forever</span><span class="p">(</span><span class="n">BaseTrigger</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Forever&quot;</span><span class="p">]]):</span>
@@ -1318,6 +1079,33 @@ A trigger is a way to determine when the event should be triggered. It can be ba
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>            <span class="k">return</span> <span class="mi">0</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div>
+</details>
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.triggers.BaseTrigger.type_">type_</span></code></td>
+          <td>
+                <code><span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
+You can change the type by using <code>Generic</code> type when inheriting from <code>BaseTrigger</code>.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
 
   
@@ -1329,30 +1117,6 @@ A trigger is a way to determine when the event should be triggered. It can be ba
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.BaseTrigger.type_" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">type_</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.BaseTrigger.type_" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">type_</span><span class="p">:</span> <span class="n"><span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span></span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
-You can change the type by using <code>Generic</code> type when inheriting from <code>BaseTrigger</code>.</p>
-  </div>
-
-</div>
 
 
 
@@ -1381,17 +1145,17 @@ The function shall return when the event is triggered and should be executed.</p
 
           <details class="quote">
             <summary>Source code in <code>aioclock/triggers.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="nd">@abstractmethod</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">trigger_next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    `trigger_next` keep track of the event, and triggers the event.</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">    The function shall return when the event is triggered and should be executed.</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    &quot;&quot;&quot;</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#__codelineno-0-71">71</a></span>
+<span class="normal"><a href="#__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#__codelineno-0-74">74</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="nd">@abstractmethod</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">trigger_next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    `trigger_next` keep track of the event, and triggers the event.</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    The function shall return when the event is triggered and should be executed.</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1421,23 +1185,23 @@ and then checks if the event should be triggered or not.</p>
 
           <details class="quote">
             <summary>Source code in <code>aioclock/triggers.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span>
-<span class="normal"><a href="#__codelineno-0-70">70</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="k">def</span> <span class="nf">should_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">    `should_trigger` checks if the event should be triggered or not.</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">    If not, then the event will not be triggered anymore.</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">    You can save the state of the trigger and task inside the instance, and then check if the event should be triggered or not.</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">    For instance, in `LoopCounter` trigger, it keeps track of the number of times the event has been triggered,</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    and then checks if the event should be triggered or not.</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="k">return</span> <span class="kc">True</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#__codelineno-0-79">79</a></span>
+<span class="normal"><a href="#__codelineno-0-80">80</a></span>
+<span class="normal"><a href="#__codelineno-0-81">81</a></span>
+<span class="normal"><a href="#__codelineno-0-82">82</a></span>
+<span class="normal"><a href="#__codelineno-0-83">83</a></span>
+<span class="normal"><a href="#__codelineno-0-84">84</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="k">def</span> <span class="nf">should_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">    `should_trigger` checks if the event should be triggered or not.</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">    If not, then the event will not be triggered anymore.</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">    You can save the state of the trigger and task inside the instance, and then check if the event should be triggered or not.</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">    For instance, in `LoopCounter` trigger, it keeps track of the number of times the event has been triggered,</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">    and then checks if the event should be triggered or not.</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="k">return</span> <span class="kc">True</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1469,19 +1233,19 @@ Returns None, if the event should not trigger anymore.</p>
 
           <details class="quote">
             <summary>Source code in <code>aioclock/triggers.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span>
-<span class="normal"><a href="#__codelineno-0-76">76</a></span>
-<span class="normal"><a href="#__codelineno-0-77">77</a></span>
-<span class="normal"><a href="#__codelineno-0-78">78</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="nd">@abstractmethod</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_waiting_time_till_next_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    Returns the time in seconds, after which the event should be triggered.</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">    Returns None, if the event should not trigger anymore.</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="o">...</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-86">86</a></span>
+<span class="normal"><a href="#__codelineno-0-87">87</a></span>
+<span class="normal"><a href="#__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#__codelineno-0-89">89</a></span>
+<span class="normal"><a href="#__codelineno-0-90">90</a></span>
+<span class="normal"><a href="#__codelineno-0-91">91</a></span>
+<span class="normal"><a href="#__codelineno-0-92">92</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="nd">@abstractmethod</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_waiting_time_till_next_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">    Returns the time in seconds, after which the event should be triggered.</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">    Returns None, if the event should not trigger anymore.</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="o">...</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1514,8 +1278,10 @@ Returns None, if the event should not trigger anymore.</p>
 
   
       <p>A trigger that is always triggered imidiately.</p>
-<p>Example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    <span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    <span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
@@ -1533,7 +1299,34 @@ Returns None, if the event should not trigger anymore.</p>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">my_task</span><span class="p">():</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
-</code></pre></div></p>
+</code></pre></div>
+</details>
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.triggers.Forever.type_">type_</span></code></td>
+          <td>
+                <code><span title="typing.Literal">Literal</span>[<span title="aioclock.types.Triggers.FOREVER">FOREVER</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
+You can change the type by using <code>Generic</code> type when inheriting from <code>BaseTrigger</code>.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
 
   
@@ -1576,6 +1369,60 @@ Returns None, if the event should not trigger anymore.</p>
       <p>Base class for all triggers that have loop control.</p>
 
 
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.triggers.LoopController.type_">type_</span></code></td>
+          <td>
+                <code><span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
+You can change the type by using <code>Generic</code> type when inheriting from <code>LoopController</code>.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.LoopController.max_loop_count">max_loop_count</span></code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[<span title="pydantic.PositiveInt">PositiveInt</span>, None]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The maximum number of times the event should be triggered.
+If set to 3, then 4th time the event will not be triggered.
+If set to None, it will keep running forever.
+This is available for all triggers that inherit from <code>LoopController</code>.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.LoopController._current_loop_count">_current_loop_count</span></code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Current loop count, which is used to keep track of the number of times the event has been triggered.
+Private attribute, should not be accessed directly.
+This is available for all triggers that inherit from <code>LoopController</code>.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
   
 
   <div class="doc doc-children">
@@ -1585,57 +1432,6 @@ Returns None, if the event should not trigger anymore.</p>
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.LoopController.type_" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">type_</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.LoopController.type_" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">type_</span><span class="p">:</span> <span class="n"><span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span></span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
-You can change the type by using <code>Generic</code> type when inheriting from <code>BaseTrigger</code>.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.LoopController.max_loop_count" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">max_loop_count</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.LoopController.max_loop_count" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">max_loop_count</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="pydantic.PositiveInt">PositiveInt</span></span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>The maximum number of times the event should be triggered.</p>
-<p>If set to 3, then 4th time the event will not be triggered.
-If set to None, it will keep running forever.</p>
-<p>This is available for all triggers that inherit from <code>LoopController</code>.</p>
-  </div>
-
-</div>
 
 
 
@@ -1665,14 +1461,42 @@ If set to None, it will keep running forever.</p>
 
   
       <p>A trigger that is triggered only once. It is used to trigger the event only once, and then stop.</p>
-<p>Example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">Once</span>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">Once</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Once</span><span class="p">())</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">task</span><span class="p">():</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div>
+</details>
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.triggers.Once.max_loop_count">max_loop_count</span></code></td>
+          <td>
+                <code><span title="typing.Literal">Literal</span>[1]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The maximum number of times the event should be triggered. Should be always 1 for this trigger.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
 
   
@@ -1684,30 +1508,6 @@ If set to None, it will keep running forever.</p>
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.Once.max_loop_count" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">max_loop_count</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.Once.max_loop_count" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">max_loop_count</span><span class="p">:</span> <span class="n"><span title="pydantic.PositiveInt">PositiveInt</span></span> <span class="o">=</span> <span class="mi">1</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>The maximum number of times the event should be triggered. Should be always 1 for this trigger</p>
-  </div>
-
-</div>
 
 
 
@@ -1737,14 +1537,42 @@ If set to None, it will keep running forever.</p>
 
   
       <p>Just like Once, but it triggers the event only once, when the application starts up.</p>
-<p>Example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">OnStartUp</span>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">OnStartUp</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">OnStartUp</span><span class="p">())</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">task</span><span class="p">():</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div>
+</details>
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.triggers.OnStartUp.max_loop_count">max_loop_count</span></code></td>
+          <td>
+                <code><span title="typing.Literal">Literal</span>[1]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The maximum number of times the event should be triggered. Should be always 1 for this trigger.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
 
   
@@ -1756,30 +1584,6 @@ If set to None, it will keep running forever.</p>
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.OnStartUp.max_loop_count" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">max_loop_count</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.OnStartUp.max_loop_count" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">max_loop_count</span><span class="p">:</span> <span class="n"><span title="pydantic.PositiveInt">PositiveInt</span></span> <span class="o">=</span> <span class="mi">1</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>The maximum number of times the event should be triggered. Should be always 1 for this trigger.</p>
-  </div>
-
-</div>
 
 
 
@@ -1809,14 +1613,42 @@ If set to None, it will keep running forever.</p>
 
   
       <p>Just like Once, but it triggers the event only once, when the application shuts down.</p>
-<p>Example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">OnShutDown</span>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">OnShutDown</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">OnShutDown</span><span class="p">())</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">task</span><span class="p">():</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div>
+</details>
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.triggers.OnShutDown.max_loop_count">max_loop_count</span></code></td>
+          <td>
+                <code><span title="typing.Literal">Literal</span>[1]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The maximum number of times the event should be triggered. Should be always 1 for this trigger.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
 
   
@@ -1828,30 +1660,6 @@ If set to None, it will keep running forever.</p>
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.OnShutDown.max_loop_count" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">max_loop_count</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.OnShutDown.max_loop_count" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">max_loop_count</span><span class="p">:</span> <span class="n"><span title="pydantic.PositiveInt">PositiveInt</span></span> <span class="o">=</span> <span class="mi">1</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>The maximum number of times the event should be triggered. Should be always 1 for this trigger.</p>
-  </div>
-
-</div>
 
 
 
@@ -1881,14 +1689,100 @@ If set to None, it will keep running forever.</p>
 
   
       <p>A trigger that is triggered every x time units.</p>
-<p>Example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">Every</span>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">Every</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Every</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">task</span><span class="p">():</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div>
+</details>
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.triggers.Every.first_run_strategy">first_run_strategy</span></code></td>
+          <td>
+                <code><span title="typing.Literal">Literal</span>[&#39;immediate&#39;, &#39;wait&#39;]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Strategy to use for the first run.
+If <code>immediate</code>, then the event will be triggered immediately,
+    and then wait for the time to trigger the event again.
+If <code>wait</code>, then the event will wait for the time to trigger the event for the first time.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.Every.seconds">seconds</span></code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[<span title="aioclock.types.PositiveNumber">PositiveNumber</span>, None]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Seconds to wait before triggering the event.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.Every.minutes">minutes</span></code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[<span title="aioclock.types.PositiveNumber">PositiveNumber</span>, None]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Minutes to wait before triggering the event.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.Every.hours">hours</span></code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[<span title="aioclock.types.PositiveNumber">PositiveNumber</span>, None]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Hours to wait before triggering the event.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.Every.days">days</span></code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[<span title="aioclock.types.PositiveNumber">PositiveNumber</span>, None]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Days to wait before triggering the event.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.Every.weeks">weeks</span></code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[<span title="aioclock.types.PositiveNumber">PositiveNumber</span>, None]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Weeks to wait before triggering the event.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
 
   
@@ -1900,153 +1794,6 @@ If set to None, it will keep running forever.</p>
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.Every.first_run_strategy" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">first_run_strategy</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.Every.first_run_strategy" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">first_run_strategy</span><span class="p">:</span> <span class="n"><span title="typing.Literal">Literal</span></span><span class="p">[</span><span class="s1">&#39;immediate&#39;</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;wait&#39;</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Strategy to use for the first run.
-If <code>immediate</code>, then the event will be triggered immediately,
-    and then wait for the time to trigger the event again.
-If <code>wait</code>, then the event will wait for the time to trigger the event for the first time.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.Every.seconds" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">seconds</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.Every.seconds" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">seconds</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="aioclock.types.PositiveNumber">PositiveNumber</span></span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Seconds to wait before triggering the event.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.Every.minutes" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">minutes</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.Every.minutes" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">minutes</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="aioclock.types.PositiveNumber">PositiveNumber</span></span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Minutes to wait before triggering the event.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.Every.hours" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">hours</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.Every.hours" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">hours</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="aioclock.types.PositiveNumber">PositiveNumber</span></span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Hours to wait before triggering the event.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.Every.days" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">days</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.Every.days" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">days</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="aioclock.types.PositiveNumber">PositiveNumber</span></span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Days to wait before triggering the event.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.Every.weeks" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">weeks</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.Every.weeks" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">weeks</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="aioclock.types.PositiveNumber">PositiveNumber</span></span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Weeks to wait before triggering the event.</p>
-  </div>
-
-</div>
 
 
 
@@ -2076,15 +1823,87 @@ If <code>wait</code>, then the event will wait for the time to trigger the event
 
   
       <p>A trigger that is triggered at a specific time.</p>
-<p>Example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">At</span>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">At</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nd">@app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">At</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;Asia/Kolkata&quot;</span><span class="p">))</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">task</span><span class="p">():</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div>
+</details>
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.triggers.At.second">second</span></code></td>
+          <td>
+                <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=59)]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Second to trigger the event.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.At.minute">minute</span></code></td>
+          <td>
+                <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=59)]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Minute to trigger the event.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.At.hour">hour</span></code></td>
+          <td>
+                <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=24)]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Hour to trigger the event.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.At.at">at</span></code></td>
+          <td>
+                <code><span title="typing.Literal">Literal</span>[&#39;every monday&#39;, &#39;every tuesday&#39;, &#39;every wednesday&#39;, &#39;every thursday&#39;, &#39;every friday&#39;, &#39;every saturday&#39;, &#39;every sunday&#39;, &#39;every day&#39;]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Day of week to trigger the event. You would get the in-line typing support when using the trigger.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.triggers.At.tz">tz</span></code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Timezone to use for the event.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
 
   
@@ -2096,125 +1915,6 @@ If <code>wait</code>, then the event will wait for the time to trigger the event
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.At.second" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">second</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.At.second" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">second</span><span class="p">:</span> <span class="n"><span title="aioclock.types.SecondT">SecondT</span></span> <span class="o">=</span> <span class="mi">0</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Second to trigger the event.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.At.minute" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">minute</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.At.minute" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">minute</span><span class="p">:</span> <span class="n"><span title="aioclock.types.MinuteT">MinuteT</span></span> <span class="o">=</span> <span class="mi">0</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Minute to trigger the event.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.At.hour" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">hour</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.At.hour" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">hour</span><span class="p">:</span> <span class="n"><span title="aioclock.types.HourT">HourT</span></span> <span class="o">=</span> <span class="mi">0</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Hour to trigger the event.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.At.at" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">at</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.At.at" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">at</span><span class="p">:</span> <span class="n"><span title="aioclock.types.EveryT">EveryT</span></span> <span class="o">=</span> <span class="s1">&#39;every day&#39;</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Day of week to trigger the event. You would get the in-line typing support when using the trigger.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.triggers.At.tz" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">tz</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.triggers.At.tz" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">tz</span><span class="p">:</span> <span class="n">str</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Timzeon to use for the event.</p>
-  </div>
-
-</div>
 
 
 
