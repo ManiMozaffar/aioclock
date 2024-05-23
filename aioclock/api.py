@@ -12,8 +12,7 @@ Other tools and extension are written from this tool.
 """
 
 import sys
-from datetime import datetime
-from typing import Any, Awaitable, Callable, Literal, TypeVar, Union
+from typing import Any, Awaitable, Callable, TypeVar, Union
 from uuid import UUID
 
 from fast_depends import inject
@@ -44,9 +43,6 @@ class TaskMetadata(BaseModel):
 
     trigger: Union[TriggerT, Any]
     """Trigger that is used to run the task, type is also any to ease implementing new triggers."""
-
-    expected_trigger_time: Union[datetime, Literal["Task is not scheduled to run"]]
-    """Next trigger time of the task, if the task is not scheduled to run, it will return a string."""
 
     task_name: str
 
@@ -118,18 +114,11 @@ async def get_metadata_of_all_tasks(app: AioClock) -> list[TaskMetadata]:
         metadata = await get_metadata_of_all_tasks(app)
         ```
     """
-    result: list[TaskMetadata] = []
-    for task in app._get_tasks(exclude_type=set()):
-        expected_trigger_time = task.trigger.expected_trigger_time
-        result.append(
-            TaskMetadata(
-                id=task.id,
-                trigger=task.trigger,
-                task_name=task.func.__name__,
-                expected_trigger_time=expected_trigger_time
-                if expected_trigger_time is not None
-                else "Task is not scheduled to run",
-            )
+    return [
+        TaskMetadata(
+            id=task.id,
+            trigger=task.trigger,
+            task_name=task.func.__name__,
         )
-
-    return result
+        for task in app._get_tasks(exclude_type=set())
+    ]
