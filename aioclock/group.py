@@ -1,6 +1,12 @@
 import asyncio
+import sys
 from functools import wraps
-from typing import Awaitable, Callable, ParamSpec, TypeVar, Union
+from typing import Awaitable, Callable, TypeVar, Union
+
+if sys.version_info < (3, 10):
+    from typing_extensions import ParamSpec
+else:
+    from typing import ParamSpec
 
 from fast_depends import inject
 
