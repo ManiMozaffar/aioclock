@@ -1,6 +1,12 @@
 import asyncio
+import sys
 from functools import wraps
-from typing import Any, Callable
+from typing import Any, Awaitable, Callable, TypeVar
+
+if sys.version_info < (3, 10):
+    from typing_extensions import ParamSpec
+else:
+    from typing import ParamSpec
 
 from fast_depends import inject
 
@@ -9,6 +15,9 @@ from aioclock.provider import get_provider
 from aioclock.triggers import BaseTrigger
 from aioclock.types import Triggers
 from aioclock.utils import flatten_chain
+
+T = TypeVar("T")
+P = ParamSpec("P")
 
 
 class AioClock:
@@ -117,9 +126,9 @@ class AioClock:
         ```
         """
 
-        def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
+        def decorator(func: Callable[P, Awaitable[T]]) -> Callable[P, Awaitable[T]]:
             @wraps(func)
-            async def wrapper(*args, **kwargs) -> Any:
+            async def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
                 return await func(*args, **kwargs)
 
             self._app_tasks.append(
