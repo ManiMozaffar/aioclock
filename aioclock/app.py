@@ -32,8 +32,8 @@ class AioClock:
     AioClock is the main class that will be used to run the tasks.
     It will be responsible for running the tasks in the right order.
 
-    Example:
 
+    Example:
         ```python
         from aioclock import AioClock, Once
         app = AioClock()
@@ -45,6 +45,7 @@ class AioClock:
 
     To run the aioclock final app simply do:
 
+    Example:
         ```python
         from aioclock import AioClock, Once
         app = AioClock()
