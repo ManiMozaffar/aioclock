@@ -1,6 +1,6 @@
 from fast_depends import Depends
 
-from .app import AioClock, run_with_injected_deps
+from .app import AioClock
 from .group import Group
 from .triggers import At, Every, Forever, Once, OnShutDown, OnStartUp
 
@@ -14,5 +14,6 @@ __all__ = [
     "Group",
     "AioClock",
     "At",
-    "run_with_injected_deps",
 ]
+
+__version__ = "0.1.0"
