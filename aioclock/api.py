@@ -13,7 +13,7 @@ Other tools and extension are written from this tool.
 
 import sys
 from datetime import datetime
-from typing import Any, Awaitable, Callable, Literal, TypeVar
+from typing import Any, Awaitable, Callable, Literal, TypeVar, Union
 from uuid import UUID
 
 from fast_depends import inject
@@ -42,10 +42,10 @@ class TaskMetadata(BaseModel):
     In future we might store task ID in a database, so that it always remains same.
     """
 
-    trigger: TriggerT | Any
+    trigger: Union[TriggerT, Any]
     """Trigger that is used to run the task, type is also any to ease implementing new triggers."""
 
-    expected_trigger_time: datetime | Literal["Task is not scheduled to run"]
+    expected_trigger_time: Union[datetime, Literal["Task is not scheduled to run"]]
     """Next trigger time of the task, if the task is not scheduled to run, it will return a string."""
 
     task_name: str

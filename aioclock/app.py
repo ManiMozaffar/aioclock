@@ -8,7 +8,7 @@ Another way to modulize your code is to use `Group` which is kinda the same idea
 import asyncio
 import sys
 from functools import wraps
-from typing import Any, Awaitable, Callable, TypeVar
+from typing import Any, Awaitable, Callable, TypeVar, Union
 
 if sys.version_info < (3, 10):
     from typing_extensions import ParamSpec
@@ -158,7 +158,7 @@ class AioClock:
     def _get_startup_task(self) -> list[Task]:
         return [task for task in self._tasks if task.trigger.type_ == Triggers.ON_START_UP]
 
-    def _get_tasks(self, exclude_type: set[Triggers] | None = None) -> list[Task]:
+    def _get_tasks(self, exclude_type: Union[set[Triggers], None] = None) -> list[Task]:
         exclude_type = (
             exclude_type
             if exclude_type is not None

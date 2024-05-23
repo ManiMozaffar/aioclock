@@ -9,6 +9,7 @@ To use FastAPI Extension, please make sure you do `pip install aioclock[fastapi]
 
 """
 
+from typing import Union
 from uuid import UUID
 
 from aioclock.api import TaskMetadata, get_metadata_of_all_tasks, run_specific_task
@@ -23,7 +24,7 @@ except ImportError:
     )
 
 
-def make_fastapi_router(aioclock: AioClock, router: APIRouter | None = None):
+def make_fastapi_router(aioclock: AioClock, router: Union[APIRouter, None] = None):
     """Make a FastAPI router that exposes the tasks of the AioClock instance and its external python API in HTTP Layer.
     You can pass a router to this function, and have dependencies injected in the router, or any authorization logic that you want to have.
 

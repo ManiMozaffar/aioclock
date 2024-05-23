@@ -64,7 +64,7 @@ class BaseTrigger(BaseModel, ABC, Generic[TriggerTypeT]):
     """
 
     type_: TriggerTypeT
-    expected_trigger_time: datetime | None = None
+    expected_trigger_time: Union[datetime, None] = None
 
     @abstractmethod
     async def trigger_next(self) -> None:
