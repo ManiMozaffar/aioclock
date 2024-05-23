@@ -178,3 +178,30 @@ class AioClock:
         finally:
             shutdown_tasks = self._get_shutdown_task()
             await asyncio.gather(*(task.run() for task in shutdown_tasks), return_exceptions=False)
+
+
+async def run_with_injected_deps(func: Callable[P, Awaitable[T]]) -> T:
+    """Runs an aioclock decorated function, with all the dependencies injected.
+
+    Example:
+
+    ```python
+    from aioclock import run_with_injected_deps, Once, AioClock, Depends
+
+    app = AioClock()
+
+    def some_dependency():
+        return 1
+
+    @app.task(trigger=Once())
+    async def main(bar: int = Depends(some_dependency)):
+        print("Hello World")
+        return bar
+
+    async def some_other_func():
+        foo = await run_with_injected_deps(main)
+        assert foo == 1
+    ```
+
+    """
+    return await inject(func, dependency_overrides_provider=get_provider())()  # type: ignore
