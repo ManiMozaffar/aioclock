@@ -3,7 +3,8 @@ name: Deploy Docs On Demand
 on:
   workflow_dispatch:
 
-  deploy-docs:
+jobs:
+  deploy-docs-on-demand:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
