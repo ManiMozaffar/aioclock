@@ -1,7 +1,14 @@
+"""
+To initialize the AioClock instance, you need to import the AioClock class from the aioclock module.
+AioClock class represent the aioclock, and handle the tasks and groups that will be run by the aioclock.
+
+Another way to modulize your code is to use `Group` which is kinda the same idea as router in web frameworks.
+"""
+
 import asyncio
 import sys
 from functools import wraps
-from typing import Any, Awaitable, Callable, TypeVar
+from typing import Any, Awaitable, Callable, TypeVar, Union
 
 if sys.version_info < (3, 10):
     from typing_extensions import ParamSpec
@@ -27,24 +34,24 @@ class AioClock:
 
     Example:
 
-    ```python
-    from aioclock import AioClock, Once
-    app = AioClock()
+        ```python
+        from aioclock import AioClock, Once
+        app = AioClock()
 
-    @app.task(trigger=Once())
-    async def main():
-        print("Hello World")
-    ```
+        @app.task(trigger=Once())
+        async def main():
+            print("Hello World")
+        ```
 
     To run the aioclock final app simply do:
 
-    ```python
-    from aioclock import AioClock, Once
-    app = AioClock()
+        ```python
+        from aioclock import AioClock, Once
+        app = AioClock()
 
-    # whatever next comes here
-    await app.serve()
-    ```
+        # whatever next comes here
+        await app.serve()
+        ```
 
     """
 
@@ -73,39 +80,38 @@ class AioClock:
         """Override a dependency with a new one.
 
         Example:
+            ```python
+            from aioclock import AioClock
 
-        ```python
-        from aioclock import AioClock
+            def original_dependency():
+                return 1
 
-        def original_dependency():
-            return 1
+            def new_dependency():
+                return 2
 
-        def new_dependency():
-            return 2
-
-        app = AioClock()
-        app.override_dependencies(original=original_dependency, override=new_dependency)
-        ```
+            app = AioClock()
+            app.override_dependencies(original=original_dependency, override=new_dependency)
+            ```
 
         """
         self.dependencies.override(original, override)
 
     def include_group(self, group: Group) -> None:
         """Include a group of tasks that will be run by AioClock.
+
         Example:
+            ```python
+            from aioclock import AioClock, Group, Once
 
-        ```python
-        from aioclock import AioClock, Group, Once
+            app = AioClock()
 
-        app = AioClock()
+            group = Group()
+            @group.task(trigger=Once())
+            async def main():
+                print("Hello World")
 
-        group = Group()
-        @group.task(trigger=Once())
-        async def main():
-            print("Hello World")
-
-        app.include_group(group)
-        ```
+            app.include_group(group)
+            ```
         """
         self._groups.append(group)
         return None
@@ -115,15 +121,15 @@ class AioClock:
 
         Example:
 
-        ```python
-        from aioclock import AioClock, Once
+            ```python
+            from aioclock import AioClock, Once
 
-        app = AioClock()
+            app = AioClock()
 
-        @app.task(trigger=Once())
-        async def main():
-            print("Hello World")
-        ```
+            @app.task(trigger=Once())
+            async def main():
+                print("Hello World")
+            ```
         """
 
         def decorator(func: Callable[P, Awaitable[T]]) -> Callable[P, Awaitable[T]]:
@@ -152,12 +158,14 @@ class AioClock:
     def _get_startup_task(self) -> list[Task]:
         return [task for task in self._tasks if task.trigger.type_ == Triggers.ON_START_UP]
 
-    def _get_tasks(self) -> list[Task]:
-        return [
-            task
-            for task in self._tasks
-            if task.trigger.type_ not in {Triggers.ON_START_UP, Triggers.ON_SHUT_DOWN}
-        ]
+    def _get_tasks(self, exclude_type: Union[set[Triggers], None] = None) -> list[Task]:
+        exclude_type = (
+            exclude_type
+            if exclude_type is not None
+            else {Triggers.ON_START_UP, Triggers.ON_SHUT_DOWN}
+        )
+
+        return [task for task in self._tasks if task.trigger.type_ not in exclude_type]
 
     async def serve(self) -> None:
         """
@@ -178,30 +186,3 @@ class AioClock:
         finally:
             shutdown_tasks = self._get_shutdown_task()
             await asyncio.gather(*(task.run() for task in shutdown_tasks), return_exceptions=False)
-
-
-async def run_with_injected_deps(func: Callable[P, Awaitable[T]]) -> T:
-    """Runs an aioclock decorated function, with all the dependencies injected.
-
-    Example:
-
-    ```python
-    from aioclock import run_with_injected_deps, Once, AioClock, Depends
-
-    app = AioClock()
-
-    def some_dependency():
-        return 1
-
-    @app.task(trigger=Once())
-    async def main(bar: int = Depends(some_dependency)):
-        print("Hello World")
-        return bar
-
-    async def some_other_func():
-        foo = await run_with_injected_deps(main)
-        assert foo == 1
-    ```
-
-    """
-    return await inject(func, dependency_overrides_provider=get_provider())()  # type: ignore

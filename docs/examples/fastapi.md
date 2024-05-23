@@ -4,9 +4,11 @@ To run AioClock with FastAPI, you can run it in the background with FastAPI life
 from aioclock import AioClock
 from fastapi import FastAPI
 import asyncio
+from contextlib import asynccontextmanager
 
 clock_app = AioClock()
 
+@asynccontextmanager
 async def lifespan(app: FastAPI):
     task = asyncio.create_task(clock_app.serve())
     yield

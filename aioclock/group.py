@@ -28,21 +28,21 @@ class Group:
         And another group of tasks that are responsible for sending notifications.
 
         Example:
-        ```python
+            ```python
 
-        from aioclock import Group, AioClock, Forever
+            from aioclock import Group, AioClock, Forever
 
-        email_group = Group()
+            email_group = Group()
 
-        # consider this as different file
-        @email_group.task(trigger=Forever())
-        async def send_email():
-            ...
+            # consider this as different file
+            @email_group.task(trigger=Forever())
+            async def send_email():
+                ...
 
-        # app.py
-        aio_clock = AioClock()
-        aio_clock.include_group(email_group)
-        ```
+            # app.py
+            aio_clock = AioClock()
+            aio_clock.include_group(email_group)
+            ```
 
         """
         self._tasks: list[Task] = tasks or []
@@ -51,12 +51,12 @@ class Group:
         """Function used to decorate tasks, to be registered inside AioClock.
 
         Example:
-        ```python
-        from aioclock import Group, Forever
-        @group.task(trigger=Forever())
-        async def send_email():
-            ...
-        ```
+            ```python
+            from aioclock import Group, Forever
+            @group.task(trigger=Forever())
+            async def send_email():
+                ...
+            ```
         """
 
         def decorator(func: Callable[P, Awaitable[T]]) -> Callable[P, Awaitable[T]]:
