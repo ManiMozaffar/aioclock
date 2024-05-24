@@ -589,30 +589,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="TaskMetadata">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.api.TaskMetadata.id" class="md-nav__link">
-    <span class="md-ellipsis">
-      id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.api.TaskMetadata.trigger" class="md-nav__link">
-    <span class="md-ellipsis">
-      trigger
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -672,6 +648,48 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fastapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using beside FastAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/brokers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using beside Message Brokers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -696,94 +714,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Examples
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_4">
-            <span class="md-nav__icon md-icon"></span>
-            Examples
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/fastapi/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Using with FastAPI
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/brokers/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Using with Message Brokers
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -835,30 +765,6 @@
       TaskMetadata
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="TaskMetadata">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.api.TaskMetadata.id" class="md-nav__link">
-    <span class="md-ellipsis">
-      id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aioclock.api.TaskMetadata.trigger" class="md-nav__link">
-    <span class="md-ellipsis">
-      trigger
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -954,6 +860,55 @@ For now you may consider it as a way to change something without redeploying the
       <p>Metadata of the task that is included in the AioClock instance.</p>
 
 
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="aioclock.api.TaskMetadata.id">id</span></code></td>
+          <td>
+                <code><span title="uuid.UUID">UUID</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>UUID: Task ID that is unique for each task, and changes every time you run the aioclock app.
+In future we might store task ID in a database, so that it always remains same.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.api.TaskMetadata.trigger">trigger</span></code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[<span title="aioclock.triggers.TriggerT">TriggerT</span>, <span title="typing.Any">Any</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Union[TriggerT, Any]: Trigger that is used to run the task, type is also any to ease implementing new triggers.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="aioclock.api.TaskMetadata.task_name">task_name</span></code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>str: Name of the task function.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
   
 
   <div class="doc doc-children">
@@ -963,53 +918,6 @@ For now you may consider it as a way to change something without redeploying the
 
 
 
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.api.TaskMetadata.id" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">id</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.api.TaskMetadata.id" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">id</span><span class="p">:</span> <span class="n"><span title="uuid.UUID">UUID</span></span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Task ID that is unique for each task, and changes every time you run the aioclock app.
-In future we might store task ID in a database, so that it always remains same.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="aioclock.api.TaskMetadata.trigger" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">trigger</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#aioclock.api.TaskMetadata.trigger" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">trigger</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="aioclock.triggers.TriggerT">TriggerT</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Trigger that is used to run the task, type is also any to ease implementing new triggers.</p>
-  </div>
-
-</div>
 
 
 
@@ -1061,9 +969,7 @@ In future we might store task ID in a database, so that it always remains same.<
 </details>
           <details class="quote">
             <summary>Source code in <code>aioclock/api.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-52">52</a></span>
 <span class="normal"><a href="#__codelineno-0-53">53</a></span>
 <span class="normal"><a href="#__codelineno-0-54">54</a></span>
 <span class="normal"><a href="#__codelineno-0-55">55</a></span>
@@ -1083,29 +989,31 @@ In future we might store task ID in a database, so that it always remains same.<
 <span class="normal"><a href="#__codelineno-0-69">69</a></span>
 <span class="normal"><a href="#__codelineno-0-70">70</a></span>
 <span class="normal"><a href="#__codelineno-0-71">71</a></span>
-<span class="normal"><a href="#__codelineno-0-72">72</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">run_specific_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">:</span> <span class="n">UUID</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="n">AioClock</span><span class="p">):</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a specific task immediately by its ID, from the AioClock instance.</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        from aioclock import  AioClock, Once</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        from aioclock.api import run_specific_task</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        app = AioClock()</span>
+<span class="normal"><a href="#__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#__codelineno-0-74">74</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">run_specific_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">:</span> <span class="n">UUID</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="n">AioClock</span><span class="p">):</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a specific task immediately by its ID, from the AioClock instance.</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        from aioclock import  AioClock, Once</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        from aioclock.api import run_specific_task</span>
 <a id="__codelineno-0-59" name="__codelineno-0-59"></a>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        @app.task(trigger=Once())</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        async def main():</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">        async def some_other_func():</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">            await run_specific_task(app._tasks[0].id, app)</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="n">task</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">task</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">_tasks</span> <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">task_id</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">task</span><span class="p">:</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>        <span class="k">raise</span> <span class="n">TaskIdNotFound</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="k">return</span> <span class="k">await</span> <span class="n">run_with_injected_deps</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        app = AioClock()</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        @app.task(trigger=Once())</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">        async def main():</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">        async def some_other_func():</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">            await run_specific_task(app._tasks[0].id, app)</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>    <span class="n">task</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">task</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">_tasks</span> <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">task_id</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">task</span><span class="p">:</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>        <span class="k">raise</span> <span class="n">TaskIdNotFound</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="k">return</span> <span class="k">await</span> <span class="n">run_with_injected_deps</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1157,55 +1065,55 @@ In future we might store task ID in a database, so that it always remains same.<
 </details>
           <details class="quote">
             <summary>Source code in <code>aioclock/api.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-75">75</a></span>
-<span class="normal"><a href="#__codelineno-0-76">76</a></span>
-<span class="normal"><a href="#__codelineno-0-77">77</a></span>
-<span class="normal"><a href="#__codelineno-0-78">78</a></span>
-<span class="normal"><a href="#__codelineno-0-79">79</a></span>
-<span class="normal"><a href="#__codelineno-0-80">80</a></span>
-<span class="normal"><a href="#__codelineno-0-81">81</a></span>
-<span class="normal"><a href="#__codelineno-0-82">82</a></span>
-<span class="normal"><a href="#__codelineno-0-83">83</a></span>
-<span class="normal"><a href="#__codelineno-0-84">84</a></span>
-<span class="normal"><a href="#__codelineno-0-85">85</a></span>
-<span class="normal"><a href="#__codelineno-0-86">86</a></span>
-<span class="normal"><a href="#__codelineno-0-87">87</a></span>
-<span class="normal"><a href="#__codelineno-0-88">88</a></span>
-<span class="normal"><a href="#__codelineno-0-89">89</a></span>
-<span class="normal"><a href="#__codelineno-0-90">90</a></span>
-<span class="normal"><a href="#__codelineno-0-91">91</a></span>
-<span class="normal"><a href="#__codelineno-0-92">92</a></span>
-<span class="normal"><a href="#__codelineno-0-93">93</a></span>
-<span class="normal"><a href="#__codelineno-0-94">94</a></span>
-<span class="normal"><a href="#__codelineno-0-95">95</a></span>
-<span class="normal"><a href="#__codelineno-0-96">96</a></span>
-<span class="normal"><a href="#__codelineno-0-97">97</a></span>
-<span class="normal"><a href="#__codelineno-0-98">98</a></span>
-<span class="normal"><a href="#__codelineno-0-99">99</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">run_with_injected_deps</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">T</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Runs an aioclock decorated function, with all the dependencies injected.</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">        from aioclock import Once, AioClock, Depends</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">        from aioclock.api import run_with_injected_deps</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">        app = AioClock()</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">run_with_injected_deps</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">T</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Runs an aioclock decorated function, with all the dependencies injected.</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">        from aioclock import Once, AioClock, Depends</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">        from aioclock.api import run_with_injected_deps</span>
 <a id="__codelineno-0-84" name="__codelineno-0-84"></a>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">        def some_dependency():</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">            return 1</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a>
-<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">        @app.task(trigger=Once())</span>
-<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">        async def main(bar: int = Depends(some_dependency)):</span>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">            return bar</span>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a>
-<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="sd">        async def some_other_func():</span>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="sd">            foo = await run_with_injected_deps(main)</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">            assert foo == 1</span>
-<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-99" name="__codelineno-0-99"></a>    <span class="k">return</span> <span class="k">await</span> <span class="n">inject</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">dependency_overrides_provider</span><span class="o">=</span><span class="n">get_provider</span><span class="p">())()</span>  <span class="c1"># type: ignore</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">        app = AioClock()</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">        def some_dependency():</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">            return 1</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">        @app.task(trigger=Once())</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">        async def main(bar: int = Depends(some_dependency)):</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="sd">            return bar</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">        async def some_other_func():</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">            foo = await run_with_injected_deps(main)</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">            assert foo == 1</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>    <span class="k">return</span> <span class="k">await</span> <span class="n">inject</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">dependency_overrides_provider</span><span class="o">=</span><span class="n">get_provider</span><span class="p">())()</span>  <span class="c1"># type: ignore</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1249,9 +1157,7 @@ In future we might store task ID in a database, so that it always remains same.<
 </details>
           <details class="quote">
             <summary>Source code in <code>aioclock/api.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-102">102</a></span>
-<span class="normal"><a href="#__codelineno-0-103">103</a></span>
-<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-104">104</a></span>
 <span class="normal"><a href="#__codelineno-0-105">105</a></span>
 <span class="normal"><a href="#__codelineno-0-106">106</a></span>
 <span class="normal"><a href="#__codelineno-0-107">107</a></span>
@@ -1271,29 +1177,31 @@ In future we might store task ID in a database, so that it always remains same.<
 <span class="normal"><a href="#__codelineno-0-121">121</a></span>
 <span class="normal"><a href="#__codelineno-0-122">122</a></span>
 <span class="normal"><a href="#__codelineno-0-123">123</a></span>
-<span class="normal"><a href="#__codelineno-0-124">124</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_metadata_of_all_tasks</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">AioClock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TaskMetadata</span><span class="p">]:</span>
-<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get metadata of all tasks that are included in the AioClock instance.</span>
-<a id="__codelineno-0-104" name="__codelineno-0-104"></a>
-<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">        from aioclock import AioClock, Once</span>
-<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="sd">        from aioclock.api import get_metadata_of_all_tasks</span>
-<a id="__codelineno-0-109" name="__codelineno-0-109"></a>
-<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">        app = AioClock()</span>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="sd">        @app.task(trigger=Once())</span>
-<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">        async def main(): ...</span>
-<a id="__codelineno-0-113" name="__codelineno-0-113"></a>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">        metadata = await get_metadata_of_all_tasks(app)</span>
-<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a>    <span class="k">return</span> <span class="p">[</span>
-<a id="__codelineno-0-118" name="__codelineno-0-118"></a>        <span class="n">TaskMetadata</span><span class="p">(</span>
-<a id="__codelineno-0-119" name="__codelineno-0-119"></a>            <span class="nb">id</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-<a id="__codelineno-0-120" name="__codelineno-0-120"></a>            <span class="n">trigger</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">trigger</span><span class="p">,</span>
-<a id="__codelineno-0-121" name="__codelineno-0-121"></a>            <span class="n">task_name</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-<a id="__codelineno-0-122" name="__codelineno-0-122"></a>        <span class="p">)</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a>        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">_get_tasks</span><span class="p">(</span><span class="n">exclude_type</span><span class="o">=</span><span class="nb">set</span><span class="p">())</span>
-<a id="__codelineno-0-124" name="__codelineno-0-124"></a>    <span class="p">]</span>
+<span class="normal"><a href="#__codelineno-0-124">124</a></span>
+<span class="normal"><a href="#__codelineno-0-125">125</a></span>
+<span class="normal"><a href="#__codelineno-0-126">126</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_metadata_of_all_tasks</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">AioClock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TaskMetadata</span><span class="p">]:</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get metadata of all tasks that are included in the AioClock instance.</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">        from aioclock import AioClock, Once</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">        from aioclock.api import get_metadata_of_all_tasks</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">        app = AioClock()</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">        @app.task(trigger=Once())</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">        async def main(): ...</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="sd">        metadata = await get_metadata_of_all_tasks(app)</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>    <span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a>        <span class="n">TaskMetadata</span><span class="p">(</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>            <span class="nb">id</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a>            <span class="n">trigger</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">trigger</span><span class="p">,</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a>            <span class="n">task_name</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a>        <span class="p">)</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">_get_tasks</span><span class="p">(</span><span class="n">exclude_type</span><span class="o">=</span><span class="nb">set</span><span class="p">())</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a>    <span class="p">]</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
