@@ -283,7 +283,7 @@ class Every(LoopController[Literal[Triggers.EVERY]]):
         hours: Hours to wait before triggering the event.
         days: Days to wait before triggering the event.
         weeks: Weeks to wait before triggering the event.
-        max_loop_count: The maximum number of times the event should be triggered. Should be always 1 for this trigger.
+        max_loop_count: The maximum number of times the event should be triggered.
     """
 
     type_: Literal[Triggers.EVERY] = Triggers.EVERY
@@ -363,7 +363,7 @@ class At(LoopController[Literal[Triggers.AT]]):
         hour: Hour to trigger the event.
         at: Day of week to trigger the event. You would get the in-line typing support when using the trigger.
         tz: Timezone to use for the event.
-        max_loop_count: The maximum number of times the event should be triggered. Should be always 1 for this trigger.
+        max_loop_count: The maximum number of times the event should be triggered.
 
     """
 
