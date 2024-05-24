@@ -21,19 +21,20 @@ class Task:
     """Task that will be run by AioClock.
     Which always has a function and a trigger.
     This is internally used, when you decorate your function with `aioclock.task`.
+
+    Attributes:
+        func: Callable[..., Awaitable[Any]]: Decorated function that will be run by AioClock.
+        trigger: BaseTrigger: Trigger that will be used to run the function.
+        id: UUID: Task ID that is unique for each task, and changes every time you run the aioclock app.
+            In future we might store task ID in a database, so that it always remains same.
+
     """
 
     func: Callable[..., Awaitable[Any]]
-    """Decorated function that will be run by AioClock."""
 
     trigger: BaseTrigger
-    """Trigger that will be used to run the function."""
 
     id: UUID = field(default_factory=uuid4)
-    """
-    Task ID that is unique for each task, and changes every time you run the aioclock app.
-    In future we might store task ID in a database, so that it always remains same.
-    """
 
     async def run(self):
         """

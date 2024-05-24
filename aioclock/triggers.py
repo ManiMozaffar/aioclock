@@ -190,9 +190,6 @@ class Once(LoopController[Literal[Triggers.ONCE]]):
         async def task():
             print("Hello World!")
         ```
-
-    Attributes:
-        max_loop_count: The maximum number of times the event should be triggered. Should be always 1 for this trigger.
     """
 
     type_: Literal[Triggers.ONCE] = Triggers.ONCE
@@ -220,9 +217,6 @@ class OnStartUp(LoopController[Literal[Triggers.ON_START_UP]]):
         async def task():
             print("Hello World!")
         ```
-
-    Attributes:
-        max_loop_count: The maximum number of times the event should be triggered. Should be always 1 for this trigger.
     """
 
     type_: Literal[Triggers.ON_START_UP] = Triggers.ON_START_UP
@@ -250,9 +244,6 @@ class OnShutDown(LoopController[Literal[Triggers.ON_SHUT_DOWN]]):
         async def task():
             print("Hello World!")
         ```
-
-    Attributes:
-        max_loop_count: The maximum number of times the event should be triggered. Should be always 1 for this trigger.
     """
 
     type_: Literal[Triggers.ON_SHUT_DOWN] = Triggers.ON_SHUT_DOWN
@@ -292,6 +283,7 @@ class Every(LoopController[Literal[Triggers.EVERY]]):
         hours: Hours to wait before triggering the event.
         days: Days to wait before triggering the event.
         weeks: Weeks to wait before triggering the event.
+        max_loop_count: The maximum number of times the event should be triggered. Should be always 1 for this trigger.
     """
 
     type_: Literal[Triggers.EVERY] = Triggers.EVERY
@@ -301,6 +293,7 @@ class Every(LoopController[Literal[Triggers.EVERY]]):
     hours: Union[PositiveNumber, None] = None
     days: Union[PositiveNumber, None] = None
     weeks: Union[PositiveNumber, None] = None
+    max_loop_count: Union[PositiveInt, None] = None
 
     @model_validator(mode="after")
     def validate_time_units(self):
@@ -370,11 +363,12 @@ class At(LoopController[Literal[Triggers.AT]]):
         hour: Hour to trigger the event.
         at: Day of week to trigger the event. You would get the in-line typing support when using the trigger.
         tz: Timezone to use for the event.
+        max_loop_count: The maximum number of times the event should be triggered. Should be always 1 for this trigger.
 
     """
 
     type_: Literal[Triggers.AT] = Triggers.AT
-
+    max_loop_count: Union[PositiveInt, None] = None
     second: Annotated[int, Interval(ge=0, le=59)] = 0
     minute: Annotated[int, Interval(ge=0, le=59)] = 0
     hour: Annotated[int, Interval(ge=0, le=24)] = 0

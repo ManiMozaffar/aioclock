@@ -33,16 +33,18 @@ P = ParamSpec("P")
 
 
 class TaskMetadata(BaseModel):
-    """Metadata of the task that is included in the AioClock instance."""
+    """Metadata of the task that is included in the AioClock instance.
+
+    Attributes:
+        id: UUID: Task ID that is unique for each task, and changes every time you run the aioclock app.
+            In future we might store task ID in a database, so that it always remains same.
+        trigger: Union[TriggerT, Any]: Trigger that is used to run the task, type is also any to ease implementing new triggers.
+        task_name: str: Name of the task function.
+    """
 
     id: UUID
-    """
-    Task ID that is unique for each task, and changes every time you run the aioclock app.
-    In future we might store task ID in a database, so that it always remains same.
-    """
 
     trigger: Union[TriggerT, Any]
-    """Trigger that is used to run the task, type is also any to ease implementing new triggers."""
 
     task_name: str
 

@@ -97,9 +97,7 @@ nav:
           - Task: api/task.md
           - External API: api/external_api.md
           - Plugins (FastAPI included): api/plugin.md
+          - Using beside FastAPI: examples/fastapi.md
+          - Using beside Message Brokers: examples/brokers.md
 
       - Alternatives: alternative.md
-
-      - Examples:
-          - Using with FastAPI: examples/fastapi.md
-          - Using with Message Brokers: examples/brokers.md
