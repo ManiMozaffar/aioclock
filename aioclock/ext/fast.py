@@ -17,7 +17,8 @@ from aioclock.app import AioClock
 from aioclock.exceptions import TaskIdNotFound
 
 try:
-    from fastapi import APIRouter, HTTPException
+    from fastapi.exceptions import HTTPException
+    from fastapi.routing import APIRouter
 except ImportError:
     raise ImportError(
         "You need to install fastapi to use aioclock with FastAPI. Please run `pip install aioclock[fastapi]`"
@@ -36,16 +37,14 @@ def make_fastapi_router(aioclock: AioClock, router: Union[APIRouter, None] = Non
         from fastapi import FastAPI
 
         from aioclock import AioClock
-        from aioclock.ext.fastapi import make_fastapi_router
+        from aioclock.ext.fast import make_fastapi_router
         from aioclock.triggers import Every, OnStartUp
 
         clock_app = AioClock()
 
-
         @clock_app.task(trigger=OnStartUp())
         async def startup():
             print("Starting...")
-
 
         @clock_app.task(trigger=Every(seconds=3600))
         async def foo():
@@ -69,8 +68,7 @@ def make_fastapi_router(aioclock: AioClock, router: Union[APIRouter, None] = Non
 
         if __name__ == "__main__":
             import uvicorn
-
-            uvicorn.run(app)
+            # uvicorn.run(app)
         ```
     """
     router = router or APIRouter()
