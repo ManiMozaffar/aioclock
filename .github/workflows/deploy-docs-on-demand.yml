@@ -13,5 +13,11 @@ jobs:
       - name: Set up the environment
         uses: ./.github/actions/setup-poetry-env
 
+      - name: Install the latest version of rye
+        uses: eifinger/setup-rye@v2
+
+      - name: Install dependencies
+        run: make install
+
       - name: Deploy documentation
-        run: poetry run mkdocs gh-deploy --force
+        run: rye run python deploy_docs.py
