@@ -19,7 +19,7 @@ import zoneinfo
 from annotated_types import Interval
 from pydantic import BaseModel, Field, PositiveInt, model_validator
 
-from aioclock.types import EveryT, PositiveNumber, Triggers
+from aioclock.custom_types import EveryT, PositiveNumber, Triggers
 
 TriggerTypeT = TypeVar("TriggerTypeT")
 
@@ -41,7 +41,7 @@ class BaseTrigger(BaseModel, ABC, Generic[TriggerTypeT]):
     Example:
         ```python
         from aioclock.triggers import BaseTrigger
-
+        from typing import Literal
 
         class Forever(BaseTrigger[Literal["Forever"]]):
             type_: Literal["Forever"] = "Forever"
@@ -98,7 +98,7 @@ class Forever(BaseTrigger[Literal[Triggers.FOREVER]]):
     Example:
         ```python
 
-            from aioclock import AioClock,
+            from aioclock import AioClock, Forever
 
             app = AioClock()
 
@@ -108,7 +108,7 @@ class Forever(BaseTrigger[Literal[Triggers.FOREVER]]):
                     try:
                         await asyncio.sleep(3)
                         1/0
-                    excpet DivisionByZero:
+                    except DivisionByZero:
                         pass
 
             # use this:

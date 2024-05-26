@@ -20,6 +20,7 @@ async def lifespan(app: FastAPI):
         ...
 
 app = FastAPI(lifespan=lifespan)
+# now serve this with uvicorn or anything else
 ```
 
 !!! danger "This setup is not recommended at all"

@@ -1,2 +1,2 @@
 ::: aioclock.ext
-::: aioclock.ext.fastapi
+::: aioclock.ext.fast

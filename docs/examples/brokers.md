@@ -3,15 +3,17 @@ You can basically run any tasks on aioclock, it could be your redis broker or ot
 AioClock offer you a unique easy way to spin up new services, without any overhead or perfomance issue!
 
 ```python
-from aioclock import AioClock, Forever, OnShutDown
+from aioclock import AioClock, Forever, OnShutDown, Depends
 from functools import lru_cache
-from your_module import BrokerType
+from typing import NewType
+
+BrokerType = NewType("BrokerType", ...) # your broker type ...
 
 app = AioClock()
 
 # your singleton redis instance
 @lru_cache
-def get_redis() -> BrokerType:
+def get_redis():
     ...
 
 

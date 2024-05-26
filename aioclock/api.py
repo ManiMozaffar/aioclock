@@ -113,7 +113,8 @@ async def get_metadata_of_all_tasks(app: AioClock) -> list[TaskMetadata]:
         @app.task(trigger=Once())
         async def main(): ...
 
-        metadata = await get_metadata_of_all_tasks(app)
+        async def some_other_func():
+            metadata = await get_metadata_of_all_tasks(app)
         ```
     """
     return [

@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from aioclock import AioClock
-from aioclock.ext.fastapi import make_fastapi_router
+from aioclock.ext.fast import make_fastapi_router
 from aioclock.triggers import Every, OnStartUp
 
 clock_app = AioClock()
