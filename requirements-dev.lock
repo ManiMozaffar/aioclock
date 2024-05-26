@@ -186,6 +186,7 @@ requests==2.32.2
     # via mkdocs-material
 rich==13.7.1
     # via typer
+ruff==0.4.5
 setuptools==70.0.0
     # via nodeenv
 shellingham==1.5.4

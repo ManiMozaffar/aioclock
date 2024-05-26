@@ -39,6 +39,7 @@ dev-dependencies = [
     "mkdocs-simple-hooks>=0.1.5",
     "black>=24.4.2",
     "fastapi>=0.90",
+    "ruff>=0.3.5",
 ]
 
 [tool.behavior]
