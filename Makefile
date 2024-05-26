@@ -6,14 +6,13 @@ install: ## Install the rye environment
 .PHONY: check
 check: ## Run the quality checks on the code
 	@echo "🚀 Running quality checks"
-	ruff .
-	pyright .
+	rye run ruff .
+	rye run pyright .
 
 .PHONY: test
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
-	pytest tests
-
+	rye run pytest
 
 .PHONY: docs
 docs:  ## Build and serve the documentation
