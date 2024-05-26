@@ -753,14 +753,12 @@ files = [
 
 [[package]]
 name = "mike"
-version = "2.1.1"
+version = "2.2.0.dev0"
 description = "Manage multiple versions of your MkDocs-powered documentation"
 optional = false
 python-versions = "*"
-files = [
-    {file = "mike-2.1.1-py3-none-any.whl", hash = "sha256:0b1d01a397a423284593eeb1b5f3194e37169488f929b860c9bfe95c0d5efb79"},
-    {file = "mike-2.1.1.tar.gz", hash = "sha256:f39ed39f3737da83ad0adc33e9f885092ed27f8c9e7ff0523add0480352a2c22"},
-]
+files = []
+develop = false
 
 [package.dependencies]
 importlib-metadata = "*"
@@ -775,6 +773,12 @@ verspec = "*"
 [package.extras]
 dev = ["coverage", "flake8 (>=3.0)", "flake8-quotes", "shtab"]
 test = ["coverage", "flake8 (>=3.0)", "flake8-quotes", "shtab"]
+
+[package.source]
+type = "git"
+url = "https://github.com/jimporter/mike.git"
+reference = "HEAD"
+resolved_reference = "5e6970d65beaf2c92fa1d22dbf524a931a393e8b"
 
 [[package]]
 name = "mkdocs"
