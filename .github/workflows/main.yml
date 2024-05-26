@@ -8,23 +8,6 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  # quality:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out
-  #       uses: actions/checkout@v3
-
-  #     - uses: actions/cache@v3
-  #       with:
-  #         path: ~/.cache/pre-commit
-  #         key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
-
-  #     - name: Set up the environment
-  #       uses: ./.github/actions/setup-poetry-env
-
-  #     - name: Run checks
-  #       run: make check
-
   tox:
     runs-on: ubuntu-latest
     strategy:
@@ -40,31 +23,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Install the latest version of rye
+        uses: eifinger/setup-rye@v2
 
-      - name: Load cached venv
-        uses: actions/cache@v3
-        with:
-          path: .tox
-          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+      - name: Pin python-version ${{ matrix.python-version }}
+        run: rye pin ${{ matrix.python-version }}
 
-      - name: Install tox
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install tox tox-gh-actions
+      - name: Install dependencies
+        run: make install
 
-      - name: Test with tox
-        run: tox
+      - name: Run tests
+        run: make test
 
-  # check-docs:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out
-  #       uses: actions/checkout@v3
-
-  #     - name: Set up the environment
-  #       uses: ./.github/actions/setup-poetry-env
-
-  #     - name: Check if documentation can be built
-  #       run: poetry run mkdocs build -s
+      - name: Run check
+        run: make check
