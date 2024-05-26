@@ -10,7 +10,7 @@ packages = [{ include = "aioclock" }]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-pydantic = "^2.6.4"
+pydantic = ">2.5,<3.0"
 fast-depends = "^2.4.2"
 pytest-asyncio = "^0.23.7"
 
