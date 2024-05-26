@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/alternative/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/alternative/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/api/external_api/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/api/external_api/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/api/getting_started/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/api/getting_started/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/api/plugin/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/api/plugin/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/api/task/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/api/task/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/api/triggers/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/api/triggers/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/examples/brokers/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/examples/brokers/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ManiMozaffar.github.io/aioclock/0.1.0/examples/fastapi/</loc>
+         <loc>https://ManiMozaffar.github.io/aioclock/latest/examples/fastapi/</loc>
          <lastmod>2024-05-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
