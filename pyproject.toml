@@ -24,6 +24,7 @@ pytest-asyncio = "^0.23.6"
 tox = "^4.11.1"
 rich = "^13.7.1"
 pyright = "1.1.350"
+mike = "^2.1.1"
 
 [tool.pyright]
 typeCheckingMode = "basic"

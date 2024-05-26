@@ -17,10 +17,10 @@ else:
 
 from fast_depends import inject
 
+from aioclock.custom_types import Triggers
 from aioclock.group import Group, Task
 from aioclock.provider import get_provider
 from aioclock.triggers import BaseTrigger
-from aioclock.types import Triggers
 from aioclock.utils import flatten_chain
 
 T = TypeVar("T")
@@ -48,10 +48,12 @@ class AioClock:
     Example:
         ```python
         from aioclock import AioClock, Once
+        import asyncio
+
         app = AioClock()
 
         # whatever next comes here
-        await app.serve()
+        asyncio.run(app.serve())
         ```
 
     """

@@ -28,15 +28,15 @@ jobs:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
 
-  deploy-docs-on-release:
-    needs: publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out
-        uses: actions/checkout@v3
+  # deploy-docs-on-release:
+  #   needs: publish
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out
+  #       uses: actions/checkout@v3
 
-      - name: Set up the environment
-        uses: ./.github/actions/setup-poetry-env
+  #     - name: Set up the environment
+  #       uses: ./.github/actions/setup-poetry-env
 
-      - name: Deploy documentation
-        run: poetry run mkdocs gh-deploy --force
+  #     - name: Deploy documentation
+  #       run: poetry run mkdocs gh-deploy --force
