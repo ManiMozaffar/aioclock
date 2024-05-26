@@ -68,7 +68,6 @@ plugins:
   - mike:
       alias_type: symlink
       canonical_version: latest
-      default_version: latest
   - search:
   - mkdocstrings:
       handlers:
