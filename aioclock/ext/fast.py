@@ -29,6 +29,11 @@ def make_fastapi_router(aioclock: AioClock, router: Union[APIRouter, None] = Non
     """Make a FastAPI router that exposes the tasks of the AioClock instance and its external python API in HTTP Layer.
     You can pass a router to this function, and have dependencies injected in the router, or any authorization logic that you want to have.
 
+
+    params:
+        aioclock: AioClock instance to get the tasks from.
+        router: FastAPI router to add the routes to. If not provided, a new router will be created.
+
     Example:
         ```python
         import asyncio
