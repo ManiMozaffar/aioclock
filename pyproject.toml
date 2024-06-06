@@ -1,11 +1,11 @@
 [project]
 name = "aioclock"
-version = "0.1.0"
+version = "0.1.1"
 description = "An asyncio-based scheduling framework designed for execution of periodic task with integrated support for dependency injection, enabling efficient and flexible task management"
 authors = [{ name = "Mani Mozaffar", email = "mani.mozaffar@gmail.com" }]
 readme = "README.md"
 requires-python = ">= 3.8"
-dependencies = ["pydantic>2.5,<3.0", "fast-depends>=2.4.2"]
+dependencies = ["pydantic>2.5,<3.0", "fast-depends>=2.4.0", "asyncer>=0.0.7"]
 license = 'MIT'
 
 
@@ -17,8 +17,7 @@ Source = 'https://github.com/ManiMozaffar/aioclock'
 
 
 [project.optional-dependencies]
-extras = ["fastapi"]
-
+fastapi = ["fastapi"]
 
 [build-system]
 requires = ["hatchling"]
