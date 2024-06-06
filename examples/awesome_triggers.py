@@ -16,6 +16,11 @@ async def every():
     print("Every 10 seconds, I make a quantum leap. Where will I land next?")
 
 
+@group.task(trigger=Every(seconds=5))
+def even_sync_works():
+    print("I'm a synchronous task. I work even in async world.")
+
+
 @group.task(trigger=At(tz="UTC", hour=0, minute=0, second=0))
 async def at():
     print(
