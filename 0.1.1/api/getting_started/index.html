@@ -931,13 +931,13 @@
 
 
 <a id="aioclock.app"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>To initialize the AioClock instance, you need to import the AioClock class from the aioclock module.
 AioClock class represent the aioclock, and handle the tasks and groups that will be run by the aioclock.</p>
 <p>Another way to modulize your code is to use <code>Group</code> which is kinda the same idea as router in web frameworks.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -953,18 +953,19 @@ AioClock class represent the aioclock, and handle the tasks and groups that will
 
 
 <h2 id="aioclock.app.AioClock" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">AioClock</span>
+            <span class="doc doc-object-name doc-class-name">AioClock</span>
 
 
 <a href="#aioclock.app.AioClock" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">AioClock</span><span class="p">()</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">AioClock</span><span class="p">(</span><span class="n">limiter</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="anyio.CapacityLimiter">CapacityLimiter</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>AioClock is the main class that will be used to run the tasks.
 It will be responsible for running the tasks in the right order.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -977,6 +978,7 @@ It will be responsible for running the tasks in the right order.</p>
 </code></pre></div>
 </details>      <p>To run the aioclock final app simply do:</p>
 
+
 <details class="example" open>
   <summary>Example</summary>
   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">Once</span>
@@ -988,25 +990,71 @@ It will be responsible for running the tasks in the right order.</p>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">serve</span><span class="p">())</span>
 </code></pre></div>
 </details>
-                <details class="quote">
-                  <summary>Source code in <code>aioclock/app.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.app.AioClock.limiter">limiter</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Anyio CapacityLimiter. capacity limiter to use to limit the total amount of threads running
+Limiter that will be used to limit the number of tasks that are running at the same time.
+If not provided, it will fallback to the default limiter set on Application level.
+If no limiter is set on Application level, it will fallback to the default limiter set by AnyIO.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+                  <details class="quote">
+                    <summary>Source code in <code>aioclock/app.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-63">63</a></span>
 <span class="normal"><a href="#__codelineno-0-64">64</a></span>
 <span class="normal"><a href="#__codelineno-0-65">65</a></span>
 <span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">    Initialize AioClock instance.</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">    No parameters are needed.</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Group</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_app_tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="normal"><a href="#__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span>
+<span class="normal"><a href="#__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#__codelineno-0-71">71</a></span>
+<span class="normal"><a href="#__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#__codelineno-0-74">74</a></span>
+<span class="normal"><a href="#__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limiter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">anyio</span><span class="o">.</span><span class="n">CapacityLimiter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">    Initialize AioClock instance.</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">    No parameters are needed.</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    Attributes:</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">        limiter:</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">            Anyio CapacityLimiter. capacity limiter to use to limit the total amount of threads running</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">            Limiter that will be used to limit the number of tasks that are running at the same time.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">            If not provided, it will fallback to the default limiter set on Application level.</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">            If no limiter is set on Application level, it will fallback to the default limiter set by AnyIO.</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Group</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_app_tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_limiter</span> <span class="o">=</span> <span class="n">limiter</span>
 </code></pre></div></td></tr></table></div>
-                </details>
+                  </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1021,9 +1069,9 @@ It will be responsible for running the tasks in the right order.</p>
 
 
 <h3 id="aioclock.app.AioClock.dependencies" class="doc doc-heading">
-          <span class="doc doc-object-name doc-attribute-name">dependencies</span>
+            <span class="doc doc-object-name doc-attribute-name">dependencies</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -1032,34 +1080,76 @@ It will be responsible for running the tasks in the right order.</p>
 <div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">dependencies</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Dependencies provider that will be used to inject dependencies in tasks.</p>
-  </div>
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="aioclock.app.AioClock.override_dependencies" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">override_dependencies</span>
+            <span class="doc doc-object-name doc-function-name">override_dependencies</span>
 
 
 <a href="#aioclock.app.AioClock.override_dependencies" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">override_dependencies</span><span class="p">(</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">override_dependencies</span><span class="p">(</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">original</span><span class="p">:</span> <span class="n"><span title="typing.Callable">Callable</span></span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">],</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">override</span><span class="p">:</span> <span class="n"><span title="typing.Callable">Callable</span></span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">],</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Override a dependency with a new one.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>original</code></td>
+            <td>
+                  <code><span title="typing.Callable">Callable</span>[..., <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Original dependency that will be overridden.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>override</code></td>
+            <td>
+                  <code><span title="typing.Callable">Callable</span>[..., <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>New dependency that will override the original one.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1075,20 +1165,9 @@ It will be responsible for running the tasks in the right order.</p>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">app</span><span class="o">.</span><span class="n">override_dependencies</span><span class="p">(</span><span class="n">original</span><span class="o">=</span><span class="n">original_dependency</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="n">new_dependency</span><span class="p">)</span>
 </code></pre></div>
 </details>
-          <details class="quote">
-            <summary>Source code in <code>aioclock/app.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
-<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
-<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
-<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
-<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
-<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
-<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
-<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
-<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
-<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
-<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
-<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/app.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
 <span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
 <span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
 <span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
@@ -1097,49 +1176,100 @@ It will be responsible for running the tasks in the right order.</p>
 <span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
 <span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
 <span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
-<span class="normal"><a href="#__codelineno-0-100">100</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="k">def</span> <span class="nf">override_dependencies</span><span class="p">(</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="bp">self</span><span class="p">,</span> <span class="n">original</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">override</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Override a dependency with a new one.</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">        from aioclock import AioClock</span>
-<a id="__codelineno-0-88" name="__codelineno-0-88"></a>
-<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">        def original_dependency():</span>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">            return 1</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="sd">        def new_dependency():</span>
-<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="sd">            return 2</span>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">        app = AioClock()</span>
-<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">        app.override_dependencies(original=original_dependency, override=new_dependency)</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a>
-<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">override</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span>
+<span class="normal"><a href="#__codelineno-0-113">113</a></span>
+<span class="normal"><a href="#__codelineno-0-114">114</a></span>
+<span class="normal"><a href="#__codelineno-0-115">115</a></span>
+<span class="normal"><a href="#__codelineno-0-116">116</a></span>
+<span class="normal"><a href="#__codelineno-0-117">117</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="k">def</span> <span class="nf">override_dependencies</span><span class="p">(</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="bp">self</span><span class="p">,</span> <span class="n">original</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">override</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Override a dependency with a new one.</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">    params:</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">        original:</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">            Original dependency that will be overridden.</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="sd">        override:</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">            New dependency that will override the original one.</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="sd">        from aioclock import AioClock</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">        def original_dependency():</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">            return 1</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">        def new_dependency():</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">            return 2</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">        app = AioClock()</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">        app.override_dependencies(original=original_dependency, override=new_dependency)</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">override</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="aioclock.app.AioClock.include_group" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">include_group</span>
+            <span class="doc doc-object-name doc-function-name">include_group</span>
 
 
 <a href="#aioclock.app.AioClock.include_group" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">include_group</span><span class="p">(</span><span class="n">group</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.group.Group" href="#aioclock.group.Group">Group</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">include_group</span><span class="p">(</span><span class="n">group</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.group.Group" href="#aioclock.group.Group">Group</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Include a group of tasks that will be run by AioClock.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>group</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="aioclock.group.Group" href="#aioclock.group.Group">Group</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Group of tasks that will be run together.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1155,82 +1285,12 @@ It will be responsible for running the tasks in the right order.</p>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">app</span><span class="o">.</span><span class="n">include_group</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
 </code></pre></div>
 </details>
-          <details class="quote">
-            <summary>Source code in <code>aioclock/app.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-102">102</a></span>
-<span class="normal"><a href="#__codelineno-0-103">103</a></span>
-<span class="normal"><a href="#__codelineno-0-104">104</a></span>
-<span class="normal"><a href="#__codelineno-0-105">105</a></span>
-<span class="normal"><a href="#__codelineno-0-106">106</a></span>
-<span class="normal"><a href="#__codelineno-0-107">107</a></span>
-<span class="normal"><a href="#__codelineno-0-108">108</a></span>
-<span class="normal"><a href="#__codelineno-0-109">109</a></span>
-<span class="normal"><a href="#__codelineno-0-110">110</a></span>
-<span class="normal"><a href="#__codelineno-0-111">111</a></span>
-<span class="normal"><a href="#__codelineno-0-112">112</a></span>
-<span class="normal"><a href="#__codelineno-0-113">113</a></span>
-<span class="normal"><a href="#__codelineno-0-114">114</a></span>
-<span class="normal"><a href="#__codelineno-0-115">115</a></span>
-<span class="normal"><a href="#__codelineno-0-116">116</a></span>
-<span class="normal"><a href="#__codelineno-0-117">117</a></span>
-<span class="normal"><a href="#__codelineno-0-118">118</a></span>
-<span class="normal"><a href="#__codelineno-0-119">119</a></span>
-<span class="normal"><a href="#__codelineno-0-120">120</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="k">def</span> <span class="nf">include_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">:</span> <span class="n">Group</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Include a group of tasks that will be run by AioClock.</span>
-<a id="__codelineno-0-104" name="__codelineno-0-104"></a>
-<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">        from aioclock import AioClock, Group, Once</span>
-<a id="__codelineno-0-108" name="__codelineno-0-108"></a>
-<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">        app = AioClock()</span>
-<a id="__codelineno-0-110" name="__codelineno-0-110"></a>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="sd">        group = Group()</span>
-<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">        @group.task(trigger=Once())</span>
-<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">        async def main():</span>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
-<a id="__codelineno-0-115" name="__codelineno-0-115"></a>
-<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="sd">        app.include_group(group)</span>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-119" name="__codelineno-0-119"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-<a id="__codelineno-0-120" name="__codelineno-0-120"></a>    <span class="k">return</span> <span class="kc">None</span>
-</code></pre></div></td></tr></table></div>
-          </details>
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="aioclock.app.AioClock.task" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">task</span>
-
-
-<a href="#aioclock.app.AioClock.task" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">task</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></span><span class="p">)</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Decorator to add a task to the AioClock instance.</p>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code>```python
-from aioclock import AioClock, Once
-
-app = AioClock()
-
-@app.task(trigger=Once())
-async def main():
-    print(&quot;Hello World&quot;)
-```
-</code></pre></div>
-
-          <details class="quote">
-            <summary>Source code in <code>aioclock/app.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-122">122</a></span>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/app.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-119">119</a></span>
+<span class="normal"><a href="#__codelineno-0-120">120</a></span>
+<span class="normal"><a href="#__codelineno-0-121">121</a></span>
+<span class="normal"><a href="#__codelineno-0-122">122</a></span>
 <span class="normal"><a href="#__codelineno-0-123">123</a></span>
 <span class="normal"><a href="#__codelineno-0-124">124</a></span>
 <span class="normal"><a href="#__codelineno-0-125">125</a></span>
@@ -1249,9 +1309,99 @@ async def main():
 <span class="normal"><a href="#__codelineno-0-138">138</a></span>
 <span class="normal"><a href="#__codelineno-0-139">139</a></span>
 <span class="normal"><a href="#__codelineno-0-140">140</a></span>
-<span class="normal"><a href="#__codelineno-0-141">141</a></span>
-<span class="normal"><a href="#__codelineno-0-142">142</a></span>
-<span class="normal"><a href="#__codelineno-0-143">143</a></span>
+<span class="normal"><a href="#__codelineno-0-141">141</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-119" name="__codelineno-0-119"></a><span class="k">def</span> <span class="nf">include_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">:</span> <span class="n">Group</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Include a group of tasks that will be run by AioClock.</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="sd">    params:</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="sd">        group:</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="sd">            Group of tasks that will be run together.</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a><span class="sd">        from aioclock import AioClock, Group, Once</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="sd">        app = AioClock()</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="sd">        group = Group()</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133"></a><span class="sd">        @group.task(trigger=Once())</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134"></a><span class="sd">        async def main():</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136"></a>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">        app.include_group(group)</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-139" name="__codelineno-0-139"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-140" name="__codelineno-0-140"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+<a id="__codelineno-0-141" name="__codelineno-0-141"></a>    <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aioclock.app.AioClock.task" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">task</span>
+
+
+<a href="#aioclock.app.AioClock.task" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">task</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to add a task to the AioClock instance.
+If decorated function is sync, aioclock will run it in a thread pool executor, using AnyIO.
+But if you try to run the decorated function, it will run in the same thread, blocking the event loop.
+It is intended to not change all your <code>sync functions</code> to coroutine functions,
+    and they can be used outside of aioclock, if needed.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>trigger</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BaseTrigger
+Trigger that will trigger the task to be running.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">Once</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nd">@app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Once</span><span class="p">())</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/app.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-143">143</a></span>
 <span class="normal"><a href="#__codelineno-0-144">144</a></span>
 <span class="normal"><a href="#__codelineno-0-145">145</a></span>
 <span class="normal"><a href="#__codelineno-0-146">146</a></span>
@@ -1259,68 +1409,29 @@ async def main():
 <span class="normal"><a href="#__codelineno-0-148">148</a></span>
 <span class="normal"><a href="#__codelineno-0-149">149</a></span>
 <span class="normal"><a href="#__codelineno-0-150">150</a></span>
-<span class="normal"><a href="#__codelineno-0-151">151</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="k">def</span> <span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">BaseTrigger</span><span class="p">):</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator to add a task to the AioClock instance.</span>
-<a id="__codelineno-0-124" name="__codelineno-0-124"></a>
-<a id="__codelineno-0-125" name="__codelineno-0-125"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-126" name="__codelineno-0-126"></a>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-128" name="__codelineno-0-128"></a><span class="sd">        from aioclock import AioClock, Once</span>
-<a id="__codelineno-0-129" name="__codelineno-0-129"></a>
-<a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="sd">        app = AioClock()</span>
-<a id="__codelineno-0-131" name="__codelineno-0-131"></a>
-<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="sd">        @app.task(trigger=Once())</span>
-<a id="__codelineno-0-133" name="__codelineno-0-133"></a><span class="sd">        async def main():</span>
-<a id="__codelineno-0-134" name="__codelineno-0-134"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
-<a id="__codelineno-0-135" name="__codelineno-0-135"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-136" name="__codelineno-0-136"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-137" name="__codelineno-0-137"></a>
-<a id="__codelineno-0-138" name="__codelineno-0-138"></a>    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">T</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">T</span><span class="p">]]:</span>
-<a id="__codelineno-0-139" name="__codelineno-0-139"></a>        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<a id="__codelineno-0-140" name="__codelineno-0-140"></a>        <span class="k">async</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-141" name="__codelineno-0-141"></a>            <span class="k">return</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<a id="__codelineno-0-142" name="__codelineno-0-142"></a>
-<a id="__codelineno-0-143" name="__codelineno-0-143"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_app_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-<a id="__codelineno-0-144" name="__codelineno-0-144"></a>            <span class="n">Task</span><span class="p">(</span>
-<a id="__codelineno-0-145" name="__codelineno-0-145"></a>                <span class="n">func</span><span class="o">=</span><span class="n">inject</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">dependency_overrides_provider</span><span class="o">=</span><span class="n">get_provider</span><span class="p">()),</span>
-<a id="__codelineno-0-146" name="__codelineno-0-146"></a>                <span class="n">trigger</span><span class="o">=</span><span class="n">trigger</span><span class="p">,</span>
-<a id="__codelineno-0-147" name="__codelineno-0-147"></a>            <span class="p">)</span>
-<a id="__codelineno-0-148" name="__codelineno-0-148"></a>        <span class="p">)</span>
-<a id="__codelineno-0-149" name="__codelineno-0-149"></a>        <span class="k">return</span> <span class="n">wrapper</span>
-<a id="__codelineno-0-150" name="__codelineno-0-150"></a>
-<a id="__codelineno-0-151" name="__codelineno-0-151"></a>    <span class="k">return</span> <span class="n">decorator</span>
-</code></pre></div></td></tr></table></div>
-          </details>
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="aioclock.app.AioClock.serve" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">serve</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#aioclock.app.AioClock.serve" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">serve</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Serves AioClock
-Run the tasks in the right order.
-First, run the startup tasks, then run the tasks, and finally run the shutdown tasks.</p>
-
-          <details class="quote">
-            <summary>Source code in <code>aioclock/app.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-173">173</a></span>
+<span class="normal"><a href="#__codelineno-0-151">151</a></span>
+<span class="normal"><a href="#__codelineno-0-152">152</a></span>
+<span class="normal"><a href="#__codelineno-0-153">153</a></span>
+<span class="normal"><a href="#__codelineno-0-154">154</a></span>
+<span class="normal"><a href="#__codelineno-0-155">155</a></span>
+<span class="normal"><a href="#__codelineno-0-156">156</a></span>
+<span class="normal"><a href="#__codelineno-0-157">157</a></span>
+<span class="normal"><a href="#__codelineno-0-158">158</a></span>
+<span class="normal"><a href="#__codelineno-0-159">159</a></span>
+<span class="normal"><a href="#__codelineno-0-160">160</a></span>
+<span class="normal"><a href="#__codelineno-0-161">161</a></span>
+<span class="normal"><a href="#__codelineno-0-162">162</a></span>
+<span class="normal"><a href="#__codelineno-0-163">163</a></span>
+<span class="normal"><a href="#__codelineno-0-164">164</a></span>
+<span class="normal"><a href="#__codelineno-0-165">165</a></span>
+<span class="normal"><a href="#__codelineno-0-166">166</a></span>
+<span class="normal"><a href="#__codelineno-0-167">167</a></span>
+<span class="normal"><a href="#__codelineno-0-168">168</a></span>
+<span class="normal"><a href="#__codelineno-0-169">169</a></span>
+<span class="normal"><a href="#__codelineno-0-170">170</a></span>
+<span class="normal"><a href="#__codelineno-0-171">171</a></span>
+<span class="normal"><a href="#__codelineno-0-172">172</a></span>
+<span class="normal"><a href="#__codelineno-0-173">173</a></span>
 <span class="normal"><a href="#__codelineno-0-174">174</a></span>
 <span class="normal"><a href="#__codelineno-0-175">175</a></span>
 <span class="normal"><a href="#__codelineno-0-176">176</a></span>
@@ -1338,28 +1449,128 @@ First, run the startup tasks, then run the tasks, and finally run the shutdown t
 <span class="normal"><a href="#__codelineno-0-188">188</a></span>
 <span class="normal"><a href="#__codelineno-0-189">189</a></span>
 <span class="normal"><a href="#__codelineno-0-190">190</a></span>
-<span class="normal"><a href="#__codelineno-0-191">191</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-174" name="__codelineno-0-174"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-175" name="__codelineno-0-175"></a><span class="sd">    Serves AioClock</span>
-<a id="__codelineno-0-176" name="__codelineno-0-176"></a><span class="sd">    Run the tasks in the right order.</span>
-<a id="__codelineno-0-177" name="__codelineno-0-177"></a><span class="sd">    First, run the startup tasks, then run the tasks, and finally run the shutdown tasks.</span>
-<a id="__codelineno-0-178" name="__codelineno-0-178"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-179" name="__codelineno-0-179"></a>
-<a id="__codelineno-0-180" name="__codelineno-0-180"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">include_group</span><span class="p">(</span><span class="n">Group</span><span class="p">(</span><span class="n">tasks</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_app_tasks</span><span class="p">))</span>
-<a id="__codelineno-0-181" name="__codelineno-0-181"></a>    <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-182" name="__codelineno-0-182"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
-<a id="__codelineno-0-183" name="__codelineno-0-183"></a>            <span class="o">*</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_startup_task</span><span class="p">()),</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">False</span>
-<a id="__codelineno-0-184" name="__codelineno-0-184"></a>        <span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-191">191</a></span>
+<span class="normal"><a href="#__codelineno-0-192">192</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-143" name="__codelineno-0-143"></a><span class="k">def</span> <span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">BaseTrigger</span><span class="p">):</span>
+<a id="__codelineno-0-144" name="__codelineno-0-144"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-145" name="__codelineno-0-145"></a><span class="sd">    Decorator to add a task to the AioClock instance.</span>
+<a id="__codelineno-0-146" name="__codelineno-0-146"></a><span class="sd">    If decorated function is sync, aioclock will run it in a thread pool executor, using AnyIO.</span>
+<a id="__codelineno-0-147" name="__codelineno-0-147"></a><span class="sd">    But if you try to run the decorated function, it will run in the same thread, blocking the event loop.</span>
+<a id="__codelineno-0-148" name="__codelineno-0-148"></a><span class="sd">    It is intended to not change all your `sync functions` to coroutine functions,</span>
+<a id="__codelineno-0-149" name="__codelineno-0-149"></a><span class="sd">        and they can be used outside of aioclock, if needed.</span>
+<a id="__codelineno-0-150" name="__codelineno-0-150"></a>
+<a id="__codelineno-0-151" name="__codelineno-0-151"></a><span class="sd">    params:</span>
+<a id="__codelineno-0-152" name="__codelineno-0-152"></a><span class="sd">        trigger: BaseTrigger</span>
+<a id="__codelineno-0-153" name="__codelineno-0-153"></a><span class="sd">            Trigger that will trigger the task to be running.</span>
+<a id="__codelineno-0-154" name="__codelineno-0-154"></a>
+<a id="__codelineno-0-155" name="__codelineno-0-155"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-156" name="__codelineno-0-156"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-157" name="__codelineno-0-157"></a>
+<a id="__codelineno-0-158" name="__codelineno-0-158"></a><span class="sd">        from aioclock import AioClock, Once</span>
+<a id="__codelineno-0-159" name="__codelineno-0-159"></a>
+<a id="__codelineno-0-160" name="__codelineno-0-160"></a><span class="sd">        app = AioClock()</span>
+<a id="__codelineno-0-161" name="__codelineno-0-161"></a>
+<a id="__codelineno-0-162" name="__codelineno-0-162"></a><span class="sd">        @app.task(trigger=Once())</span>
+<a id="__codelineno-0-163" name="__codelineno-0-163"></a><span class="sd">        async def main():</span>
+<a id="__codelineno-0-164" name="__codelineno-0-164"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
+<a id="__codelineno-0-165" name="__codelineno-0-165"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-166" name="__codelineno-0-166"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-167" name="__codelineno-0-167"></a>
+<a id="__codelineno-0-168" name="__codelineno-0-168"></a>    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<a id="__codelineno-0-169" name="__codelineno-0-169"></a>        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-0-170" name="__codelineno-0-170"></a>        <span class="k">async</span> <span class="k">def</span> <span class="nf">wrapped_funciton</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-0-171" name="__codelineno-0-171"></a>            <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<a id="__codelineno-0-172" name="__codelineno-0-172"></a>                <span class="k">return</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-0-173" name="__codelineno-0-173"></a>            <span class="k">else</span><span class="p">:</span>  <span class="c1"># run in threadpool to make sure it&#39;s not blocking the event loop</span>
+<a id="__codelineno-0-174" name="__codelineno-0-174"></a>                <span class="k">return</span> <span class="k">await</span> <span class="n">asyncify</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">limiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_limiter</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-0-175" name="__codelineno-0-175"></a>
+<a id="__codelineno-0-176" name="__codelineno-0-176"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_app_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<a id="__codelineno-0-177" name="__codelineno-0-177"></a>            <span class="n">Task</span><span class="p">(</span>
+<a id="__codelineno-0-178" name="__codelineno-0-178"></a>                <span class="n">func</span><span class="o">=</span><span class="n">inject</span><span class="p">(</span><span class="n">wrapped_funciton</span><span class="p">,</span> <span class="n">dependency_overrides_provider</span><span class="o">=</span><span class="n">get_provider</span><span class="p">()),</span>
+<a id="__codelineno-0-179" name="__codelineno-0-179"></a>                <span class="n">trigger</span><span class="o">=</span><span class="n">trigger</span><span class="p">,</span>
+<a id="__codelineno-0-180" name="__codelineno-0-180"></a>            <span class="p">)</span>
+<a id="__codelineno-0-181" name="__codelineno-0-181"></a>        <span class="p">)</span>
+<a id="__codelineno-0-182" name="__codelineno-0-182"></a>        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<a id="__codelineno-0-183" name="__codelineno-0-183"></a>            <span class="k">return</span> <span class="n">wrapped_funciton</span>
+<a id="__codelineno-0-184" name="__codelineno-0-184"></a>        <span class="k">else</span><span class="p">:</span>
 <a id="__codelineno-0-185" name="__codelineno-0-185"></a>
-<a id="__codelineno-0-186" name="__codelineno-0-186"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
-<a id="__codelineno-0-187" name="__codelineno-0-187"></a>            <span class="o">*</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tasks</span><span class="p">()),</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">False</span>
-<a id="__codelineno-0-188" name="__codelineno-0-188"></a>        <span class="p">)</span>
-<a id="__codelineno-0-189" name="__codelineno-0-189"></a>    <span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-0-190" name="__codelineno-0-190"></a>        <span class="n">shutdown_tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_shutdown_task</span><span class="p">()</span>
-<a id="__codelineno-0-191" name="__codelineno-0-191"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">shutdown_tasks</span><span class="p">),</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186"></a>            <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-0-187" name="__codelineno-0-187"></a>            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-0-188" name="__codelineno-0-188"></a>                <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189"></a>
+<a id="__codelineno-0-190" name="__codelineno-0-190"></a>            <span class="k">return</span> <span class="n">wrapper</span>
+<a id="__codelineno-0-191" name="__codelineno-0-191"></a>
+<a id="__codelineno-0-192" name="__codelineno-0-192"></a>    <span class="k">return</span> <span class="n">decorator</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aioclock.app.AioClock.serve" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">serve</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#aioclock.app.AioClock.serve" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">serve</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>Serves AioClock
+Run the tasks in the right order.
+First, run the startup tasks, then run the tasks, and finally run the shutdown tasks.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>aioclock/app.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-214">214</a></span>
+<span class="normal"><a href="#__codelineno-0-215">215</a></span>
+<span class="normal"><a href="#__codelineno-0-216">216</a></span>
+<span class="normal"><a href="#__codelineno-0-217">217</a></span>
+<span class="normal"><a href="#__codelineno-0-218">218</a></span>
+<span class="normal"><a href="#__codelineno-0-219">219</a></span>
+<span class="normal"><a href="#__codelineno-0-220">220</a></span>
+<span class="normal"><a href="#__codelineno-0-221">221</a></span>
+<span class="normal"><a href="#__codelineno-0-222">222</a></span>
+<span class="normal"><a href="#__codelineno-0-223">223</a></span>
+<span class="normal"><a href="#__codelineno-0-224">224</a></span>
+<span class="normal"><a href="#__codelineno-0-225">225</a></span>
+<span class="normal"><a href="#__codelineno-0-226">226</a></span>
+<span class="normal"><a href="#__codelineno-0-227">227</a></span>
+<span class="normal"><a href="#__codelineno-0-228">228</a></span>
+<span class="normal"><a href="#__codelineno-0-229">229</a></span>
+<span class="normal"><a href="#__codelineno-0-230">230</a></span>
+<span class="normal"><a href="#__codelineno-0-231">231</a></span>
+<span class="normal"><a href="#__codelineno-0-232">232</a></span>
+<span class="normal"><a href="#__codelineno-0-233">233</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-215" name="__codelineno-0-215"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-216" name="__codelineno-0-216"></a><span class="sd">    Serves AioClock</span>
+<a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">    Run the tasks in the right order.</span>
+<a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="sd">    First, run the startup tasks, then run the tasks, and finally run the shutdown tasks.</span>
+<a id="__codelineno-0-219" name="__codelineno-0-219"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-220" name="__codelineno-0-220"></a>    <span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
+<a id="__codelineno-0-221" name="__codelineno-0-221"></a>    <span class="n">group</span><span class="o">.</span><span class="n">_tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_tasks</span>
+<a id="__codelineno-0-222" name="__codelineno-0-222"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">include_group</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+<a id="__codelineno-0-223" name="__codelineno-0-223"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-224" name="__codelineno-0-224"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+<a id="__codelineno-0-225" name="__codelineno-0-225"></a>            <span class="o">*</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_startup_task</span><span class="p">()),</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">False</span>
+<a id="__codelineno-0-226" name="__codelineno-0-226"></a>        <span class="p">)</span>
+<a id="__codelineno-0-227" name="__codelineno-0-227"></a>
+<a id="__codelineno-0-228" name="__codelineno-0-228"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+<a id="__codelineno-0-229" name="__codelineno-0-229"></a>            <span class="o">*</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tasks</span><span class="p">()),</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">False</span>
+<a id="__codelineno-0-230" name="__codelineno-0-230"></a>        <span class="p">)</span>
+<a id="__codelineno-0-231" name="__codelineno-0-231"></a>    <span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-0-232" name="__codelineno-0-232"></a>        <span class="n">shutdown_tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_shutdown_task</span><span class="p">()</span>
+<a id="__codelineno-0-233" name="__codelineno-0-233"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">shutdown_tasks</span><span class="p">),</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
 
 </div>
 
@@ -1367,8 +1578,7 @@ First, run the startup tasks, then run the tasks, and finally run the shutdown t
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1377,7 +1587,7 @@ First, run the startup tasks, then run the tasks, and finally run the shutdown t
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -1386,9 +1596,9 @@ First, run the startup tasks, then run the tasks, and finally run the shutdown t
 
 
 <a id="aioclock.group"></a>
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1404,19 +1614,52 @@ First, run the startup tasks, then run the tasks, and finally run the shutdown t
 
 
 <h2 id="aioclock.group.Group" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">Group</span>
+            <span class="doc doc-object-name doc-class-name">Group</span>
 
 
 <a href="#aioclock.group.Group" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n">list</span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="aioclock.task.Task" href="../task/#aioclock.task.Task">Task</a></span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">Group</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">limiter</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="anyio.CapacityLimiter">CapacityLimiter</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>Best use case is to have a good modularity and separation of concerns.
 For example, you can have a group of tasks that are responsible for sending emails.
 And another group of tasks that are responsible for sending notifications.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>limiter</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="anyio.CapacityLimiter">CapacityLimiter</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Anyio CapacityLimiter. capacity limiter to use to limit the total amount of threads running
+Limiter that will be used to limit the number of tasks that are running at the same time.
+If not provided, it will fallback to the default limiter set on Application level.
+If no limiter is set on Application level, it will fallback to the default limiter set by AnyIO.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1434,12 +1677,9 @@ And another group of tasks that are responsible for sending notifications.</p>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">aio_clock</span><span class="o">.</span><span class="n">include_group</span><span class="p">(</span><span class="n">email_group</span><span class="p">)</span>
 </code></pre></div>
 </details>
-                <details class="quote">
-                  <summary>Source code in <code>aioclock/group.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+                  <details class="quote">
+                    <summary>Source code in <code>aioclock/group.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-25">25</a></span>
 <span class="normal"><a href="#__codelineno-0-26">26</a></span>
 <span class="normal"><a href="#__codelineno-0-27">27</a></span>
 <span class="normal"><a href="#__codelineno-0-28">28</a></span>
@@ -1462,76 +1702,9 @@ And another group of tasks that are responsible for sending notifications.</p>
 <span class="normal"><a href="#__codelineno-0-45">45</a></span>
 <span class="normal"><a href="#__codelineno-0-46">46</a></span>
 <span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="sd">    Group of tasks that will be run together.</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25"></a>
-<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">    Best use case is to have a good modularity and separation of concerns.</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">    For example, you can have a group of tasks that are responsible for sending emails.</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">    And another group of tasks that are responsible for sending notifications.</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29"></a>
-<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">        from aioclock import Group, AioClock, Forever</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">        email_group = Group()</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">        # consider this as different file</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">        @email_group.task(trigger=Forever())</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">        async def send_email():</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">            ...</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">        # app.py</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">        aio_clock = AioClock()</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">        aio_clock.include_group(email_group)</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="n">tasks</span> <span class="ow">or</span> <span class="p">[]</span>
-</code></pre></div></td></tr></table></div>
-                </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="aioclock.group.Group.task" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">task</span>
-
-
-<a href="#aioclock.group.Group.task" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">task</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></span><span class="p">)</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Function used to decorate tasks, to be registered inside AioClock.</p>
-
-<details class="example" open>
-  <summary>Example</summary>
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">Group</span><span class="p">,</span> <span class="n">Forever</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nd">@group</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Forever</span><span class="p">())</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">send_email</span><span class="p">():</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">...</span>
-</code></pre></div>
-</details>
-          <details class="quote">
-            <summary>Source code in <code>aioclock/group.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-50">50</a></span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#__codelineno-0-50">50</a></span>
 <span class="normal"><a href="#__codelineno-0-51">51</a></span>
 <span class="normal"><a href="#__codelineno-0-52">52</a></span>
 <span class="normal"><a href="#__codelineno-0-53">53</a></span>
@@ -1544,47 +1717,229 @@ And another group of tasks that are responsible for sending notifications.</p>
 <span class="normal"><a href="#__codelineno-0-60">60</a></span>
 <span class="normal"><a href="#__codelineno-0-61">61</a></span>
 <span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span>
-<span class="normal"><a href="#__codelineno-0-70">70</a></span>
-<span class="normal"><a href="#__codelineno-0-71">71</a></span>
-<span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="k">def</span> <span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">BaseTrigger</span><span class="p">):</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Function used to decorate tasks, to be registered inside AioClock.</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        from aioclock import Group, Forever</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        @group.task(trigger=Forever())</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        async def send_email():</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">            ...</span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="n">limiter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">anyio</span><span class="o">.</span><span class="n">CapacityLimiter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="p">):</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">    Group of tasks that will be run together.</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">    Best use case is to have a good modularity and separation of concerns.</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">    For example, you can have a group of tasks that are responsible for sending emails.</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">    And another group of tasks that are responsible for sending notifications.</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">    Params:</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">        limiter:</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">            Anyio CapacityLimiter. capacity limiter to use to limit the total amount of threads running</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">            Limiter that will be used to limit the number of tasks that are running at the same time.</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">            If not provided, it will fallback to the default limiter set on Application level.</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">            If no limiter is set on Application level, it will fallback to the default limiter set by AnyIO.</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">        from aioclock import Group, AioClock, Forever</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">        email_group = Group()</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        # consider this as different file</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">        @email_group.task(trigger=Forever())</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">        async def send_email():</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">            ...</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        # app.py</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        aio_clock = AioClock()</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        aio_clock.include_group(email_group)</span>
 <a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">T</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">T</span><span class="p">]]:</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>        <span class="k">async</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>            <span class="k">return</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>            <span class="n">Task</span><span class="p">(</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>                <span class="n">func</span><span class="o">=</span><span class="n">inject</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">dependency_overrides_provider</span><span class="o">=</span><span class="n">get_provider</span><span class="p">()),</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>                <span class="n">trigger</span><span class="o">=</span><span class="n">trigger</span><span class="p">,</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>            <span class="p">)</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a>        <span class="p">)</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>        <span class="k">return</span> <span class="n">wrapper</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="k">return</span> <span class="n">decorator</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_limiter</span> <span class="o">=</span> <span class="n">limiter</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+                  </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aioclock.group.Group.task" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">task</span>
+
+
+<a href="#aioclock.group.Group.task" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">task</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to add a task to the AioClock instance.
+If decorated function is sync, aioclock will run it in a thread pool executor, using AnyIO.
+But if you try to run the decorated function, it will run in the same thread, blocking the event loop.
+It is intended to not change all your <code>sync functions</code> to coroutine functions,
+    and they can be used outside of aioclock, if needed.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>trigger</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BaseTrigger
+Trigger that will trigger the task to be running.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">aioclock</span> <span class="kn">import</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">Once</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">AioClock</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nd">@app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Once</span><span class="p">())</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/group.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span>
+<span class="normal"><a href="#__codelineno-0-113">113</a></span>
+<span class="normal"><a href="#__codelineno-0-114">114</a></span>
+<span class="normal"><a href="#__codelineno-0-115">115</a></span>
+<span class="normal"><a href="#__codelineno-0-116">116</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="k">def</span> <span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">BaseTrigger</span><span class="p">):</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">    Decorator to add a task to the AioClock instance.</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    If decorated function is sync, aioclock will run it in a thread pool executor, using AnyIO.</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    But if you try to run the decorated function, it will run in the same thread, blocking the event loop.</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    It is intended to not change all your `sync functions` to coroutine functions,</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">        and they can be used outside of aioclock, if needed.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    params:</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        trigger: BaseTrigger</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">            Trigger that will trigger the task to be running.</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">        from aioclock import AioClock, Once</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">        app = AioClock()</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">        @app.task(trigger=Once())</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">        async def main():</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">            print(&quot;Hello World&quot;)</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>        <span class="k">async</span> <span class="k">def</span> <span class="nf">wrapped_funciton</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>            <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>                <span class="k">return</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>            <span class="k">else</span><span class="p">:</span>  <span class="c1"># run in threadpool to make sure it&#39;s not blocking the event loop</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>                <span class="k">return</span> <span class="k">await</span> <span class="n">asyncify</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">limiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_limiter</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>            <span class="n">Task</span><span class="p">(</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>                <span class="n">func</span><span class="o">=</span><span class="n">inject</span><span class="p">(</span><span class="n">wrapped_funciton</span><span class="p">,</span> <span class="n">dependency_overrides_provider</span><span class="o">=</span><span class="n">get_provider</span><span class="p">()),</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>                <span class="n">trigger</span><span class="o">=</span><span class="n">trigger</span><span class="p">,</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>            <span class="p">)</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>        <span class="p">)</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>            <span class="k">return</span> <span class="n">wrapped_funciton</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a>            <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a>                <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>            <span class="k">return</span> <span class="n">wrapper</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>    <span class="k">return</span> <span class="n">decorator</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
 
 </div>
 
@@ -1592,8 +1947,7 @@ And another group of tasks that are responsible for sending notifications.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1602,7 +1956,7 @@ And another group of tasks that are responsible for sending notifications.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

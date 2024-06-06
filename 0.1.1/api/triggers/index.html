@@ -962,8 +962,8 @@
 
 
 <a id="aioclock.triggers"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Triggers are used to determine when the event should be triggered. It can be based on time, or some other condition.
 You can create custom triggers by inheriting from <code>BaseTrigger</code> class.</p>
 <div class="admonition info">
@@ -974,7 +974,7 @@ If you have a sync IO task, then it's recommended to use <code>run_in_executor</
 Or use similiar libraries like <code>asyncer</code> or <code>trio</code> to run the task in a separate thread.</p>
 </div>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -990,19 +990,20 @@ Or use similiar libraries like <code>asyncer</code> or <code>trio</code> to run 
 
 
 <h2 id="aioclock.triggers.BaseTrigger" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">BaseTrigger</span>
+            <span class="doc doc-object-name doc-class-name">BaseTrigger</span>
 
 
 <a href="#aioclock.triggers.BaseTrigger" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code>, <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span>]</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code>, <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span>]</code></p>
 
-  
+
       <p>Base class for all triggers.
 A trigger is a way to determine when the event should be triggered. It can be based on time, or some other condition.</p>
+
 
 <details class="the-way-trigger-are-used-is-as-follows" open>
   <summary>The way trigger are used is as follows</summary>
@@ -1013,6 +1014,7 @@ A trigger is a way to determine when the event should be triggered. It can be ba
 <li><code>trigger_next</code> is called immidiately after that, which triggers the event.</li>
 </ol>
 </details>      <p>You can create trigger by yourself, by inheriting from <code>BaseTrigger</code> class.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1035,34 +1037,33 @@ A trigger is a way to determine when the event should be triggered. It can be ba
 </code></pre></div>
 </details>
 
-
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code><span title="aioclock.triggers.BaseTrigger.type_">type_</span></code></td>
-          <td>
-                <code><span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
-You can change the type by using <code>Generic</code> type when inheriting from <code>BaseTrigger</code>.</p>
-            </div>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.BaseTrigger.type_">type_</span></code></td>
+            <td>
+                  <code><span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
+You can change the type by using <code>Generic</code> type when inheriting from <code>BaseTrigger</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1074,32 +1075,30 @@ You can change the type by using <code>Generic</code> type when inheriting from 
 
 
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="aioclock.triggers.BaseTrigger.trigger_next" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">trigger_next</span>
+            <span class="doc doc-object-name doc-function-name">trigger_next</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
       <small class="doc doc-label doc-label-async"><code>async</code></small>
   </span>
 
 <a href="#aioclock.triggers.BaseTrigger.trigger_next" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">trigger_next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">trigger_next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p><code>trigger_next</code> keep track of the event, and triggers the event.
 The function shall return when the event is triggered and should be executed.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>aioclock/triggers.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-69">69</a></span>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/triggers.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-69">69</a></span>
 <span class="normal"><a href="#__codelineno-0-70">70</a></span>
 <span class="normal"><a href="#__codelineno-0-71">71</a></span>
 <span class="normal"><a href="#__codelineno-0-72">72</a></span>
@@ -1111,35 +1110,33 @@ The function shall return when the event is triggered and should be executed.</p
 <a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    The function shall return when the event is triggered and should be executed.</span>
 <a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="aioclock.triggers.BaseTrigger.should_trigger" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">should_trigger</span>
+            <span class="doc doc-object-name doc-function-name">should_trigger</span>
 
 
 <a href="#aioclock.triggers.BaseTrigger.should_trigger" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">should_trigger</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">bool</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">should_trigger</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">bool</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p><code>should_trigger</code> checks if the event should be triggered or not.
 If not, then the event will not be triggered anymore.
 You can save the state of the trigger and task inside the instance, and then check if the event should be triggered or not.
 For instance, in <code>LoopCounter</code> trigger, it keeps track of the number of times the event has been triggered,
 and then checks if the event should be triggered or not.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>aioclock/triggers.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-76">76</a></span>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/triggers.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-76">76</a></span>
 <span class="normal"><a href="#__codelineno-0-77">77</a></span>
 <span class="normal"><a href="#__codelineno-0-78">78</a></span>
 <span class="normal"><a href="#__codelineno-0-79">79</a></span>
@@ -1157,37 +1154,35 @@ and then checks if the event should be triggered or not.</p>
 <a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="k">return</span> <span class="kc">True</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="aioclock.triggers.BaseTrigger.get_waiting_time_till_next_trigger" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">get_waiting_time_till_next_trigger</span>
+            <span class="doc doc-object-name doc-function-name">get_waiting_time_till_next_trigger</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
       <small class="doc doc-label doc-label-async"><code>async</code></small>
   </span>
 
 <a href="#aioclock.triggers.BaseTrigger.get_waiting_time_till_next_trigger" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">get_waiting_time_till_next_trigger</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_waiting_time_till_next_trigger</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Returns the time in seconds, after which the event should be triggered.
 Returns None, if the event should not trigger anymore.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>aioclock/triggers.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-86">86</a></span>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/triggers.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-86">86</a></span>
 <span class="normal"><a href="#__codelineno-0-87">87</a></span>
 <span class="normal"><a href="#__codelineno-0-88">88</a></span>
 <span class="normal"><a href="#__codelineno-0-89">89</a></span>
@@ -1201,8 +1196,8 @@ Returns None, if the event should not trigger anymore.</p>
 <a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="o">...</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1210,8 +1205,7 @@ Returns None, if the event should not trigger anymore.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1220,18 +1214,19 @@ Returns None, if the event should not trigger anymore.</p>
 
 
 <h2 id="aioclock.triggers.Forever" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">Forever</span>
+            <span class="doc doc-object-name doc-class-name">Forever</span>
 
 
 <a href="#aioclock.triggers.Forever" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="#aioclock.triggers.BaseTrigger">BaseTrigger</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.FOREVER">FOREVER</span>]]</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="#aioclock.triggers.BaseTrigger">BaseTrigger</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.FOREVER">FOREVER</span>]]</code></p>
 
-  
+
       <p>A trigger that is always triggered imidiately.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1256,34 +1251,33 @@ Returns None, if the event should not trigger anymore.</p>
 </code></pre></div>
 </details>
 
-
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code><span title="aioclock.triggers.Forever.type_">type_</span></code></td>
-          <td>
-                <code><span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.FOREVER">FOREVER</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
-You can change the type by using <code>Generic</code> type when inheriting from <code>BaseTrigger</code>.</p>
-            </div>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.Forever.type_">type_</span></code></td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.FOREVER">FOREVER</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
+You can change the type by using <code>Generic</code> type when inheriting from <code>BaseTrigger</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1299,8 +1293,7 @@ You can change the type by using <code>Generic</code> type when inheriting from 
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1309,75 +1302,74 @@ You can change the type by using <code>Generic</code> type when inheriting from 
 
 
 <h2 id="aioclock.triggers.LoopController" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">LoopController</span>
+            <span class="doc doc-object-name doc-class-name">LoopController</span>
 
 
 <a href="#aioclock.triggers.LoopController" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="#aioclock.triggers.BaseTrigger">BaseTrigger</a></code>, <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span>]</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="#aioclock.triggers.BaseTrigger">BaseTrigger</a></code>, <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span>]</code></p>
 
-  
+
       <p>Base class for all triggers that have loop control.</p>
 
 
-
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code><span title="aioclock.triggers.LoopController.type_">type_</span></code></td>
-          <td>
-                <code><span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
-You can change the type by using <code>Generic</code> type when inheriting from <code>LoopController</code>.</p>
-            </div>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.LoopController.max_loop_count">max_loop_count</span></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="pydantic.PositiveInt">PositiveInt</span>, None]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The maximum number of times the event should be triggered.
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.LoopController.type_">type_</span></code></td>
+            <td>
+                  <code><span title="aioclock.triggers.TriggerTypeT">TriggerTypeT</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Type of the trigger. It is a string, which is used to identify the trigger's name.
+You can change the type by using <code>Generic</code> type when inheriting from <code>LoopController</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.LoopController.max_loop_count">max_loop_count</span></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="pydantic.PositiveInt">PositiveInt</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The maximum number of times the event should be triggered.
 If set to 3, then 4th time the event will not be triggered.
 If set to None, it will keep running forever.
 This is available for all triggers that inherit from <code>LoopController</code>.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.LoopController._current_loop_count">_current_loop_count</span></code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Current loop count, which is used to keep track of the number of times the event has been triggered.
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.LoopController._current_loop_count">_current_loop_count</span></code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Current loop count, which is used to keep track of the number of times the event has been triggered.
 Private attribute, should not be accessed directly.
 This is available for all triggers that inherit from <code>LoopController</code>.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1393,8 +1385,7 @@ This is available for all triggers that inherit from <code>LoopController</code>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1403,18 +1394,19 @@ This is available for all triggers that inherit from <code>LoopController</code>
 
 
 <h2 id="aioclock.triggers.Once" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">Once</span>
+            <span class="doc doc-object-name doc-class-name">Once</span>
 
 
 <a href="#aioclock.triggers.Once" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.ONCE">ONCE</span>]]</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.ONCE">ONCE</span>]]</code></p>
 
-  
+
       <p>A trigger that is triggered only once. It is used to trigger the event only once, and then stop.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1427,7 +1419,7 @@ This is available for all triggers that inherit from <code>LoopController</code>
 </code></pre></div>
 </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1443,8 +1435,7 @@ This is available for all triggers that inherit from <code>LoopController</code>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1453,18 +1444,19 @@ This is available for all triggers that inherit from <code>LoopController</code>
 
 
 <h2 id="aioclock.triggers.OnStartUp" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">OnStartUp</span>
+            <span class="doc doc-object-name doc-class-name">OnStartUp</span>
 
 
 <a href="#aioclock.triggers.OnStartUp" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.ON_START_UP">ON_START_UP</span>]]</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.ON_START_UP">ON_START_UP</span>]]</code></p>
 
-  
+
       <p>Just like Once, but it triggers the event only once, when the application starts up.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1477,7 +1469,7 @@ This is available for all triggers that inherit from <code>LoopController</code>
 </code></pre></div>
 </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1493,8 +1485,7 @@ This is available for all triggers that inherit from <code>LoopController</code>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1503,18 +1494,19 @@ This is available for all triggers that inherit from <code>LoopController</code>
 
 
 <h2 id="aioclock.triggers.OnShutDown" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">OnShutDown</span>
+            <span class="doc doc-object-name doc-class-name">OnShutDown</span>
 
 
 <a href="#aioclock.triggers.OnShutDown" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.ON_SHUT_DOWN">ON_SHUT_DOWN</span>]]</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.ON_SHUT_DOWN">ON_SHUT_DOWN</span>]]</code></p>
 
-  
+
       <p>Just like Once, but it triggers the event only once, when the application shuts down.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1527,7 +1519,7 @@ This is available for all triggers that inherit from <code>LoopController</code>
 </code></pre></div>
 </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1543,8 +1535,7 @@ This is available for all triggers that inherit from <code>LoopController</code>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1553,18 +1544,19 @@ This is available for all triggers that inherit from <code>LoopController</code>
 
 
 <h2 id="aioclock.triggers.Every" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">Every</span>
+            <span class="doc doc-object-name doc-class-name">Every</span>
 
 
 <a href="#aioclock.triggers.Every" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.EVERY">EVERY</span>]]</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.EVERY">EVERY</span>]]</code></p>
 
-  
+
       <p>A trigger that is triggered every x time units.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1577,102 +1569,101 @@ This is available for all triggers that inherit from <code>LoopController</code>
 </code></pre></div>
 </details>
 
-
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code><span title="aioclock.triggers.Every.first_run_strategy">first_run_strategy</span></code></td>
-          <td>
-                <code><span title="typing.Literal">Literal</span>[&#39;immediate&#39;, &#39;wait&#39;]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Strategy to use for the first run.
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.Every.first_run_strategy">first_run_strategy</span></code></td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;immediate&#39;, &#39;wait&#39;]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Strategy to use for the first run.
 If <code>immediate</code>, then the event will be triggered immediately,
     and then wait for the time to trigger the event again.
 If <code>wait</code>, then the event will wait for the time to trigger the event for the first time.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.Every.seconds">seconds</span></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Seconds to wait before triggering the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.Every.minutes">minutes</span></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Minutes to wait before triggering the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.Every.hours">hours</span></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Hours to wait before triggering the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.Every.days">days</span></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Days to wait before triggering the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.Every.weeks">weeks</span></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Weeks to wait before triggering the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.Every.max_loop_count">max_loop_count</span></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="pydantic.PositiveInt">PositiveInt</span>, None]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The maximum number of times the event should be triggered.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.Every.seconds">seconds</span></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seconds to wait before triggering the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.Every.minutes">minutes</span></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Minutes to wait before triggering the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.Every.hours">hours</span></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Hours to wait before triggering the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.Every.days">days</span></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Days to wait before triggering the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.Every.weeks">weeks</span></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="aioclock.custom_types.PositiveNumber">PositiveNumber</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Weeks to wait before triggering the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.Every.max_loop_count">max_loop_count</span></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="pydantic.PositiveInt">PositiveInt</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The maximum number of times the event should be triggered.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1688,8 +1679,7 @@ If <code>wait</code>, then the event will wait for the time to trigger the event
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1698,18 +1688,19 @@ If <code>wait</code>, then the event will wait for the time to trigger the event
 
 
 <h2 id="aioclock.triggers.At" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">At</span>
+            <span class="doc doc-object-name doc-class-name">At</span>
 
 
 <a href="#aioclock.triggers.At" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.AT">AT</span>]]</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.AT">AT</span>]]</code></p>
 
-  
+
       <p>A trigger that is triggered at a specific time.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1723,88 +1714,87 @@ If <code>wait</code>, then the event will wait for the time to trigger the event
 </code></pre></div>
 </details>
 
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.At.second">second</span></code></td>
+            <td>
+                  <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=59)]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Second to trigger the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.At.minute">minute</span></code></td>
+            <td>
+                  <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=59)]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Minute to trigger the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.At.hour">hour</span></code></td>
+            <td>
+                  <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=24)]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Hour to trigger the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.At.at">at</span></code></td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;every monday&#39;, &#39;every tuesday&#39;, &#39;every wednesday&#39;, &#39;every thursday&#39;, &#39;every friday&#39;, &#39;every saturday&#39;, &#39;every sunday&#39;, &#39;every day&#39;]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Day of week to trigger the event. You would get the in-line typing support when using the trigger.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.At.tz">tz</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timezone to use for the event.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.triggers.At.max_loop_count">max_loop_count</span></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="pydantic.PositiveInt">PositiveInt</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The maximum number of times the event should be triggered.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code><span title="aioclock.triggers.At.second">second</span></code></td>
-          <td>
-                <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=59)]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Second to trigger the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.At.minute">minute</span></code></td>
-          <td>
-                <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=59)]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Minute to trigger the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.At.hour">hour</span></code></td>
-          <td>
-                <code><span title="typing.Annotated">Annotated</span>[int, <span title="annotated_types.Interval">Interval</span>(ge=0, le=24)]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Hour to trigger the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.At.at">at</span></code></td>
-          <td>
-                <code><span title="typing.Literal">Literal</span>[&#39;every monday&#39;, &#39;every tuesday&#39;, &#39;every wednesday&#39;, &#39;every thursday&#39;, &#39;every friday&#39;, &#39;every saturday&#39;, &#39;every sunday&#39;, &#39;every day&#39;]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Day of week to trigger the event. You would get the in-line typing support when using the trigger.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.At.tz">tz</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Timezone to use for the event.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.triggers.At.max_loop_count">max_loop_count</span></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="pydantic.PositiveInt">PositiveInt</span>, None]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The maximum number of times the event should be triggered.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
 
 
-  
 
   <div class="doc doc-children">
 
@@ -1820,8 +1810,7 @@ If <code>wait</code>, then the event will wait for the time to trigger the event
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1830,7 +1819,7 @@ If <code>wait</code>, then the event will wait for the time to trigger the event
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

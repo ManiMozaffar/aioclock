@@ -781,14 +781,14 @@
 
 
 <a id="aioclock.ext"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Extensions for aioclock.</p>
 <p>AioClock is very extensible, and you can add your own extensions to it.
 The extension would allow you to interact with your AioClock instance, from different layers of your application.
 For instance, the FastAPI plugin allows you to run a specific task immediately from an HTTP API, or see your tasks in an HTTP API, and when they are going to run next.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -804,7 +804,7 @@ For instance, the FastAPI plugin allows you to run a specific task immediately f
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -813,9 +813,10 @@ For instance, the FastAPI plugin allows you to run a specific task immediately f
 
 
 <a id="aioclock.ext.fast"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>FastAPI extension to manage the tasks of the AioClock instance in HTTP Layer.</p>
+
 
 <details class="use-cases" open>
   <summary>Use cases</summary>
@@ -826,10 +827,9 @@ For instance, the FastAPI plugin allows you to run a specific task immediately f
 </ul>
 </details>      <p>To use FastAPI Extension, please make sure you do <code>pip install aioclock[fastapi]</code>.</p>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -842,22 +842,65 @@ For instance, the FastAPI plugin allows you to run a specific task immediately f
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="aioclock.ext.fast.make_fastapi_router" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">make_fastapi_router</span>
+            <span class="doc doc-object-name doc-function-name">make_fastapi_router</span>
 
 
 <a href="#aioclock.ext.fast.make_fastapi_router" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">make_fastapi_router</span><span class="p">(</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">make_fastapi_router</span><span class="p">(</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">aioclock</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.app.AioClock" href="../getting_started/#aioclock.app.AioClock">AioClock</a></span><span class="p">,</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">router</span><span class="p">:</span> <span class="n"><span title="typing.Union">Union</span></span><span class="p">[</span><span class="n"><span title="fastapi.routing.APIRouter">APIRouter</span></span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Make a FastAPI router that exposes the tasks of the AioClock instance and its external python API in HTTP Layer.
 You can pass a router to this function, and have dependencies injected in the router, or any authorization logic that you want to have.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>aioclock</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="aioclock.app.AioClock" href="../getting_started/#aioclock.app.AioClock">AioClock</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>AioClock instance to get the tasks from.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>router</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="fastapi.routing.APIRouter">APIRouter</span>, None]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FastAPI router to add the routes to. If not provided, a new router will be created.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -901,9 +944,9 @@ You can pass a router to this function, and have dependencies injected in the ro
 <a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="c1"># uvicorn.run(app)</span>
 </code></pre></div>
 </details>
-          <details class="quote">
-            <summary>Source code in <code>aioclock/ext/fast.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-28">28</a></span>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/ext/fast.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-28">28</a></span>
 <span class="normal"><a href="#__codelineno-0-29">29</a></span>
 <span class="normal"><a href="#__codelineno-0-30">30</a></span>
 <span class="normal"><a href="#__codelineno-0-31">31</a></span>
@@ -962,69 +1005,79 @@ You can pass a router to this function, and have dependencies injected in the ro
 <span class="normal"><a href="#__codelineno-0-84">84</a></span>
 <span class="normal"><a href="#__codelineno-0-85">85</a></span>
 <span class="normal"><a href="#__codelineno-0-86">86</a></span>
-<span class="normal"><a href="#__codelineno-0-87">87</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="k">def</span> <span class="nf">make_fastapi_router</span><span class="p">(</span><span class="n">aioclock</span><span class="p">:</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">router</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">APIRouter</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-87">87</a></span>
+<span class="normal"><a href="#__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#__codelineno-0-89">89</a></span>
+<span class="normal"><a href="#__codelineno-0-90">90</a></span>
+<span class="normal"><a href="#__codelineno-0-91">91</a></span>
+<span class="normal"><a href="#__codelineno-0-92">92</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="k">def</span> <span class="nf">make_fastapi_router</span><span class="p">(</span><span class="n">aioclock</span><span class="p">:</span> <span class="n">AioClock</span><span class="p">,</span> <span class="n">router</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">APIRouter</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a FastAPI router that exposes the tasks of the AioClock instance and its external python API in HTTP Layer.</span>
 <a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">    You can pass a router to this function, and have dependencies injected in the router, or any authorization logic that you want to have.</span>
 <a id="__codelineno-0-31" name="__codelineno-0-31"></a>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">        ```python</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        import asyncio</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">        from contextlib import asynccontextmanager</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">    params:</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        aioclock: AioClock instance to get the tasks from.</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">        router: FastAPI router to add the routes to. If not provided, a new router will be created.</span>
 <a id="__codelineno-0-36" name="__codelineno-0-36"></a>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">        from fastapi import FastAPI</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">        from aioclock import AioClock</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">        from aioclock.ext.fast import make_fastapi_router</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">        from aioclock.triggers import Every, OnStartUp</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">        clock_app = AioClock()</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">        @clock_app.task(trigger=OnStartUp())</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">        async def startup():</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">            print(&quot;Starting...&quot;)</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">        @clock_app.task(trigger=Every(seconds=3600))</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">        async def foo():</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">            print(&quot;Foo is processing...&quot;)</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">    Example:</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">        ```python</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">        import asyncio</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">        from contextlib import asynccontextmanager</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">        from fastapi import FastAPI</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">        from aioclock import AioClock</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">        from aioclock.ext.fast import make_fastapi_router</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">        from aioclock.triggers import Every, OnStartUp</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">        clock_app = AioClock()</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">        @clock_app.task(trigger=OnStartUp())</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        async def startup():</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">            print(&quot;Starting...&quot;)</span>
 <a id="__codelineno-0-53" name="__codelineno-0-53"></a>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        @asynccontextmanager</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        async def lifespan(app: FastAPI):</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            task = asyncio.create_task(clock_app.serve())</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">            yield</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        @clock_app.task(trigger=Every(seconds=3600))</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        async def foo():</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            print(&quot;Foo is processing...&quot;)</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
 <a id="__codelineno-0-58" name="__codelineno-0-58"></a>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">            try:</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">                task.cancel()</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">                await task</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">            except asyncio.CancelledError:</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">                ...</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">        app = FastAPI(lifespan=lifespan)</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">        app.include_router(make_fastapi_router(clock_app))</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">        if __name__ == &quot;__main__&quot;:</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">            import uvicorn</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">            # uvicorn.run(app)</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="n">router</span> <span class="o">=</span> <span class="n">router</span> <span class="ow">or</span> <span class="n">APIRouter</span><span class="p">()</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/tasks&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_tasks</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TaskMetadata</span><span class="p">]:</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">get_metadata_of_all_tasks</span><span class="p">(</span><span class="n">aioclock</span><span class="p">)</span>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a>    <span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/task/</span><span class="si">{task_id}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">run_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">:</span> <span class="n">UUID</span><span class="p">):</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a>            <span class="k">await</span> <span class="n">run_specific_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">,</span> <span class="n">aioclock</span><span class="p">)</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a>        <span class="k">except</span> <span class="n">TaskIdNotFound</span><span class="p">:</span>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a>            <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Task not found&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="k">return</span> <span class="n">router</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        @asynccontextmanager</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        async def lifespan(app: FastAPI):</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">            task = asyncio.create_task(clock_app.serve())</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">            yield</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">            try:</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">                task.cancel()</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">                await task</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">            except asyncio.CancelledError:</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">                ...</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">        app = FastAPI(lifespan=lifespan)</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">        app.include_router(make_fastapi_router(clock_app))</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        if __name__ == &quot;__main__&quot;:</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">            import uvicorn</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">            # uvicorn.run(app)</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="n">router</span> <span class="o">=</span> <span class="n">router</span> <span class="ow">or</span> <span class="n">APIRouter</span><span class="p">()</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/tasks&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_tasks</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TaskMetadata</span><span class="p">]:</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">get_metadata_of_all_tasks</span><span class="p">(</span><span class="n">aioclock</span><span class="p">)</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/task/</span><span class="si">{task_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">run_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">:</span> <span class="n">UUID</span><span class="p">):</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>            <span class="k">await</span> <span class="n">run_specific_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">,</span> <span class="n">aioclock</span><span class="p">)</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>        <span class="k">except</span> <span class="n">TaskIdNotFound</span><span class="p">:</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>            <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Task not found&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="k">return</span> <span class="n">router</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1032,7 +1085,7 @@ You can pass a router to this function, and have dependencies injected in the ro
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

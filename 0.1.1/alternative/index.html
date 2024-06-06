@@ -854,12 +854,12 @@ Credit to Rocketry library, as the comparison is inspired by that.</p>
 <p>When <strong>Rocketry</strong> might be a better choice:</p>
 <ul>
 <li>You need a task pipelining that is heavily cpu intensive.</li>
-<li>Your code is not yet asynchronous, or blocks the main thread.</li>
+<li>You have heavy cpu bound tasks</li>
 <li>You are still using Pydantic v1.</li>
 </ul>
 <div class="admonition success">
-<p class="admonition-title">Note</p>
-<p>You can also asyncify your sync code, by running them in a threadpool executor. Libraries like <code>asyncer</code> or <code>anyio</code> might help you with that. Note that this won't truely make your code async, because async code are meant to only run on one thread, but still you get the job done with AioClock easily. It would be the fit solution if the library you use does not have an async alternative.</p>
+<p class="admonition-title">Coming next...</p>
+<p>In future versions, aioclock will feature a more advanced architecture, leveraging multiprocessing to handle heavy tasks efficiently.</p>
 </div>
 <h2 id="aioclock-vs-crontab">AioClock vs Crontab<a class="headerlink" href="#aioclock-vs-crontab" title="Permanent link">&para;</a></h2>
 <p>Crontab is a scheduler for Unix-like operating systems. It is light weight and it is able to run tasks (or jobs) periodically, ie. hourly, weekly or on fixed dates.</p>
@@ -891,9 +891,11 @@ It provides Cron-style scheduling and some interval based scheduling.</p>
 <ul>
 <li>You wish to have the tasks stored in a database (and not in Python code)</li>
 </ul>
-<div class="admonition success">
-<p class="admonition-title">Note</p>
-<p>In soon future, AioClock would also be able to store tasks in a database to let you scale out.</p>
+<div class="admonition info">
+<p class="admonition-title">You can do this by yourself already...</p>
+<p>There is already External APIs from library that you can use, to implement storing task metadata on a database.
+It is very easy, but aioclock might actually not do it, to not couple library to a dependency.
+Read about <a href="../api/external_api/">how to use the external API</a>.</p>
 </div>
 <h2 id="aioclock-vs-celery">AioClock vs Celery<a class="headerlink" href="#aioclock-vs-celery" title="Permanent link">&para;</a></h2>
 <p>Celery is a task queue system meant for distributed execution and
@@ -911,8 +913,8 @@ scheduling background tasks for web back-ends.</p>
 <li>You are running background tasks for web servers.</li>
 <li>You are not very familiar with message brokers, and you need very easy solution that abstract away all details.</li>
 </ul>
-<div class="admonition success">
-<p class="admonition-title">Note</p>
+<div class="admonition info">
+<p class="admonition-title">Integrate broker is easier than you can imagine, with aioclock!</p>
 <p>Celery works via task queues but such mechanism could be implemented to AioClock as well by creating a <code>once trigger</code> that reads from queue. You may make this as decorator and even create new libraries using AioClock.
 For implementation details, see <a href="../examples/brokers/">how to integrate a broker into AioClock App</a>.</p>
 </div>
@@ -946,8 +948,8 @@ in data pipelines. It has a scheduler and a built-in monitor.</p>
 <li>You need auto generated asyncapi documentation</li>
 <li>You are building a distributed data streaming application</li>
 </ul>
-<div class="admonition success">
-<p class="admonition-title">Note</p>
+<div class="admonition info">
+<p class="admonition-title">They can be used together...</p>
 <p>Note that you can use both beside each other, just like FastAPI. All you'd have to do is to serve both application at same time.</p>
 </div>
 

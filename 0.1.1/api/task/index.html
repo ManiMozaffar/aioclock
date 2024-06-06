@@ -793,13 +793,13 @@
 
 
 <a id="aioclock.task"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Aioclock wrap your functions with a task object, and append the task to the list of tasks in the AioClock instance.
 After collecting all the tasks from decorated functions, aioclock serve them in order it has to be (startup, normal, shutdown).</p>
 <p>These tasks keep running forever until the trigger's method <code>should_trigger</code> returns False.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -815,82 +815,80 @@ After collecting all the tasks from decorated functions, aioclock serve them in 
 
 
 <h2 id="aioclock.task.Task" class="doc doc-heading">
-          <span class="doc doc-object-name doc-class-name">Task</span>
+            <span class="doc doc-object-name doc-class-name">Task</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
   </span>
 
 <a href="#aioclock.task.Task" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Task</span><span class="p">(</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">Task</span><span class="p">(</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">func</span><span class="p">:</span> <span class="n"><span title="typing.Callable">Callable</span></span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n"><span title="typing.Awaitable">Awaitable</span></span><span class="p">[</span><span class="n"><span title="typing.Any">Any</span></span><span class="p">]],</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">trigger</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></span><span class="p">,</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nb">id</span><span class="p">:</span> <span class="n"><span title="uuid.UUID">UUID</span></span> <span class="o">=</span> <span class="n">uuid4</span><span class="p">(),</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>Task that will be run by AioClock.
 Which always has a function and a trigger.
 This is internally used, when you decorate your function with <code>aioclock.task</code>.</p>
 
 
-
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code><span title="aioclock.task.Task.func">func</span></code></td>
-          <td>
-                <code><span title="typing.Callable">Callable</span>[..., <span title="typing.Awaitable">Awaitable</span>[<span title="typing.Any">Any</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Callable[..., Awaitable[Any]]: Decorated function that will be run by AioClock.</p>
-            </div>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr>
-          <td><code><span title="aioclock.task.Task.trigger">trigger</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>BaseTrigger: Trigger that will be used to run the function.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="aioclock.task.Task.id">id</span></code></td>
-          <td>
-                <code><span title="uuid.UUID">UUID</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>UUID: Task ID that is unique for each task, and changes every time you run the aioclock app.
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.task.Task.func">func</span></code></td>
+            <td>
+                  <code><span title="typing.Callable">Callable</span>[..., <span title="typing.Awaitable">Awaitable</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Callable[..., Awaitable[Any]]: Decorated function that will be run by AioClock.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.task.Task.trigger">trigger</span></code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="aioclock.triggers.BaseTrigger" href="../triggers/#aioclock.triggers.BaseTrigger">BaseTrigger</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BaseTrigger: Trigger that will be used to run the function.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="aioclock.task.Task.id">id</span></code></td>
+            <td>
+                  <code><span title="uuid.UUID">UUID</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>UUID: Task ID that is unique for each task, and changes every time you run the aioclock app.
 In future we might store task ID in a database, so that it always remains same.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -903,27 +901,26 @@ In future we might store task ID in a database, so that it always remains same.<
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="aioclock.task.Task.run" class="doc doc-heading">
-          <span class="doc doc-object-name doc-function-name">run</span>
+            <span class="doc doc-object-name doc-function-name">run</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-async"><code>async</code></small>
   </span>
 
 <a href="#aioclock.task.Task.run" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">run</span><span class="p">()</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">run</span><span class="p">()</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Run the task, and handle the exceptions.
 If the task fails, log the error with exception, but keep running the tasks.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>aioclock/task.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39">39</a></span>
+            <details class="quote">
+              <summary>Source code in <code>aioclock/task.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39">39</a></span>
 <span class="normal"><a href="#__codelineno-0-40">40</a></span>
 <span class="normal"><a href="#__codelineno-0-41">41</a></span>
 <span class="normal"><a href="#__codelineno-0-42">42</a></span>
@@ -967,8 +964,8 @@ If the task fails, log the error with exception, but keep running the tasks.</p>
 <a id="__codelineno-0-59" name="__codelineno-0-59"></a>
 <a id="__codelineno-0-60" name="__codelineno-0-60"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">expected_trigger_time</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -976,8 +973,7 @@ If the task fails, log the error with exception, but keep running the tasks.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -986,7 +982,7 @@ If the task fails, log the error with exception, but keep running the tasks.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
