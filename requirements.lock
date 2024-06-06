@@ -11,7 +11,10 @@
 annotated-types==0.7.0
     # via pydantic
 anyio==4.3.0
+    # via asyncer
     # via fast-depends
+asyncer==0.0.7
+    # via aioclock
 fast-depends==2.4.3
     # via aioclock
 idna==3.7

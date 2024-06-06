@@ -11,10 +11,13 @@
 annotated-types==0.7.0
     # via pydantic
 anyio==4.3.0
+    # via asyncer
     # via fast-depends
     # via httpx
     # via starlette
     # via watchfiles
+asyncer==0.0.7
+    # via aioclock
 babel==2.15.0
     # via mkdocs-material
 black==24.4.2

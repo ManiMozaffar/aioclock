@@ -26,12 +26,12 @@ When **AioClock** might be a better choice:
 When **Rocketry** might be a better choice:
 
 - You need a task pipelining that is heavily cpu intensive.
-- Your code is not yet asynchronous, or blocks the main thread.
+- You have heavy cpu bound tasks
 - You are still using Pydantic v1.
 
-!!! success "Note"
+!!! success "Coming next..."
 
-    You can also asyncify your sync code, by running them in a threadpool executor. Libraries like `asyncer` or `anyio` might help you with that. Note that this won't truely make your code async, because async code are meant to only run on one thread, but still you get the job done with AioClock easily. It would be the fit solution if the library you use does not have an async alternative.
+    In future versions, aioclock will feature a more advanced architecture, leveraging multiprocessing to handle heavy tasks efficiently.
 
 ## AioClock vs Crontab
 
@@ -67,9 +67,11 @@ When **APScheduler** might be a better choice:
 
 - You wish to have the tasks stored in a database (and not in Python code)
 
-!!! success "Note"
+!!! info "You can do this by yourself already..."
 
-    In soon future, AioClock would also be able to store tasks in a database to let you scale out.
+    There is already External APIs from library that you can use, to implement storing task metadata on a database.
+    It is very easy, but aioclock might actually not do it, to not couple library to a dependency.
+    Read about [how to use the external API](api/external_api.md).
 
 ## AioClock vs Celery
 
@@ -89,7 +91,7 @@ When **Celery** might be a better choice:
 - You are running background tasks for web servers.
 - You are not very familiar with message brokers, and you need very easy solution that abstract away all details.
 
-!!! success "Note"
+!!! info "Integrate broker is easier than you can imagine, with aioclock!"
 
     Celery works via task queues but such mechanism could be implemented to AioClock as well by creating a `once trigger` that reads from queue. You may make this as decorator and even create new libraries using AioClock.
     For implementation details, see [how to integrate a broker into AioClock App](examples/brokers.md).
@@ -128,6 +130,6 @@ When **FastStream** might be a better choice:
 - You need auto generated asyncapi documentation
 - You are building a distributed data streaming application
 
-!!! success "Note"
+!!! info "They can be used together..."
 
     Note that you can use both beside each other, just like FastAPI. All you'd have to do is to serve both application at same time.
