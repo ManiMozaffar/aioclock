@@ -14,10 +14,11 @@ test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
 	rye run pytest
 
+
 .PHONY: docs
 docs:  ## Build and serve the documentation
 	@echo "🚀 Testing documentation: Building and testing"
-	mike serve
+	mkdocs serve
 
 .PHONY: deploy-docs
 deploy-docs: ## Build and serve the documentation
