@@ -9,6 +9,8 @@ You can create custom triggers by inheriting from `BaseTrigger` class.
     Or use similiar libraries like `asyncer` or `trio` to run the task in a separate thread.
 """
 
+from __future__ import annotations
+
 import asyncio
 from abc import ABC, abstractmethod
 from copy import deepcopy
@@ -65,7 +67,6 @@ class BaseTrigger(BaseModel, ABC, Generic[TriggerTypeT]):
     """
 
     type_: TriggerTypeT
-    expected_trigger_time: Union[datetime, None] = None
 
     @abstractmethod
     async def trigger_next(self) -> None:
@@ -171,7 +172,7 @@ class LoopController(BaseTrigger, ABC, Generic[TriggerTypeT]):
     def should_trigger(self) -> bool:
         if self.max_loop_count is None:
             return True
-        if self._current_loop_count < self.max_loop_count:
+        if self.max_loop_count > self._current_loop_count:
             return True
         return False
 
@@ -284,7 +285,12 @@ class Every(LoopController[Literal[Triggers.EVERY]]):
         hours: Hours to wait before triggering the event.
         days: Days to wait before triggering the event.
         weeks: Weeks to wait before triggering the event.
+
         max_loop_count: The maximum number of times the event should be triggered.
+            If set to 3, then 4th time the event will not be triggered.
+            If set to None, it will keep running forever.
+            This is available for all triggers that inherit from `LoopController`.
+
     """
 
     type_: Literal[Triggers.EVERY] = Triggers.EVERY
@@ -364,7 +370,12 @@ class At(LoopController[Literal[Triggers.AT]]):
         hour: Hour to trigger the event.
         at: Day of week to trigger the event. You would get the in-line typing support when using the trigger.
         tz: Timezone to use for the event.
+
         max_loop_count: The maximum number of times the event should be triggered.
+            If set to 3, then 4th time the event will not be triggered.
+            If set to None, it will keep running forever.
+            This is available for all triggers that inherit from `LoopController`.
+
 
     """
 
@@ -438,7 +449,7 @@ class At(LoopController[Literal[Triggers.AT]]):
         target_time = self._shift_to_week(target_time, now)
         return (target_time - now).total_seconds()
 
-    def get_waiting_time_till_next_trigger(self, now: Union[datetime, None] = None):
+    async def get_waiting_time_till_next_trigger(self, now: Union[datetime, None] = None):
         if now is None:
             now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
 
@@ -447,7 +458,7 @@ class At(LoopController[Literal[Triggers.AT]]):
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()
-        await asyncio.sleep(self.get_waiting_time_till_next_trigger())
+        await asyncio.sleep(await self.get_waiting_time_till_next_trigger())
 
 
 class Cron(LoopController[Literal[Triggers.CRON]]):
@@ -467,7 +478,12 @@ class Cron(LoopController[Literal[Triggers.CRON]]):
     Attributes:
         cron: Cron job format to trigger the event.
         tz: Timezone to use for the event.
+
         max_loop_count: The maximum number of times the event should be triggered.
+            If set to 3, then 4th time the event will not be triggered.
+            If set to None, it will keep running forever.
+            This is available for all triggers that inherit from `LoopController`.
+
     """
 
     type_: Literal[Triggers.CRON] = Triggers.CRON
@@ -487,7 +503,7 @@ class Cron(LoopController[Literal[Triggers.CRON]]):
             raise ValueError("Invalid cron format provided.")
         return self
 
-    def get_waiting_time_till_next_trigger(self, now: Union[datetime, None] = None):
+    async def get_waiting_time_till_next_trigger(self, now: Union[datetime, None] = None):
         if now is None:
             now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
 
@@ -497,7 +513,87 @@ class Cron(LoopController[Literal[Triggers.CRON]]):
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()
-        await asyncio.sleep(self.get_waiting_time_till_next_trigger())
+        await asyncio.sleep(await self.get_waiting_time_till_next_trigger())
+
+
+class OrTrigger(LoopController[Literal[Triggers.OR]]):
+    """
+    A trigger that triggers the event when any of the inner triggers are met.
+
+    Example:
+        ```python
+        from aioclock import AioClock, OrTrigger, Every, At
+
+        app = AioClock()
+
+        @app.task(trigger=OrTrigger(triggers=[Every(seconds=3), At(hour=12, minute=30, tz="Asia/Kolkata")]))
+        async def task():
+            print("Hello World!")
+        ```
+
+    Not that any trigger used with OrTrigger, is fully respected, hence if you have two trigger with `max_loop_count=1`,
+        then each trigger will be triggered only once, and then stop, which result in the OrTrigger run only twice.
+        Check example to understand this intended behaviour.
+
+    Example:
+        ```python
+        from aioclock import AioClock, OrTrigger, Every, At
+
+        app = AioClock()
+
+        @app.task(trigger=OrTrigger( # this get triggered 20 times because :...
+            triggers=[
+                Every(seconds=3, max_loop_count=10), # will trigger the event 10 times
+                At(hour=12, minute=30, tz="Asia/Kolkata", max_loop_count=10) # will trigger the event 10 times
+            ]
+        ))
+        async def task():
+            print("Hello World!")
+        ```
+
+    Attributes:
+        triggers: List of triggers to use.
+        max_loop_count: The maximum number of times the event should be triggered.
+            If set to 3, then 4th time the event will not be triggered.
+            If set to None, it will keep running forever.
+            This is available for all triggers that inherit from `LoopController`.
+
+    """
+
+    type_: Literal[Triggers.OR] = Triggers.OR
+    triggers: list[TriggerT]
+    max_loop_count: Union[PositiveInt, None] = None
+
+    def should_trigger(self) -> bool:
+        all_triggers = {trigger.should_trigger() for trigger in self.triggers}
+        if all_triggers == {False}:
+            return False  # if all inner triggers should not trigger, then this shouldn't too.
+        return super().should_trigger()
+
+    async def find_closest_trigger(self) -> tuple[BaseTrigger, float | None]:
+        triggers_with_next_trigger: list[tuple[BaseTrigger, float]] = []
+
+        for trigger in self.triggers:
+            if trigger.should_trigger():
+                next_trigger = await trigger.get_waiting_time_till_next_trigger()
+                if next_trigger is None:
+                    # just return it as this should be executed immediately
+                    return trigger, next_trigger
+                triggers_with_next_trigger.append((trigger, next_trigger))
+
+        return min(triggers_with_next_trigger, key=lambda x: x[1])
+
+    async def trigger_next(self) -> None:
+        self._increment_loop_counter()
+        next_trigger, time_to_sleep = await self.find_closest_trigger()
+        await next_trigger.trigger_next()
+        if time_to_sleep is not None:
+            await asyncio.sleep(time_to_sleep)
+        return None
+
+    async def get_waiting_time_till_next_trigger(self):
+        _, to_sleep = await self.find_closest_trigger()
+        return to_sleep
 
 
 TriggerT = Annotated[
@@ -509,6 +605,7 @@ TriggerT = Annotated[
         OnStartUp,
         OnShutDown,
         Cron,
+        OrTrigger,
     ],
     Field(discriminator="type_"),
 ]

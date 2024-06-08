@@ -38,3 +38,6 @@ class Triggers(StrEnum):
     """Trigger on application shut down."""
     AT = auto()
     """Trigger at a specific time."""
+
+    OR = auto()
+    """Trigger when any of the triggers are met."""
