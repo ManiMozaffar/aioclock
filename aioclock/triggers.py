@@ -468,6 +468,8 @@ class At(LoopController[Literal[Triggers.AT]]):
 
 class Cron(LoopController[Literal[Triggers.CRON]]):
     """A trigger that is triggered at a specific time, using cron job format.
+    If you are not familiar with the cron format, you may read about in [this wikipedia article](https://en.wikipedia.org/wiki/Cron).
+    Or if you need an online tool to generate cron job, you may use [crontab.guru](https://crontab.guru/).
 
     Example:
         ```python
@@ -523,7 +525,7 @@ class Cron(LoopController[Literal[Triggers.CRON]]):
 
 class OrTrigger(LoopController[Literal[Triggers.OR]]):
     """
-    A trigger that triggers the event when any of the inner triggers are met.
+    A trigger that triggers the event if any of the inner triggers are met.
 
     Example:
         ```python
