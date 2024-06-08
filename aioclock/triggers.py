@@ -455,11 +455,11 @@ class Cron(LoopController[Literal[Triggers.CRON]]):
 
     Example:
         ```python
-        from aioclock import AioClock, CronJob
+        from aioclock import AioClock, Cron
 
         app = AioClock()
 
-        @app.task(trigger=CronJob(cron="0 12 * * *", tz="Asia/Kolkata"))
+        @app.task(trigger=Cron(cron="0 12 * * *", tz="Asia/Kolkata"))
         async def task():
             print("Hello World!")
         ```
