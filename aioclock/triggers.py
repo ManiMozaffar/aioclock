@@ -17,6 +17,7 @@ from typing import Annotated, Generic, Literal, TypeVar, Union
 
 import zoneinfo
 from annotated_types import Interval
+from croniter import croniter
 from pydantic import BaseModel, Field, PositiveInt, model_validator
 
 from aioclock.custom_types import EveryT, PositiveNumber, Triggers
@@ -437,19 +438,77 @@ class At(LoopController[Literal[Triggers.AT]]):
         target_time = self._shift_to_week(target_time, now)
         return (target_time - now).total_seconds()
 
-    def get_sleep_time(self):
-        now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
+    def get_waiting_time_till_next_trigger(self, now: datetime | None = None):
+        if now is None:
+            now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
+
         sleep_for = self._get_next_ts(now)
         return sleep_for
 
-    async def get_waiting_time_till_next_trigger(self):
-        return self.get_sleep_time()
+    async def trigger_next(self) -> None:
+        self._increment_loop_counter()
+        await asyncio.sleep(self.get_waiting_time_till_next_trigger())
+
+
+class Cron(LoopController[Literal[Triggers.CRON]]):
+    """A trigger that is triggered at a specific time, using cron job format.
+
+    Example:
+        ```python
+        from aioclock import AioClock, CronJob
+
+        app = AioClock()
+
+        @app.task(trigger=CronJob(cron="0 12 * * *", tz="Asia/Kolkata"))
+        async def task():
+            print("Hello World!")
+        ```
+
+    Attributes:
+        cron: Cron job format to trigger the event.
+        tz: Timezone to use for the event.
+        max_loop_count: The maximum number of times the event should be triggered.
+    """
+
+    type_: Literal[Triggers.CRON] = Triggers.CRON
+    max_loop_count: Union[PositiveInt, None] = None
+    cron: str
+    tz: str
+
+    @model_validator(mode="after")
+    def validate_time_units(self):
+        if self.tz is not None:
+            try:
+                zoneinfo.ZoneInfo(self.tz)
+            except Exception as error:
+                raise ValueError(f"Invalid timezone provided: {error}")
+
+        if croniter.is_valid(self.cron) is False:
+            raise ValueError("Invalid cron format provided.")
+        return self
+
+    def get_waiting_time_till_next_trigger(self, now: datetime | None = None):
+        if now is None:
+            now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
+
+        cron_iter = croniter(self.cron, now)
+        next_dt: datetime = cron_iter.get_next(datetime)
+        return (next_dt - now).total_seconds()
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()
-        await asyncio.sleep(self.get_sleep_time())
+        await asyncio.sleep(self.get_waiting_time_till_next_trigger())
 
 
 TriggerT = Annotated[
-    Union[Forever, Once, Every, At, OnStartUp, OnShutDown], Field(discriminator="type_")
+    Union[
+        Forever,
+        Once,
+        Every,
+        At,
+        OnStartUp,
+        OnShutDown,
+        Cron,
+    ],
+    Field(discriminator="type_"),
 ]
