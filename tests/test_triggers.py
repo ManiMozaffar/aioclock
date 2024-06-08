@@ -3,7 +3,7 @@ from datetime import datetime
 import pytest
 import zoneinfo
 
-from aioclock.triggers import At, Cron, Every, Forever, LoopController, Once
+from aioclock.triggers import At, Cron, Every, Forever, LoopController, Once, OrTrigger
 
 
 def test_at_trigger():
@@ -121,7 +121,7 @@ async def test_cron():
     # it's dumb idea to test library, but I don't trust it 100%, and i might drop it in the future.
 
     trigger = Cron(cron="* * * * *", tz="UTC")
-    val = trigger.get_waiting_time_till_next_trigger(
+    val = await trigger.get_waiting_time_till_next_trigger(
         datetime(
             year=2024,
             month=3,
@@ -136,7 +136,7 @@ async def test_cron():
 
     trigger = Cron(cron="2-10 * * * *", tz="UTC")
     assert (
-        trigger.get_waiting_time_till_next_trigger(
+        await trigger.get_waiting_time_till_next_trigger(
             datetime(
                 year=2024,
                 month=3,
@@ -152,3 +152,26 @@ async def test_cron():
 
     with pytest.raises(ValueError):
         trigger = Cron(cron="* * * * 65", tz="UTC")
+
+
+@pytest.mark.asyncio
+async def test_or_trigger_state():
+    trigger = OrTrigger(triggers=[Once(), Once()])
+    assert trigger.should_trigger() is True
+    await trigger.trigger_next()
+    assert trigger.should_trigger() is True
+    await trigger.trigger_next()
+    assert trigger.should_trigger() is False
+
+
+@pytest.mark.asyncio
+async def test_or_trigger_next():
+    trigger = OrTrigger(
+        triggers=[Every(seconds=0, max_loop_count=2), Every(seconds=0, max_loop_count=2)]
+    )
+    for _ in range(4):
+        assert trigger.should_trigger() is True
+        assert (await trigger.get_waiting_time_till_next_trigger()) == 0
+        await trigger.trigger_next()
+
+    assert trigger.should_trigger() is False
