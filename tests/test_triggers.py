@@ -3,7 +3,7 @@ from datetime import datetime
 import pytest
 import zoneinfo
 
-from aioclock.triggers import At, Every, Forever, LoopController, Once
+from aioclock.triggers import At, Cron, Every, Forever, LoopController, Once
 
 
 def test_at_trigger():
@@ -114,3 +114,41 @@ async def test_every():
     assert await trigger.get_waiting_time_till_next_trigger() == 0
     trigger._increment_loop_counter()
     assert await trigger.get_waiting_time_till_next_trigger() == 1
+
+
+@pytest.mark.asyncio
+async def test_cron():
+    # it's dumb idea to test library, but I don't trust it 100%, and i might drop it in the future.
+
+    trigger = Cron(cron="* * * * *", tz="UTC")
+    val = trigger.get_waiting_time_till_next_trigger(
+        datetime(
+            year=2024,
+            month=3,
+            day=31,
+            hour=14,
+            minute=0,
+            second=0,
+            tzinfo=zoneinfo.ZoneInfo("UTC"),
+        )
+    )
+    assert val == 60
+
+    trigger = Cron(cron="2-10 * * * *", tz="UTC")
+    assert (
+        trigger.get_waiting_time_till_next_trigger(
+            datetime(
+                year=2024,
+                month=3,
+                day=31,
+                hour=11,
+                minute=48,
+                second=0,
+                tzinfo=zoneinfo.ZoneInfo("Europe/Berlin"),
+            )
+        )
+        == 14 * 60
+    )
+
+    with pytest.raises(ValueError):
+        trigger = Cron(cron="* * * * 65", tz="UTC")
