@@ -1884,7 +1884,9 @@ This is available for all triggers that inherit from <code>LoopController</code>
               Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.CRON">CRON</span>]]</code></p>
 
 
-      <p>A trigger that is triggered at a specific time, using cron job format.</p>
+      <p>A trigger that is triggered at a specific time, using cron job format.
+If you are not familiar with the cron format, you may read about in <a href="https://en.wikipedia.org/wiki/Cron">this wikipedia article</a>.
+Or if you need an online tool to generate cron job, you may use <a href="https://crontab.guru/">crontab.guru</a>.</p>
 
 
 <details class="example" open>
@@ -1985,7 +1987,7 @@ This is available for all triggers that inherit from <code>LoopController</code>
               Bases: <code><a class="autorefs autorefs-internal" title="aioclock.triggers.LoopController" href="#aioclock.triggers.LoopController">LoopController</a>[<span title="typing.Literal">Literal</span>[<span title="aioclock.custom_types.Triggers.OR">OR</span>]]</code></p>
 
 
-      <p>A trigger that triggers the event when any of the inner triggers are met.</p>
+      <p>A trigger that triggers the event if any of the inner triggers are met.</p>
 
 
 <details class="example" open>
