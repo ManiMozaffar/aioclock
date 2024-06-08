@@ -438,7 +438,7 @@ class At(LoopController[Literal[Triggers.AT]]):
         target_time = self._shift_to_week(target_time, now)
         return (target_time - now).total_seconds()
 
-    def get_waiting_time_till_next_trigger(self, now: datetime | None = None):
+    def get_waiting_time_till_next_trigger(self, now: Union[datetime, None] = None):
         if now is None:
             now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
 
@@ -487,7 +487,7 @@ class Cron(LoopController[Literal[Triggers.CRON]]):
             raise ValueError("Invalid cron format provided.")
         return self
 
-    def get_waiting_time_till_next_trigger(self, now: datetime | None = None):
+    def get_waiting_time_till_next_trigger(self, now: Union[datetime, None] = None):
         if now is None:
             now = datetime.now(tz=zoneinfo.ZoneInfo(self.tz))
 
