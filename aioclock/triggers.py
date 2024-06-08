@@ -64,9 +64,14 @@ class BaseTrigger(BaseModel, ABC, Generic[TriggerTypeT]):
     Attributes:
         type_: Type of the trigger. It is a string, which is used to identify the trigger's name.
             You can change the type by using `Generic` type when inheriting from `BaseTrigger`.
+
+        expected_trigger_time: Expected time when the event should be triggered. This gets updated
+            by Task Runner. It can be used on API layer, to know when the event is expected to be triggered.
     """
 
     type_: TriggerTypeT
+
+    expected_trigger_time: Union[datetime, None] = None
 
     @abstractmethod
     async def trigger_next(self) -> None:
