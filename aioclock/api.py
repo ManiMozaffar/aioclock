@@ -7,7 +7,7 @@ Other tools and extension are written from this tool.
 !!! danger "Note when writing to aioclock API and changing its state."
     Right now the state of AioClock instance is on the memory level, so if you write an API and change a task's trigger time, it will not persist.
     In future we might store the state of AioClock instance in a database, so that it always remains same.
-    But this is a bit tricky and implicit because then your code gets ignored and database is preferred over the database.
+    But this is a bit tricky and implicit because then your code gets ignored and database is preferred over the codebase.
     For now you may consider it as a way to change something without redeploying the application, but it is not very recommended to write.
 """
 
