@@ -55,6 +55,8 @@ allow-direct-references = true
 [tool.hatch.build.targets.wheel]
 packages = ["aioclock"]
 
+[tool.setuptools.package-data]
+"aioclock" = ["py.typed"]
 
 [tool.ruff]
 
