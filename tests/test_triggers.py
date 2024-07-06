@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import pytest
 import zoneinfo
@@ -41,33 +41,43 @@ def test_at_trigger():
 
     # test every day
     trigger = At(at="every day", hour=14, second=59, tz="Europe/Istanbul")
-    val = trigger._get_next_ts(
-        datetime(
-            year=2024,
-            month=3,
-            day=31,
-            hour=14,
-            minute=0,
-            second=0,
-            tzinfo=zoneinfo.ZoneInfo("Europe/Istanbul"),
-        )
+    this_sunday = datetime(
+        year=2024,
+        month=3,
+        day=31,
+        hour=14,
+        minute=0,
+        second=0,
+        tzinfo=zoneinfo.ZoneInfo("Europe/Istanbul"),
     )
+    val = trigger._get_next_ts(this_sunday)
     assert val == 59
 
     # test next week
     trigger = At(at="every saturday", hour=14, second=0, tz="Europe/Istanbul")
-    val = trigger._get_next_ts(
-        datetime(
-            year=2024,
-            month=3,
-            day=31,
-            hour=14,
-            minute=0,
-            second=0,
-            tzinfo=zoneinfo.ZoneInfo("Europe/Istanbul"),
+    val = trigger._get_next_ts(this_sunday)
+    assert val == 86400
+
+    # right NOW
+    trigger = At(at="every sunday", hour=14, tz="Europe/Istanbul")
+    val = trigger._get_next_ts(this_sunday)
+    assert val == 0
+
+    # next week but 1h before than now
+    trigger = At(at="every sunday", hour=13, tz="Europe/Istanbul")
+    val = trigger._get_next_ts(this_sunday)
+    assert val == timedelta(days=7).total_seconds() - timedelta(hours=1).total_seconds()
+
+
+def test_cross_timezone():
+    # `NOW` is same day as the trigger, but trigger should be next week with different timezone
+    trigger = At(hour=3, tz="Europe/Berlin", at="every saturday")
+    assert (
+        trigger._get_next_ts(
+            datetime.fromtimestamp(1720296232, tz=zoneinfo.ZoneInfo("Europe/Istanbul"))
         )
+        == 532568
     )
-    assert val == 518400
 
 
 @pytest.mark.asyncio
