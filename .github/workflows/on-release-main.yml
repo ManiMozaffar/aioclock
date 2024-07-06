@@ -24,6 +24,12 @@ jobs:
       - name: Install the latest version of rye
         uses: eifinger/setup-rye@v2
 
+      # https://github.com/astral-sh/rye/issues/1180
+      - name: Patch Rye
+        run: |
+          echo "Patching Rye with Twine 5.1.1"
+          $RYE_HOME/self/bin/pip install twine==5.1.1
+
       - name: Build and publish
         run: |
           rye build
