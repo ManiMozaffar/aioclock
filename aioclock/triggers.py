@@ -20,11 +20,35 @@ from typing import Annotated, Generic, Literal, TypeVar, Union
 import zoneinfo
 from annotated_types import Interval
 from croniter import croniter
+from dateutil.relativedelta import relativedelta
 from pydantic import BaseModel, Field, PositiveInt, model_validator
 
-from aioclock.custom_types import EveryT, PositiveNumber, Triggers
+from aioclock.custom_types import PositiveNumber, Triggers
 
 TriggerTypeT = TypeVar("TriggerTypeT")
+
+
+WEEKDAY_MAPPER: dict[
+    Literal[
+        "every monday",
+        "every tuesday",
+        "every wednesday",
+        "every thursday",
+        "every friday",
+        "every saturday",
+        "every sunday",
+        "every day",
+    ],
+    int,
+] = {
+    "every monday": 0,
+    "every tuesday": 1,
+    "every wednesday": 2,
+    "every thursday": 3,
+    "every friday": 4,
+    "every saturday": 5,
+    "every sunday": 6,
+}
 
 
 class BaseTrigger(BaseModel, ABC, Generic[TriggerTypeT]):
@@ -414,44 +438,24 @@ class At(LoopController[Literal[Triggers.AT]]):
 
         return self
 
-    def _shift_to_week(self, target_time: datetime, tz_aware_now: datetime):
-        target_weekday: dict[EveryT, Union[int, None]] = {
-            "every monday": 0,
-            "every tuesday": 1,
-            "every wednesday": 2,
-            "every thursday": 3,
-            "every friday": 4,
-            "every saturday": 5,
-            "every sunday": 6,
-            "every day": None,
-        }[self.at]
-
-        if target_weekday is None:
-            if target_time < tz_aware_now:
+    def _shift_to_declared_weekday(self, target_time: datetime, tz_aware_now: datetime):
+        if self.at == "every day":
+            if tz_aware_now > target_time:  # if the time is already passed, then shift to next day
                 target_time += timedelta(days=1)
             return target_time
 
-        days_ahead = target_weekday - tz_aware_now.weekday()  # type: ignore
-        if days_ahead <= 0:
-            days_ahead += 7
+        target_weekday: int = WEEKDAY_MAPPER[self.at]
+        if tz_aware_now > target_time:  # if the time is already passed, then shift to next week
+            return target_time + relativedelta(weeks=1)
 
-        if self.at == "every day":
-            target_time += timedelta(days=(1 if target_time < tz_aware_now else 0))
-            return target_time
-
-        # 1 second error
-        error_margin = WEEK_TO_SECOND - 1
-        if days_ahead == 7 and target_time.timestamp() - tz_aware_now.timestamp() < error_margin:
-            # date is today, and event is about to be triggered today. so no need to shift to 7 days.
-            return target_time
-
+        days_ahead = abs(target_weekday - tz_aware_now.weekday())
         return target_time + timedelta(days_ahead)
 
     def _get_next_ts(self, now: datetime) -> float:
         target_time = deepcopy(now).replace(
             hour=self.hour, minute=self.minute, second=self.second, microsecond=0
         )
-        target_time = self._shift_to_week(target_time, now)
+        target_time = self._shift_to_declared_weekday(target_time, now)
         return (target_time - now).total_seconds()
 
     async def get_waiting_time_till_next_trigger(self, now: Union[datetime, None] = None):
