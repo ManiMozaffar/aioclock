@@ -226,7 +226,7 @@ class AioClock:
             )
 
             await asyncio.gather(
-                *(group.run() for group in self._get_tasks()), return_exceptions=False
+                *(task.run() for task in self._get_tasks()), return_exceptions=False
             )
         finally:
             shutdown_tasks = self._get_shutdown_task()
