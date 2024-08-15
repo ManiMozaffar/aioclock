@@ -28,6 +28,8 @@ Conditions or events that initiate task execution. It includes
 - **OnStartUp**: Runs when the application starts.
 - **OnShutDown**: Executes during application shutdown.
 - **Forever**: Continuously runs a task in an infinite loop.
+- **Cron**: Uses cron syntax for scheduling.
+- **OrTrigger**: Initiate with a list of triggers, and executes when at least one of the included triggers activate.
 
 ### 5. Group
 
