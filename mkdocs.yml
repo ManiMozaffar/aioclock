@@ -9,26 +9,32 @@ copyright: Maintained by <a href="https://ManiMozaffar.com">Mani Mozaffar</a>.
 theme:
   name: "material"
   palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: blue grey
+      primary: indigo
       accent: indigo
       toggle:
-        icon: material/lightbulb-outline
-        name: "Switch to dark mode"
+        icon: material/toggle-switch
+        name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: blue grey
+      primary: black
       accent: indigo
       toggle:
-        icon: material/lightbulb
-        name: "Switch to light mode"
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+
   features:
+    - navigation.tabs
+    - navigation.instant
     - content.code.annotate
     - content.tabs.link
     - content.code.copy
     - announce.dismiss
-    - navigation.tabs
     - search.suggest
     - search.highlight
   # logo: assets/logo-white.svg
@@ -41,6 +47,11 @@ validation:
   omitted_files: warn
   absolute_links: warn
   unrecognized_links: warn
+
+extra:
+  navigation:
+    next: true
+    previous: true
 
 extra_css:
   - "extra/tweaks.css"
@@ -58,9 +69,6 @@ markdown_extensions:
   - pymdownx.snippets
   - attr_list
   - md_in_html
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 watch:
   - aioclock
@@ -91,7 +99,10 @@ plugins:
 
 nav:
   - Introduction: index.md
+
   - Documentation:
+      - Overview: overview.md
+
       - Basic Usage:
           - AioClock Application: api/getting_started.md
           - Triggers: api/triggers.md

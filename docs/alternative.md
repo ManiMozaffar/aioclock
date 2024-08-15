@@ -18,6 +18,7 @@ Rocketry is a modern statement-based scheduling framework for Python. It is simp
 
 When **AioClock** might be a better choice:
 
+- You don't want to be dependent to other unnecessary libraries like [redbird](https://github.com/Miksus/red-bird)
 - You need a truly light weight solution.
 - You are using Pydantic v2.
 - Type safety is important to you. All triggers are type safe, but some statements are stringly typed in rocketry.

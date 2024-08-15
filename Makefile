@@ -18,12 +18,12 @@ test: ## Test the code with pytest
 .PHONY: docs
 docs:  ## Build and serve the documentation
 	@echo "🚀 Testing documentation: Building and testing"
-	mkdocs serve
+	rye run mkdocs serve
 
 .PHONY: deploy-docs
 deploy-docs: ## Build and serve the documentation
 	@echo "🚀 Deploying documentation"
-	python deploy_docs.py
+	rye run python deploy_docs.py
 
 
 .PHONY: docs-test
