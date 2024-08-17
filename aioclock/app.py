@@ -69,6 +69,73 @@ class AioClock:
         asyncio.run(app.serve())
         ```
 
+    ## Lifespan
+
+    You can define this startup and shutdown logic using the lifespan parameter of the AioClock instance.
+    It should be as an  AsyncContextManager which get AioClock application as arguement.
+    You can find the example below.
+
+    Example:
+        ```python
+            import asyncio
+            from contextlib import asynccontextmanager
+
+            from aioclock import AioClock
+
+            ML_MODEL = [] # just some imaginary component that needs to be started and stopped
+
+
+            @asynccontextmanager
+            async def lifespan(app: AioClock):
+                ML_MODEL.append(2)
+                print("UP!")
+                yield app
+                ML_MODEL.clear()
+                print("DOWN!")
+
+
+            app = AioClock(lifespan=lifespan)
+
+
+            if __name__ == "__main__":
+                asyncio.run(app.serve())
+        ```
+
+    Here we are simulating the expensive startup operation of loading the model by putting the (fake)
+    model function in the dictionary with machine learning models before the yield.
+    This code will be executed before the application starts operationg, during the startup.
+
+    And then, right after the yield, we unload the model.
+    This code will be executed after the application finishes handling requests, right before the shutdown.
+    This could, for example, release resources like memory, a GPU or some database connection.
+
+    It would also happen when you're stopping your application gracefully, for example, when you're shutting down your container.
+
+    Lifespan could also be synchronus context manager. Check the example below.
+
+
+    Example:
+        ```python
+            from contextlib import contextmanager
+
+            from aioclock import AioClock
+
+            ML_MODEL = []
+
+            @contextmanager
+            def lifespan_sync(sync_app: AioClock):
+                ML_MODEL.append(2)
+                print("UP!")
+                yield sync_app
+                ML_MODEL.clear()
+                print("DOWN!")
+
+            sync_app = AioClock(lifespan=lifespan_sync)
+
+            if __name__ == "__main__":
+                asyncio.run(app.serve())
+        ```
+
     """
 
     def __init__(
@@ -84,72 +151,10 @@ class AioClock:
         No parameters are needed.
 
         Attributes:
-
-                lifespan:
-                    You can define this startup and shutdown logic using the lifespan parameter of the AioClock instance.
-                    It should be as an  AsyncContextManager which get AioClock application as arguement.
-                    You can find the example below.
-
-                    Example:
-                    ```python
-                        import asyncio
-                        from contextlib import asynccontextmanager
-
-                        from aioclock import AioClock
-
-                        ML_MODEL = [] # just some imaginary component that needs to be started and stopped
-
-
-                        @asynccontextmanager
-                        async def lifespan(app: AioClock):
-                            ML_MODEL.append(2)
-                            print("UP!")
-                            yield app
-                            ML_MODEL.clear()
-                            print("DOWN!")
-
-
-                        app = AioClock(lifespan=lifespan)
-
-
-                        if __name__ == "__main__":
-                            asyncio.run(app.serve())
-                    ```
-
-                    Here we are simulating the expensive startup operation of loading the model by putting the (fake)
-                    model function in the dictionary with machine learning models before the yield.
-                    This code will be executed before the application starts operationg, during the startup.
-
-                    And then, right after the yield, we unload the model.
-                    This code will be executed after the application finishes handling requests, right before the shutdown.
-                    This could, for example, release resources like memory, a GPU or some database connection.
-
-                    It would also happen when you're stopping your application gracefully, for example, when you're shutting down your container.
-
-                    Lifespan could also be synchronus context manager. Check the example below.
-
-
-                    Example:
-                    ```python
-                        from contextlib import contextmanager
-
-                        from aioclock import AioClock
-
-                        ML_MODEL = []
-
-                        @contextmanager
-                        def lifespan_sync(sync_app: AioClock):
-                            ML_MODEL.append(2)
-                            print("UP!")
-                            yield sync_app
-                            ML_MODEL.clear()
-                            print("DOWN!")
-
-                        sync_app = AioClock(lifespan=lifespan_sync)
-
-                        if __name__ == "__main__":
-                            asyncio.run(app.serve())
-                    ```
+            lifespan:
+                A context manager that will be used to handle the startup and shutdown of the application.
+                If not provided, the application will run without any startup and shutdown logic.
+                To understand it better, check the examples and documentation above.
 
             limiter:
                 Anyio CapacityLimiter. capacity limiter to use to limit the total amount of threads running
