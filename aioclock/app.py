@@ -18,7 +18,6 @@ from typing import (
     Optional,
     TypeVar,
     Union,
-    assert_never,
 )
 
 import anyio
@@ -27,6 +26,11 @@ if sys.version_info < (3, 10):
     from typing_extensions import ParamSpec
 else:
     from typing import ParamSpec
+
+if sys.version_info < (3, 11):
+    from typing_extensions import assert_never
+else:
+    from typing import assert_never
 
 from asyncer import asyncify
 from fast_depends import inject
