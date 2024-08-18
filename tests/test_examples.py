@@ -42,6 +42,21 @@ def exec_example(example: str) -> None:
         raise Exception(f"Failed to execute example:\n\n{example}")
 
 
+def process_object(name: str, obj: object, module_name: str, library_name: str) -> None:
+    """Process a single object, extracting and executing code examples."""
+    docstring = inspect.getdoc(obj)
+    if docstring:
+        examples = extract_code_blocks(docstring)
+        for example in examples:
+            exec_example(example)
+
+    # Recursively process class methods only if they belong to the same library
+    if inspect.isclass(obj):
+        for method_name, method_obj in inspect.getmembers(obj, inspect.isfunction):
+            if method_obj.__module__ and method_obj.__module__.startswith(library_name):
+                process_object(f"{name}.{method_name}", method_obj, module_name, library_name)
+
+
 def process_module(module_path: str) -> None:
     """Process a single Python module."""
     module_name = os.path.splitext(os.path.basename(module_path))[0]
@@ -53,13 +68,13 @@ def process_module(module_path: str) -> None:
     sys.modules[module_name] = module
     spec.loader.exec_module(module)
 
-    for name, obj in inspect.getmembers(module):
-        if inspect.isfunction(obj) or inspect.isclass(obj):
-            docstring = inspect.getdoc(obj)
-            if docstring:
-                examples = extract_code_blocks(docstring)
-                for example in examples:
-                    exec_example(example)
+    library_name = "aioclock"
+
+    for name, obj in inspect.getmembers(
+        module, lambda o: inspect.isfunction(o) or inspect.isclass(o)
+    ):
+        if obj.__module__ and obj.__module__.startswith(library_name):
+            process_object(name, obj, module_name, library_name)
 
 
 def process_markdown(markdown_path: str) -> None:

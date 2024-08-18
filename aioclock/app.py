@@ -5,10 +5,20 @@ AioClock class represent the aioclock, and handle the tasks and groups that will
 Another way to modulize your code is to use `Group` which is kinda the same idea as router in web frameworks.
 """
 
+from __future__ import annotations
+
 import asyncio
 import sys
 from functools import wraps
-from typing import Any, Callable, Optional, TypeVar, Union
+from typing import (
+    Any,
+    AsyncContextManager,
+    Callable,
+    ContextManager,
+    Optional,
+    TypeVar,
+    Union,
+)
 
 import anyio
 
@@ -16,6 +26,11 @@ if sys.version_info < (3, 10):
     from typing_extensions import ParamSpec
 else:
     from typing import ParamSpec
+
+if sys.version_info < (3, 11):
+    from typing_extensions import assert_never
+else:
+    from typing import assert_never
 
 from asyncer import asyncify
 from fast_depends import inject
@@ -58,14 +73,93 @@ class AioClock:
         asyncio.run(app.serve())
         ```
 
+    ## Lifespan
+
+    You can define this startup and shutdown logic using the lifespan parameter of the AioClock instance.
+    It should be as an  AsyncContextManager which get AioClock application as arguement.
+    You can find the example below.
+
+    Example:
+        ```python
+            import asyncio
+            from contextlib import asynccontextmanager
+
+            from aioclock import AioClock
+
+            ML_MODEL = [] # just some imaginary component that needs to be started and stopped
+
+
+            @asynccontextmanager
+            async def lifespan(app: AioClock):
+                ML_MODEL.append(2)
+                print("UP!")
+                yield app
+                ML_MODEL.clear()
+                print("DOWN!")
+
+
+            app = AioClock(lifespan=lifespan)
+
+
+            if __name__ == "__main__":
+                asyncio.run(app.serve())
+        ```
+
+    Here we are simulating the expensive startup operation of loading the model by putting the (fake)
+    model function in the dictionary with machine learning models before the yield.
+    This code will be executed before the application starts operationg, during the startup.
+
+    And then, right after the yield, we unload the model.
+    This code will be executed after the application finishes handling requests, right before the shutdown.
+    This could, for example, release resources like memory, a GPU or some database connection.
+
+    It would also happen when you're stopping your application gracefully, for example, when you're shutting down your container.
+
+    Lifespan could also be synchronus context manager. Check the example below.
+
+
+    Example:
+        ```python
+            from contextlib import contextmanager
+
+            from aioclock import AioClock
+
+            ML_MODEL = []
+
+            @contextmanager
+            def lifespan_sync(sync_app: AioClock):
+                ML_MODEL.append(2)
+                print("UP!")
+                yield sync_app
+                ML_MODEL.clear()
+                print("DOWN!")
+
+            sync_app = AioClock(lifespan=lifespan_sync)
+
+            if __name__ == "__main__":
+                asyncio.run(app.serve())
+        ```
+
     """
 
-    def __init__(self, limiter: Optional[anyio.CapacityLimiter] = None):
+    def __init__(
+        self,
+        *,
+        lifespan: Optional[
+            Callable[[AioClock], AsyncContextManager[AioClock] | ContextManager[AioClock]]
+        ] = None,
+        limiter: Optional[anyio.CapacityLimiter] = None,
+    ):
         """
         Initialize AioClock instance.
         No parameters are needed.
 
         Attributes:
+            lifespan:
+                A context manager that will be used to handle the startup and shutdown of the application.
+                If not provided, the application will run without any startup and shutdown logic.
+                To understand it better, check the examples and documentation above.
+
             limiter:
                 Anyio CapacityLimiter. capacity limiter to use to limit the total amount of threads running
                 Limiter that will be used to limit the number of tasks that are running at the same time.
@@ -76,6 +170,7 @@ class AioClock:
         self._groups: list[Group] = []
         self._app_tasks: list[Task] = []
         self._limiter = limiter
+        self.lifespan = lifespan
 
     _groups: list[Group]
     """List of groups that will be run by AioClock."""
@@ -220,6 +315,25 @@ class AioClock:
         group = Group()
         group._tasks = self._app_tasks
         self.include_group(group)
+
+        if self.lifespan is None:
+            await self._run_tasks()
+            return
+
+        ctx = self.lifespan(self)
+
+        if isinstance(ctx, AsyncContextManager):
+            async with ctx:
+                await self._run_tasks()
+
+        elif isinstance(ctx, ContextManager):
+            with ctx:
+                await self._run_tasks()
+
+        else:
+            assert_never(ctx)
+
+    async def _run_tasks(self) -> None:
         try:
             await asyncio.gather(
                 *(task.run() for task in self._get_startup_task()), return_exceptions=False

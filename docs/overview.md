@@ -25,8 +25,8 @@ Conditions or events that initiate task execution. It includes
 - **Every**: Repeats a task at regular intervals.
 - **At**: Executes a task at a specified time.
 - **Once**: Runs a task a single time.
-- **OnStartUp**: Runs when the application starts.
-- **OnShutDown**: Executes during application shutdown.
+- **OnStartUp**: Runs when the application starts. (DEPRECATED in favor of lifespan)
+- **OnShutDown**: Executes during application shutdown. (DEPRECATED in favor of lifespan)
 - **Forever**: Continuously runs a task in an infinite loop.
 - **Cron**: Uses cron syntax for scheduling.
 - **OrTrigger**: Initiate with a list of triggers, and executes when at least one of the included triggers activate.
@@ -43,7 +43,11 @@ The engine that monitors and executes tasks according to their triggers, ensurin
 
 The entry point that starts the AioClock application. It initiates the task runner, which monitors and executes tasks based on their triggers.
 
-### 8. Callable
+### 8. Lifespan
+
+A context manager that will be used to handle the startup and shutdown of the application. It is used inside AioClock application.
+
+### 9. Callable
 
 A function or method associated with a task, executed when the task's trigger condition is met.
 
@@ -53,13 +57,16 @@ A function or method associated with a task, executed when the task's trigger co
 
 ![Ownership Diagram](images/ownership-diagram.png)
 
-The diagram outlines the core structure of an AioClock application. It shows how the application organizes tasks using dependency injection and logical grouping. Tasks are defined with specific triggers and callables, making them modular and easy to manage. The flow between components, like including groups or using decorators, highlights the framework's flexibility in an asynchronous environment. Overall, the architecture is designed for clarity, promoting clean, organized code while allowing for scalable task management.
+In AioClock, tasks are managed through clear ownership within groups, using dependency injection. Groups encapsulate related tasks, each with specific triggers and callables. The include_group() function integrates these groups into the AioClock application, while standalone tasks are managed with decorators like @aioclock.task. This structure ensures that tasks are organized, maintainable, and easy to scale, with each component having a defined responsibility within the application.
+The dependency injection system in AioClock allows you to override a callable with another through the application interface, facilitating testing. For example, instead of returning a session from a PostgreSQL database with get_session, you can override it to use get_sqlite_session, which provides a SQLite session instead. This flexibility makes it easier to swap out components for testing or other purposes without changing the core logic.
 
 ### Aioclock LifeCycle
 
 ![Aioclock LifeCycle](images/lifecycle-diagram.png)
 
 This diagram shows the lifecycle of an AioClock application. It starts with the app.serve() call, which gathers all tasks and groups. The application then checks for startup tasks, runs them, and proceeds to other tasks. If a shutdown task is detected, it's executed before the application gracefully exits. If no shutdown tasks are present, the application simply exits. The diagram ensures a clear, step-by-step process for task management within the AioClock framework, ensuring tasks are executed in the proper order.
+
+P.S: Since startup and shutdown task are deprcated, lifespan has same side effect as them, with extra benefit of having them with a shared memory state. Please reffer to lifespan API Documentation to understand it better with examples.
 
 ### Task Runner Execution Flow
 

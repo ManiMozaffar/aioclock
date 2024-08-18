@@ -22,6 +22,7 @@ from annotated_types import Interval
 from croniter import croniter
 from dateutil.relativedelta import relativedelta
 from pydantic import BaseModel, Field, PositiveInt, model_validator
+from typing_extensions import deprecated
 
 from aioclock.custom_types import PositiveNumber, Triggers
 
@@ -236,6 +237,9 @@ class Once(LoopController[Literal[Triggers.ONCE]]):
         return None
 
 
+@deprecated(
+    "Use `lifespan` instead of using Triggers for startup/shutdown events. This feature be removed in version 1.0.0"
+)
 class OnStartUp(LoopController[Literal[Triggers.ON_START_UP]]):
     """Just like Once, but it triggers the event only once, when the application starts up.
 
@@ -263,6 +267,9 @@ class OnStartUp(LoopController[Literal[Triggers.ON_START_UP]]):
         return None
 
 
+@deprecated(
+    "Use `lifespan` instead of using Triggers for startup/shutdown events. This feature be removed in version 1.0.0"
+)
 class OnShutDown(LoopController[Literal[Triggers.ON_SHUT_DOWN]]):
     """Just like Once, but it triggers the event only once, when the application shuts down.
 
