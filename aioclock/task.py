@@ -5,11 +5,13 @@ After collecting all the tasks from decorated functions, aioclock serve them in 
 These tasks keep running forever until the trigger's method `should_trigger` returns False.
 """
 
+import asyncio
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from typing import Any, Awaitable, Callable
 from uuid import UUID, uuid4
 
+from aioclock.exceptions import TaskTimeoutError
 from aioclock.logger import logger
 from aioclock.triggers import BaseTrigger
 
@@ -34,6 +36,7 @@ class Task:
 
     trigger: BaseTrigger
 
+    timeout: float | None = None
     id: UUID = field(default_factory=uuid4)
 
     async def run(self):
@@ -50,8 +53,20 @@ class Task:
                         seconds=next_trigger
                     )
                 await self.trigger.trigger_next()
-                logger.debug(f"Running task {self.func.__name__}")
-                await self.func()
+
+                if self.timeout is not None:
+                    logger.debug(
+                        f"Running task {self.func.__name__} with timeout of {self.timeout}"
+                    )
+                    try:
+                        await asyncio.wait_for(self.func(), self.timeout)
+                    except asyncio.TimeoutError:
+                        raise TaskTimeoutError(
+                            f"Task {self.func.__name__!r} took longer than {self.timeout} seconds to run!"
+                        ) from None
+                else:
+                    logger.debug(f"Running task {self.func.__name__}")
+                    await self.func()
             except Exception as error:
                 # Log the error, but keep running the tasks.
                 # don't crash the whole application.

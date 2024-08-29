@@ -62,34 +62,57 @@ class Group:
         self._tasks: list[Task] = []
         self._limiter = limiter
 
-    def task(self, *, trigger: BaseTrigger):
+    def task(self, *, trigger: BaseTrigger, timeout: float | None = None):
         """
-        Decorator to add a task to the AioClock instance.
+        Decorator to add a task to the group.
         If decorated function is sync, aioclock will run it in a thread pool executor, using AnyIO.
         But if you try to run the decorated function, it will run in the same thread, blocking the event loop.
         It is intended to not change all your `sync functions` to coroutine functions,
-            and they can be used outside of aioclock, if needed.
+            and they can be used outside aioclock, if needed.
 
         params:
             trigger: BaseTrigger
                 Trigger that will trigger the task to be running.
 
+            timeout: float | None (defaults to None)
+                Set a timeout for the task.
+                If the task completion took longer than timeout,
+                it will be cancelled and a `TaskTimeoutError` be raised by the Application.
+
         Example:
             ```python
 
-            from aioclock import AioClock, Once
+            from aioclock import AioClock, Group, Once
 
-            app = AioClock()
+            group = Group()
 
-            @app.task(trigger=Once())
+            @group.task(trigger=Once())
             async def main():
                 print("Hello World")
+
+            app = AioClock()
+            app.include_group(group)
+            ```
+
+        Example:
+            ```python
+
+            from aioclock import AioClock, Group, Once
+
+            group = Group()
+
+            @group.task(trigger=Once(), timeout=4)
+            async def main():
+                print("Hello World")
+
+            app = AioClock()
+            app.include_group(group)
             ```
         """
 
         def decorator(func):
             @wraps(func)
-            async def wrapped_funciton(*args, **kwargs):
+            async def wrapped_function(*args, **kwargs):
                 if asyncio.iscoroutinefunction(func):
                     return await func(*args, **kwargs)
                 else:  # run in threadpool to make sure it's not blocking the event loop
@@ -97,21 +120,13 @@ class Group:
 
             self._tasks.append(
                 Task(
-                    func=inject(wrapped_funciton, dependency_overrides_provider=get_provider()),
+                    func=inject(wrapped_function, dependency_overrides_provider=get_provider()),
                     trigger=trigger,
+                    timeout=timeout,
                 )
             )
 
-            if asyncio.iscoroutinefunction(func):
-                return wrapped_funciton
-
-            else:
-
-                @wraps(func)
-                def wrapper(*args, **kwargs):
-                    return func(*args, **kwargs)
-
-                return wrapper
+            return wrapped_function
 
         return decorator
 
