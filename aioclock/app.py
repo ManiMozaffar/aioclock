@@ -236,7 +236,7 @@ class AioClock:
         self._groups.append(group)
         return None
 
-    def task(self, *, trigger: BaseTrigger, timeout: float | None = None):
+    def task(self, *, trigger: BaseTrigger, timeout: Optional[float] = None):
         """
         Decorator to add a task to the AioClock instance.
         If decorated function is sync, aioclock will run it in a thread pool executor, using AnyIO.

@@ -10,7 +10,7 @@ These tasks keep running forever until the trigger's method `should_trigger` ret
 import asyncio
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
-from typing import Any, Awaitable, Callable
+from typing import Any, Awaitable, Callable, Optional
 from uuid import UUID, uuid4
 
 from aioclock.exceptions import TaskTimeoutError
@@ -38,7 +38,7 @@ class Task:
 
     trigger: BaseTrigger
 
-    timeout: float | None = None
+    timeout: Optional[float] = None
     id: UUID = field(default_factory=uuid4)
 
     async def run(self):

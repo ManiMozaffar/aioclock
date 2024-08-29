@@ -26,7 +26,7 @@ class Group:
         self,
         *,
         limiter: Optional[anyio.CapacityLimiter] = None,
-        timeout: float | None = None
+        timeout: Optional[float] = None
     ):
         """
         Group of tasks that will be run together.
@@ -86,7 +86,7 @@ class Group:
         self._limiter = limiter
         self._timeout = timeout
 
-    def task(self, *, trigger: BaseTrigger, timeout: float | None = None):
+    def task(self, *, trigger: BaseTrigger, timeout: Optional[float] = None):
         """
         Decorator to add a task to the group.
         If decorated function is sync, aioclock will run it in a thread pool executor, using AnyIO.
