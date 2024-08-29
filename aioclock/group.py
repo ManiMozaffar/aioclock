@@ -26,6 +26,7 @@ class Group:
         self,
         *,
         limiter: Optional[anyio.CapacityLimiter] = None,
+        timeout: float | None = None
     ):
         """
         Group of tasks that will be run together.
@@ -40,6 +41,11 @@ class Group:
                 Limiter that will be used to limit the number of tasks that are running at the same time.
                 If not provided, it will fall back to the default limiter set on Application level.
                 If no limiter is set on Application level, it will fall back to the default limiter set by AnyIO.
+
+            timeout:
+                General timeout for the group's tasks.
+                If a task overrides this value, the new value will be used
+                for the task.
 
         Example:
             ```python
@@ -58,9 +64,27 @@ class Group:
             aio_clock.include_group(email_group)
             ```
 
+        Example:
+            ```python
+
+            from aioclock import Group, AioClock, Forever
+
+            email_group = Group(timeout=5)
+
+            # consider this as different file
+            @email_group.task(trigger=Forever())
+            async def send_email():
+                ...
+
+            # app.py
+            aio_clock = AioClock()
+            aio_clock.include_group(email_group)
+            ```
+
         """
         self._tasks: list[Task] = []
         self._limiter = limiter
+        self._timeout = timeout
 
     def task(self, *, trigger: BaseTrigger, timeout: float | None = None):
         """
@@ -97,11 +121,15 @@ class Group:
         Example:
             ```python
 
-            from aioclock import AioClock, Group, Once
+            from aioclock import AioClock, Group, Once, Every
 
-            group = Group()
+            group = Group(timeout=5)
 
-            @group.task(trigger=Once(), timeout=4)
+            @group.task(trigger=Every(seconds=5))
+            async def main():
+                print("Hello World")
+
+            @group.task(trigger=Once(), timeout=4)  # this task will get 4 as timeout
             async def main():
                 print("Hello World")
 
@@ -118,11 +146,14 @@ class Group:
                 else:  # run in threadpool to make sure it's not blocking the event loop
                     return await asyncify(func, limiter=self._limiter)(*args, **kwargs)
 
+            to = self._timeout
+            if timeout is not None:
+                to = timeout
             self._tasks.append(
                 Task(
                     func=inject(wrapped_function, dependency_overrides_provider=get_provider()),
                     trigger=trigger,
-                    timeout=timeout,
+                    timeout=to,
                 )
             )
 
