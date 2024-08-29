@@ -172,6 +172,9 @@ class AioClock:
         self._app_tasks: list[Task] = []
         self._limiter = limiter
         self.lifespan = lifespan
+        group = Group()
+        group._tasks = self._app_tasks
+        self.include_group(group)
 
     _groups: list[Group]
     """List of groups that will be run by AioClock."""
@@ -300,6 +303,7 @@ class AioClock:
     @property
     def _tasks(self) -> list[Task]:
         result = flatten_chain([group._tasks for group in self._groups])
+
         return result
 
     def _get_shutdown_task(self) -> list[Task]:
@@ -323,10 +327,6 @@ class AioClock:
         Run the tasks in the right order.
         First, run the startup tasks, then run the tasks, and finally run the shutdown tasks.
         """
-        group = Group()
-        group._tasks = self._app_tasks
-        self.include_group(group)
-
         if self.lifespan is None:
             await self._run_tasks()
             return
