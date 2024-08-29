@@ -5,10 +5,13 @@ This module could be very useful if you intend to use aioclock in a web applicat
 Other tools and extension are written from this tool.
 
 !!! danger "Note when writing to aioclock API and changing its state."
-    Right now the state of AioClock instance is on the memory level, so if you write an API and change a task's trigger time, it will not persist.
-    In future we might store the state of AioClock instance in a database, so that it always remains same.
-    But this is a bit tricky and implicit because then your code gets ignored and database is preferred over the codebase.
-    For now you may consider it as a way to change something without redeploying the application, but it is not very recommended to write.
+    Right now the state of AioClock instance is on the memory level,
+    so if you write an API and change a task's trigger time, it will not persist.
+    In the future, we might store the state of AioClock instance in a database, so that it always remains same.
+    But this is a bit tricky and implicit because then your code gets ignored
+    and database is preferred over the codebase.
+    For now, you may consider it as a way to change something without redeploying the application,
+    but it is not very recommended to write.
 """
 
 import sys
@@ -37,8 +40,9 @@ class TaskMetadata(BaseModel):
 
     Attributes:
         id: UUID: Task ID that is unique for each task, and changes every time you run the aioclock app.
-            In future we might store task ID in a database, so that it always remains same.
-        trigger: Union[TriggerT, Any]: Trigger that is used to run the task, type is also any to ease implementing new triggers.
+            In the future, we might store task ID in a database, so that it always remains same.
+        trigger: Union[TriggerT, Any]: Trigger that is used to run the task,
+            type is also any to ease implementing new triggers.
         task_name: str: Name of the task function.
     """
 
@@ -54,7 +58,7 @@ async def run_specific_task(task_id: UUID, app: AioClock):
 
     params:
         task_id: Task ID that is unique for each task, and changes every time you run the aioclock app.
-            In future we might store task ID in a database, so that it always remains same.
+            In the future, we might store task ID in a database, so that it always remains same.
         app: AioClock instance to run the task from.
 
     Example:
@@ -114,7 +118,7 @@ async def run_with_injected_deps(func: Callable[P, Awaitable[T]]) -> T:
 async def get_metadata_of_all_tasks(app: AioClock) -> list[TaskMetadata]:
     """Get metadata of all tasks that are included in the AioClock instance.
 
-    This function can be used to mutate the `TaskMetadata` object, i.e to change the trigger of a task.
+    This function can be used to mutate the `TaskMetadata` object, i.e. to change the trigger of a task.
     But for now it is yet not recommended to do this, as you might experience some unexpected behavior.
     But in next versions, I'd like to make it more stable and reliable on mutating the data.
 

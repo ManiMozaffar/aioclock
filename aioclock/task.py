@@ -1,15 +1,19 @@
 """
-Aioclock wrap your functions with a task object, and append the task to the list of tasks in the AioClock instance.
-After collecting all the tasks from decorated functions, aioclock serve them in order it has to be (startup, normal, shutdown).
+Aioclock wrap your functions with a task object,
+and append the task to the list of tasks in the AioClock instance.
+After collecting all the tasks from decorated functions,
+aioclock serve them in order it has to be (startup, normal, shutdown).
 
 These tasks keep running forever until the trigger's method `should_trigger` returns False.
 """
 
+import asyncio
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
-from typing import Any, Awaitable, Callable
+from typing import Any, Awaitable, Callable, Optional
 from uuid import UUID, uuid4
 
+from aioclock.exceptions import TaskTimeoutError
 from aioclock.logger import logger
 from aioclock.triggers import BaseTrigger
 
@@ -26,7 +30,7 @@ class Task:
         func: Callable[..., Awaitable[Any]]: Decorated function that will be run by AioClock.
         trigger: BaseTrigger: Trigger that will be used to run the function.
         id: UUID: Task ID that is unique for each task, and changes every time you run the aioclock app.
-            In future we might store task ID in a database, so that it always remains same.
+            In the future, we might store task ID in a database, so that it always remains same.
 
     """
 
@@ -34,6 +38,7 @@ class Task:
 
     trigger: BaseTrigger
 
+    timeout: Optional[float] = None
     id: UUID = field(default_factory=uuid4)
 
     async def run(self):
@@ -50,8 +55,20 @@ class Task:
                         seconds=next_trigger
                     )
                 await self.trigger.trigger_next()
-                logger.debug(f"Running task {self.func.__name__}")
-                await self.func()
+
+                if self.timeout is not None:
+                    logger.debug(
+                        f"Running task {self.func.__name__} with timeout of {self.timeout}"
+                    )
+                    try:
+                        await asyncio.wait_for(self.func(), self.timeout)
+                    except asyncio.TimeoutError:
+                        raise TaskTimeoutError(
+                            f"Task {self.func.__name__!r} took longer than {self.timeout} seconds to run!"
+                        ) from None
+                else:
+                    logger.debug(f"Running task {self.func.__name__}")
+                    await self.func()
             except Exception as error:
                 # Log the error, but keep running the tasks.
                 # don't crash the whole application.

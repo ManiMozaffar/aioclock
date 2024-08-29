@@ -26,7 +26,7 @@ def sync_task_2(val: Annotated[str, Depends(dependency)]):
     return "3"
 
 
-print(sync_task_2("Aioclock won't color your functions! "))
+print(sync_task_2("Aioclock won't color your functions!"))
 
 
 @group.task(trigger=Every(seconds=2))
