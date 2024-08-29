@@ -38,8 +38,8 @@ class Group:
             limiter:
                 Anyio CapacityLimiter. capacity limiter to use to limit the total amount of threads running
                 Limiter that will be used to limit the number of tasks that are running at the same time.
-                If not provided, it will fallback to the default limiter set on Application level.
-                If no limiter is set on Application level, it will fallback to the default limiter set by AnyIO.
+                If not provided, it will fall back to the default limiter set on Application level.
+                If no limiter is set on Application level, it will fall back to the default limiter set by AnyIO.
 
         Example:
             ```python
@@ -118,7 +118,7 @@ class Group:
     async def _run(self):
         """
         Just for purpose of being able to run all task in group
-        Private method, should not be used outside of the library
+        Private method, should not be used outside the library
         """
         await asyncio.gather(
             *(task.run() for task in self._tasks),

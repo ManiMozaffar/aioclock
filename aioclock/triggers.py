@@ -62,7 +62,7 @@ class BaseTrigger(BaseModel, ABC, Generic[TriggerTypeT]):
         1. An async function which is a task, is decorated with framework, and trigger is the arguement for the decorator
         2. `get_waiting_time_till_next_trigger` is called to get the time in seconds, after which the event should be triggered.
         3. If the time is not None, then it logs the time that is predicted for the event to be triggered.
-        4. `trigger_next` is called immidiately after that, which triggers the event.
+        4. `trigger_next` is called immediately after that, which triggers the event.
 
     You can create trigger by yourself, by inheriting from `BaseTrigger` class.
 
@@ -125,7 +125,7 @@ class BaseTrigger(BaseModel, ABC, Generic[TriggerTypeT]):
 
 
 class Forever(BaseTrigger[Literal[Triggers.FOREVER]]):
-    """A trigger that is always triggered imidiately.
+    """A trigger that is always triggered immediately.
 
     Example:
         ```python
@@ -191,7 +191,7 @@ class LoopController(BaseTrigger, ABC, Generic[TriggerTypeT]):
     max_loop_count: Union[PositiveInt, None] = None
 
     @model_validator(mode="after")
-    def validate_loop_controll(self):
+    def validate_loop_control(self):
         if "_current_loop_count" in self.model_fields_set:
             raise ValueError("_current_loop_count is a private attribute, should not be provided.")
         return self

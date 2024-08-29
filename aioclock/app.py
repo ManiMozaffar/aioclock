@@ -2,7 +2,7 @@
 To initialize the AioClock instance, you need to import the AioClock class from the aioclock module.
 AioClock class represent the aioclock, and handle the tasks and groups that will be run by the aioclock.
 
-Another way to modulize your code is to use `Group` which is kinda the same idea as router in web frameworks.
+Another way to modularize your code is to use `Group` which is kinda the same idea as router in web frameworks.
 """
 
 from __future__ import annotations
@@ -76,7 +76,7 @@ class AioClock:
     ## Lifespan
 
     You can define this startup and shutdown logic using the lifespan parameter of the AioClock instance.
-    It should be as an  AsyncContextManager which get AioClock application as arguement.
+    It should be as an  AsyncContextManager which get AioClock application as argument.
     You can find the example below.
 
     Example:
@@ -107,15 +107,16 @@ class AioClock:
 
     Here we are simulating the expensive startup operation of loading the model by putting the (fake)
     model function in the dictionary with machine learning models before the yield.
-    This code will be executed before the application starts operationg, during the startup.
+    This code will be executed before the application starts operating, during the startup.
 
     And then, right after the yield, we unload the model.
     This code will be executed after the application finishes handling requests, right before the shutdown.
     This could, for example, release resources like memory, a GPU or some database connection.
 
-    It would also happen when you're stopping your application gracefully, for example, when you're shutting down your container.
+    It would also happen when you're stopping your application gracefully,
+    for example, when you're shutting down your container.
 
-    Lifespan could also be synchronus context manager. Check the example below.
+    Lifespan could also be synchronous context manager. Check the example below.
 
 
     Example:
@@ -163,8 +164,8 @@ class AioClock:
             limiter:
                 Anyio CapacityLimiter. capacity limiter to use to limit the total amount of threads running
                 Limiter that will be used to limit the number of tasks that are running at the same time.
-                If not provided, it will fallback to the default limiter set on Application level.
-                If no limiter is set on Application level, it will fallback to the default limiter set by AnyIO.
+                If not provided, it will fall back to the default limiter set on Application level.
+                If no limiter is set on Application level, it will fall back to the default limiter set by AnyIO.
 
         """
         self._groups: list[Group] = []

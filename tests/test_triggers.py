@@ -128,7 +128,7 @@ async def test_every():
 
 @pytest.mark.asyncio
 async def test_cron():
-    # it's dumb idea to test library, but I don't trust it 100%, and i might drop it in the future.
+    # it's dumb idea to test library, but I don't trust it 100%, and it might drop it in the future.
 
     trigger = Cron(cron="* * * * *", tz="UTC")
     val = await trigger.get_waiting_time_till_next_trigger(
@@ -161,7 +161,7 @@ async def test_cron():
     )
 
     with pytest.raises(ValueError):
-        trigger = Cron(cron="* * * * 65", tz="UTC")
+        Cron(cron="* * * * 65", tz="UTC")
 
 
 @pytest.mark.asyncio
