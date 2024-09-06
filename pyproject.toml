@@ -6,7 +6,7 @@ authors = [{ name = "Mani Mozaffar", email = "mani.mozaffar@gmail.com" }]
 readme = "README.md"
 requires-python = ">= 3.8"
 dependencies = [
-    "pydantic>2.5,<3.0",
+    "pydantic[timezone]>=2.9.0",
     "fast-depends>=2.4.0",
     "asyncer>=0.0.7",
     "croniter>=2.0.5",
