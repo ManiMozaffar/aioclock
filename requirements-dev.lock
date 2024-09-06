@@ -150,11 +150,11 @@ platformdirs==4.2.2
 pluggy==1.5.0
     # via pytest
     # via tox
-pydantic==2.7.1
+pydantic==2.9.0
     # via aioclock
     # via fast-depends
     # via fastapi
-pydantic-core==2.18.2
+pydantic-core==2.23.2
     # via pydantic
 pygments==2.18.0
     # via mkdocs-material
@@ -214,6 +214,8 @@ typing-extensions==4.12.0
     # via pydantic
     # via pydantic-core
     # via typer
+tzdata==2024.1
+    # via pydantic
 ujson==5.10.0
     # via fastapi
 urllib3==2.2.1
