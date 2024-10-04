@@ -1,6 +1,8 @@
 import asyncio
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 
-from aioclock import AioClock, At, Depends, Every, Forever, Once, OnShutDown, OnStartUp
+from aioclock import AioClock, At, Depends, Every, Forever, Once
 from aioclock.group import Group
 
 # groups.py
@@ -40,21 +42,18 @@ async def once():
     print("Just once, I get to say something. Here it goes... I love lamp.")
 
 
-# app.py
-app = AioClock()
-app.include_group(group)
-
-
-@app.task(trigger=OnStartUp())
-async def startup():
+@asynccontextmanager
+async def lifespan(aio_clock: AioClock) -> AsyncGenerator[AioClock]:
     print(
         "Welcome to the Async Chronicles! Did you know a group of unicorns is called a blessing? Well, now you do!"
     )
-
-
-@app.task(trigger=OnShutDown())
-async def shutdown():
+    yield aio_clock
     print("Going offline. Remember, if your code is running, you better go catch it!")
+
+
+# app.py
+app = AioClock(lifespan=lifespan)
+app.include_group(group)
 
 
 # main.py

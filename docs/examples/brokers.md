@@ -3,18 +3,26 @@ You can basically run any tasks on aioclock, it could be your redis broker or ot
 AioClock offer you a unique easy way to spin up new services, without any overhead or perfomance issue!
 
 ```python
-from aioclock import AioClock, Forever, OnShutDown, Depends
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
+from aioclock import AioClock, Forever, Depends
 from functools import lru_cache
 from typing import NewType
 
 BrokerType = NewType("BrokerType", ...) # your broker type ...
 
-app = AioClock()
-
 # your singleton redis instance
 @lru_cache
 def get_redis():
     ...
+
+@asynccontextmanager
+async def lifespan(aio_clock: AioClock, redis: BrokerType = Depends(get_redis)) -> AsyncGenerator[AioClock]:
+    yield aio_clock
+    await redis.disconnect()
+
+
+app = AioClock(lifespan=lifespan)
 
 
 @app.task(trigger=Forever())
@@ -22,10 +30,6 @@ async def read_message_queue(redis: BrokerType = Depends(get_redis)):
     async for message in redis.listen("..."):
         ...
 
-
-@app.task(trigger=OnShutDown())
-async def shutdown_event(redis: BrokerType = Depends(get_redis)):
-    await redis.disconnect()
 ```
 
 One other way to do this, is to implement a trigger that automatically execute the function.

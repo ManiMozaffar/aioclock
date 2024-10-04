@@ -1,9 +1,11 @@
 import asyncio
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 import threading
 from time import sleep
 from typing import Annotated
 
-from aioclock import AioClock, Depends, Every, Group, OnShutDown, OnStartUp
+from aioclock import AioClock, Depends, Every, Group
 
 # service1.py
 group = Group()
@@ -34,19 +36,16 @@ async def async_task(val: str = Depends(dependency)):
     print(f"{val} `async_task` {threading.current_thread().ident}")
 
 
-# app.py
-app = AioClock()
-app.include_group(group)
-
-
-@app.task(trigger=OnStartUp())
-def startup(val: str = Depends(dependency)):
+@asynccontextmanager
+async def lifespan(aio_clock: AioClock) -> AsyncGenerator[AioClock]:
     print("Welcome!")
-
-
-@app.task(trigger=OnShutDown())
-def shutdown(val: str = Depends(dependency)):
+    yield aio_clock
     print("Bye!")
+
+
+# app.py
+app = AioClock(lifespan=lifespan)
+app.include_group(group)
 
 
 if __name__ == "__main__":
