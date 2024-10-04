@@ -1,18 +1,22 @@
 import asyncio
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
 from aioclock import AioClock
 from aioclock.ext.fast import make_fastapi_router
-from aioclock.triggers import Every, OnStartUp
-
-clock_app = AioClock()
+from aioclock.triggers import Every
 
 
-@clock_app.task(trigger=OnStartUp())
-async def startup():
-    print("Starting...")
+@asynccontextmanager
+async def aioclock_lifespan(aio_clock: AioClock) -> AsyncGenerator[AioClock]:
+    print("Starting aiolcok app...")
+    yield aio_clock
+    print("Closing aiolcok app...")
+
+
+clock_app = AioClock(lifespan=aioclock_lifespan)
 
 
 @clock_app.task(trigger=Every(seconds=3600))
