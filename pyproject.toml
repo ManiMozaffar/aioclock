@@ -1,6 +1,6 @@
 [project]
 name = "aioclock"
-version = "0.3.0"
+version = "0.3.1"
 description = "An asyncio-based scheduling framework designed for execution of periodic task with integrated support for dependency injection, enabling efficient and flexible task management"
 authors = [{ name = "Mani Mozaffar", email = "mani.mozaffar@gmail.com" }]
 readme = "README.md"
