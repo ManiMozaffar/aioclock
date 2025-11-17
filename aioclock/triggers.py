@@ -355,13 +355,13 @@ class Every(LoopController[Literal[Triggers.EVERY]]):
     def to_seconds(self) -> float:
         result = self.seconds or 0
         if self.weeks is not None:
-            result += self.weeks * 604800
+            result += self.weeks * WEEK_TO_SECOND
         if self.days is not None:
-            result += self.days * 86400
+            result += self.days * DAY_TO_SECOND
         if self.hours is not None:
-            result += self.hours * 3600
+            result += self.hours * HOUR_TO_SECOND
         if self.minutes is not None:
-            result += self.minutes * 60
+            result += self.minutes * MINUTE_TO_SECOND
 
         return result
 
@@ -382,7 +382,10 @@ class Every(LoopController[Literal[Triggers.EVERY]]):
         return None
 
 
-WEEK_TO_SECOND = 604800
+MINUTE_TO_SECOND = 60
+HOUR_TO_SECOND = 60 * MINUTE_TO_SECOND
+DAY_TO_SECOND = 24 * HOUR_TO_SECOND
+WEEK_TO_SECOND = 7 * DAY_TO_SECOND
 
 
 class At(LoopController[Literal[Triggers.AT]]):
@@ -603,10 +606,8 @@ class OrTrigger(LoopController[Literal[Triggers.OR]]):
 
     async def trigger_next(self) -> None:
         self._increment_loop_counter()
-        next_trigger, time_to_sleep = await self.find_closest_trigger()
+        next_trigger, _ = await self.find_closest_trigger()
         await next_trigger.trigger_next()
-        if time_to_sleep is not None:
-            await asyncio.sleep(time_to_sleep)
         return None
 
     async def get_waiting_time_till_next_trigger(self):
