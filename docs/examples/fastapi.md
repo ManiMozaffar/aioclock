@@ -8,6 +8,7 @@ from contextlib import asynccontextmanager
 
 clock_app = AioClock()
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     task = asyncio.create_task(clock_app.serve())
@@ -18,6 +19,7 @@ async def lifespan(app: FastAPI):
         await task
     except asyncio.CancelledError:
         ...
+
 
 app = FastAPI(lifespan=lifespan)
 # now serve this with uvicorn or anything else

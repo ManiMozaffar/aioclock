@@ -23,10 +23,7 @@ P = ParamSpec("P")
 
 class Group:
     def __init__(
-        self,
-        *,
-        limiter: Optional[anyio.CapacityLimiter] = None,
-        timeout: Optional[float] = None
+        self, *, limiter: Optional[anyio.CapacityLimiter] = None, timeout: Optional[float] = None
     ):
         """
         Group of tasks that will be run together.
