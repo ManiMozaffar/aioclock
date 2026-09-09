@@ -10,24 +10,23 @@ on:
 jobs:
   tox:
     runs-on: ubuntu-latest
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
     strategy:
       matrix:
         python-version: ["3.9", "3.10", "3.11"]
       fail-fast: false
     steps:
       - name: Check out
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install the latest version of rye
-        uses: eifinger/setup-rye@v2
-
-      - name: Pin python-version ${{ matrix.python-version }}
-        run: rye pin ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
 
       - name: Install dependencies
         run: make install
