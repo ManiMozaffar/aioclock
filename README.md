@@ -30,6 +30,17 @@ To Install aioclock, simply do
 pip install aioclock
 ```
 
+## Development
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then create the development
+environment from the committed lockfile:
+
+```bash
+uv sync --locked
+```
+
+Use `make test`, `make check`, and `make docs-test` to run the test suite, quality checks, and documentation build.
+
 ## Help
 
 See [documentation](https://ManiMozaffar.github.io/aioclock/) for more details.
