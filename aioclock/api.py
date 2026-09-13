@@ -18,12 +18,11 @@ import sys
 from typing import Any, Awaitable, Callable, TypeVar, Union
 from uuid import UUID
 
-from fast_depends import inject
 from pydantic import BaseModel
 
 from aioclock.app import AioClock
 from aioclock.exceptions import TaskIdNotFound
-from aioclock.provider import get_provider
+from aioclock.provider import inject_with_provider
 from aioclock.triggers import TriggerT
 
 if sys.version_info < (3, 10):
@@ -112,7 +111,7 @@ async def run_with_injected_deps(func: Callable[P, Awaitable[T]]) -> T:
         ```
 
     """
-    return await inject(func, dependency_overrides_provider=get_provider())()  # type: ignore
+    return await inject_with_provider(func)()  # type: ignore
 
 
 async def get_metadata_of_all_tasks(app: AioClock) -> list[TaskMetadata]:

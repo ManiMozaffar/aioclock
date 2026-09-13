@@ -11,9 +11,8 @@ else:
     from typing import ParamSpec
 
 import anyio
-from fast_depends import inject
 
-from aioclock.provider import get_provider
+from aioclock.provider import inject_with_provider
 from aioclock.task import Task
 from aioclock.triggers import BaseTrigger
 
@@ -23,10 +22,7 @@ P = ParamSpec("P")
 
 class Group:
     def __init__(
-        self,
-        *,
-        limiter: Optional[anyio.CapacityLimiter] = None,
-        timeout: Optional[float] = None
+        self, *, limiter: Optional[anyio.CapacityLimiter] = None, timeout: Optional[float] = None
     ):
         """
         Group of tasks that will be run together.
@@ -151,7 +147,7 @@ class Group:
                 to = timeout
             self._tasks.append(
                 Task(
-                    func=inject(wrapped_function, dependency_overrides_provider=get_provider()),
+                    func=inject_with_provider(wrapped_function),
                     trigger=trigger,
                     timeout=to,
                 )

@@ -11,6 +11,7 @@ import asyncio
 import sys
 from functools import wraps
 from typing import (
+    TYPE_CHECKING,
     Any,
     AsyncContextManager,
     Callable,
@@ -19,8 +20,6 @@ from typing import (
     TypeVar,
     Union,
 )
-
-import anyio
 
 if sys.version_info < (3, 10):
     from typing_extensions import ParamSpec
@@ -33,13 +32,16 @@ else:
     from typing import assert_never
 
 from asyncer import asyncify
-from fast_depends import inject
 
 from aioclock.custom_types import Triggers
 from aioclock.group import Group, Task
-from aioclock.provider import get_provider
-from aioclock.triggers import BaseTrigger
+from aioclock.provider import get_provider, inject_with_provider
 from aioclock.utils import flatten_chain
+
+if TYPE_CHECKING:
+    import anyio
+
+    from aioclock.triggers import BaseTrigger
 
 T = TypeVar("T")
 P = ParamSpec("P")
@@ -291,7 +293,7 @@ class AioClock:
 
             self._app_tasks.append(
                 Task(
-                    func=inject(wrapped_function, dependency_overrides_provider=get_provider()),
+                    func=inject_with_provider(wrapped_function),
                     trigger=trigger,
                     timeout=timeout,
                 )
@@ -331,7 +333,7 @@ class AioClock:
             await self._run_tasks()
             return
 
-        ctx = self.lifespan(self)
+        ctx = inject_with_provider(self.lifespan)(self)
 
         if isinstance(ctx, AsyncContextManager):
             async with ctx:

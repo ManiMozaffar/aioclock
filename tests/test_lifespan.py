@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager, contextmanager
 
 import pytest
 
-from aioclock import AioClock
+from aioclock import AioClock, Depends
 from aioclock.triggers import Once
 
 ML_MODEL_ASYNC = []
@@ -63,3 +63,64 @@ async def test_lifespan_e2e_sync():
     await sync_app.serve()  # asserts are in the task
     assert len(ML_MODEL_SYNC) == 0  # clean up done
     assert RAN_ONCE_TASK_SYNC is True  # task ran
+
+
+@pytest.mark.asyncio
+async def test_async_lifespan_dependencies_are_injected():
+    injected_values = []
+
+    def dependency():
+        return "injected"
+
+    @asynccontextmanager
+    async def lifespan_with_dependency(app: AioClock, value: str = Depends(dependency)):
+        injected_values.append(value)
+        yield app
+
+    app_with_dependency = AioClock(lifespan=lifespan_with_dependency)
+
+    await app_with_dependency.serve()
+
+    assert injected_values == ["injected"]
+
+
+@pytest.mark.asyncio
+async def test_sync_lifespan_dependencies_are_injected():
+    injected_values = []
+
+    def dependency():
+        return "injected"
+
+    @contextmanager
+    def lifespan_with_dependency(app: AioClock, value: str = Depends(dependency)):
+        injected_values.append(value)
+        yield app
+
+    app_with_dependency = AioClock(lifespan=lifespan_with_dependency)
+
+    await app_with_dependency.serve()
+
+    assert injected_values == ["injected"]
+
+
+@pytest.mark.asyncio
+async def test_lifespan_dependency_overrides_are_applied():
+    injected_values = []
+
+    def dependency():
+        return "original"
+
+    def override():
+        return "overridden"
+
+    @asynccontextmanager
+    async def lifespan_with_dependency(app: AioClock, value: str = Depends(dependency)):
+        injected_values.append(value)
+        yield app
+
+    app_with_dependency = AioClock(lifespan=lifespan_with_dependency)
+    app_with_dependency.override_dependencies(dependency, override)
+
+    await app_with_dependency.serve()
+
+    assert injected_values == ["overridden"]
