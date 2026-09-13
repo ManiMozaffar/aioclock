@@ -9,15 +9,18 @@ from aioclock import AioClock, Forever, Depends
 from functools import lru_cache
 from typing import NewType
 
-BrokerType = NewType("BrokerType", ...) # your broker type ...
+BrokerType = NewType("BrokerType", ...)  # your broker type ...
+
 
 # your singleton redis instance
 @lru_cache
-def get_redis():
-    ...
+def get_redis(): ...
+
 
 @asynccontextmanager
-async def lifespan(aio_clock: AioClock, redis: BrokerType = Depends(get_redis)) -> AsyncGenerator[AioClock]:
+async def lifespan(
+    aio_clock: AioClock, redis: BrokerType = Depends(get_redis)
+) -> AsyncGenerator[AioClock]:
     yield aio_clock
     await redis.disconnect()
 
@@ -29,7 +32,6 @@ app = AioClock(lifespan=lifespan)
 async def read_message_queue(redis: BrokerType = Depends(get_redis)):
     async for message in redis.listen("..."):
         ...
-
 ```
 
 One other way to do this, is to implement a trigger that automatically execute the function.

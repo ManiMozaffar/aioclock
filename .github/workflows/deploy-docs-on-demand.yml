@@ -8,16 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up the environment
-        uses: ./.github/actions/setup-poetry-env
+      - name: Set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
 
-      - name: Install the latest version of rye
-        uses: eifinger/setup-rye@v2
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
 
       - name: Install dependencies
         run: make install
 
       - name: Deploy documentation
-        run: rye run python deploy_docs.py
+        run: uv run --locked python deploy_docs.py

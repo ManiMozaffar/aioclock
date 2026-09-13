@@ -1,7 +1,7 @@
 import asyncio
+import threading
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
-import threading
 from time import sleep
 from typing import Annotated
 

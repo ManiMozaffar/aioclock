@@ -71,7 +71,6 @@ async def once():
     print("Just once, I get to say something. Here it goes... I love lamp.")
 
 
-
 @asynccontextmanager
 async def lifespan(aio_clock: AioClock) -> AsyncGenerator[AioClock]:
     print(

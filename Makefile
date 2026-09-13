@@ -1,34 +1,34 @@
 .PHONY: install
-install: ## Install the rye environment
-	@echo "🚀 Creating virtual environment using rye and uv"
-	rye sync
+install: ## Install the uv environment
+	@echo "🚀 Creating virtual environment using uv"
+	uv sync --locked
 
 .PHONY: check
 check: ## Run the quality checks on the code
 	@echo "🚀 Running quality checks"
-	rye run ruff .
-	rye run pyright .
+	uv run --locked ruff check .
+	uv run --locked pyright .
 
 .PHONY: test
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
-	rye run pytest
+	uv run --locked pytest
 
 
 .PHONY: docs
 docs:  ## Build and serve the documentation
 	@echo "🚀 Testing documentation: Building and testing"
-	rye run mkdocs serve
+	uv run --locked mkdocs serve
 
 .PHONY: deploy-docs
 deploy-docs: ## Build and serve the documentation
 	@echo "🚀 Deploying documentation"
-	rye run python deploy_docs.py
+	uv run --locked python deploy_docs.py
 
 
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
-	@rye run mkdocs build -s
+	@uv run --locked mkdocs build -s
 
 .PHONY: help
 help:
