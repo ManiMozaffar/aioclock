@@ -56,7 +56,7 @@ def test_at_trigger():
     # test next week
     trigger = At(at="every saturday", hour=14, second=0, tz="Europe/Istanbul")
     val = trigger._get_next_ts(this_sunday)
-    assert val == 86400
+    assert val == timedelta(days=6).total_seconds()
 
     # right NOW
     trigger = At(at="every sunday", hour=14, tz="Europe/Istanbul")
@@ -67,6 +67,33 @@ def test_at_trigger():
     trigger = At(at="every sunday", hour=13, tz="Europe/Istanbul")
     val = trigger._get_next_ts(this_sunday)
     assert val == timedelta(days=7).total_seconds() - timedelta(hours=1).total_seconds()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "now, weekday, expected",
+    [
+        ("2024-04-01T16:00:00", "every friday", "2024-04-05T14:30:00"),
+        ("2024-04-03T12:00:00", "every monday", "2024-04-08T14:30:00"),
+        ("2024-04-07T12:00:00", "every saturday", "2024-04-13T14:30:00"),
+        ("2024-04-07T16:00:00", "every monday", "2024-04-08T14:30:00"),
+        ("2024-04-03T12:00:00", "every friday", "2024-04-05T14:30:00"),
+        ("2024-04-03T12:00:00", "every wednesday", "2024-04-03T14:30:00"),
+        ("2024-04-03T14:30:00", "every wednesday", "2024-04-03T14:30:00"),
+        ("2024-04-03T16:00:00", "every wednesday", "2024-04-10T14:30:00"),
+        ("2024-04-03T12:00:00", "every day", "2024-04-03T14:30:00"),
+        ("2024-04-03T16:00:00", "every day", "2024-04-04T14:30:00"),
+    ],
+)
+async def test_at_waiting_time_selects_next_weekday(now, weekday, expected):
+    tz = zoneinfo.ZoneInfo("Europe/Istanbul")
+    now = datetime.fromisoformat(now).replace(tzinfo=tz)
+    expected = datetime.fromisoformat(expected).replace(tzinfo=tz)
+    trigger = At(at=weekday, hour=14, minute=30, tz="Europe/Istanbul")
+
+    waiting_time = await trigger.get_waiting_time_till_next_trigger(now)
+
+    assert now + timedelta(seconds=waiting_time) == expected
 
 
 def test_cross_timezone():
