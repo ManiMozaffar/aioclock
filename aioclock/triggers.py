@@ -455,11 +455,12 @@ class At(LoopController[Literal[Triggers.AT]]):
             return target_time
 
         target_weekday: int = WEEKDAY_MAPPER[self.at]
+        days_ahead = (target_weekday - tz_aware_now.weekday()) % 7
+        target_time += timedelta(days=days_ahead)
         if tz_aware_now > target_time:  # if the time is already passed, then shift to next week
             return target_time + relativedelta(weeks=1)
 
-        days_ahead = abs(target_weekday - tz_aware_now.weekday())
-        return target_time + timedelta(days_ahead)
+        return target_time
 
     def _get_next_ts(self, now: datetime) -> float:
         target_time = deepcopy(now).replace(
